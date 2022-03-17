@@ -7,8 +7,8 @@ from django.views.decorators.csrf import csrf_protect
 
 @csrf_protect
 def signup(request):
-    if request.method == 'post':
-        form = SignUpForm(request.post)
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Account Created')
@@ -16,5 +16,5 @@ def signup(request):
 
     else:
         form = SignUpForm()
-    return render(request, 'signup.html')
+    return render(request, 'signup.html', {'form': form})
 
