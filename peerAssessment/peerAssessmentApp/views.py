@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import SignUpForm
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import HttpResponse
 
 # Create your views here.
 
@@ -17,4 +18,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-
+#not working currently
+def home_view(request): 
+    return HttpResponse('<h1> Home Page Test</h1>')
