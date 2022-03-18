@@ -19,5 +19,21 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 #not working currently
+
+
+def courseCreation(request):
+    if request.method == 'POST':
+        form = CourseCreation(request.POST)
+        if form.is_valid():
+            form.save()
+            message.success(request, 'Course Created')
+            return render(request, 'course.html')
+    else:
+        form = CourseCreation()
+    return render(request, 'course.html', {'form': form})
+
+
+
+
 def home_view(request): 
     return HttpResponse('<h1> Home Page Test</h1>')
