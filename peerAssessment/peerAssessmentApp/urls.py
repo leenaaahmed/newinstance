@@ -4,6 +4,7 @@ from . import views
 app_name = 'peerAssessmentApp'
 
 urlpatterns = [
-    path('',views.signup, name='signup'), 
+    path('createuser', views.createUser, name='createuser'),
+    path('',views.signup, name='signup'),
 
 ]
