@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/',admin.site.urls),
     #login using /accounts/login
     path('accounts/', include('django.contrib.auth.urls')),
-    
+    path('home/', include('peerAssessmentApp.urls'))
 
 ]

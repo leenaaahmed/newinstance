@@ -5,6 +5,7 @@ app_name = 'peerAssessmentApp'
 
 urlpatterns = [
     path('createuser', views.createUser, name='createuser'),
-    path('',views.signup, name='signup'),
+    path("login", views.login, name="login"),
+    path('',views.signup, name='signup')
 
 ]
