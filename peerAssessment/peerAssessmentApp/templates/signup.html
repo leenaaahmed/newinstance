@@ -14,7 +14,7 @@
     @font-face {
         font-family: carmen-sans;
         src: url(./regularfont.otf)
-    }  
+    }
 
     .h1 h2 h3 h4{
         color: white;
@@ -56,7 +56,7 @@
     }
 
     .logo{
-        position: relative; 
+        position: relative;
     }
 
     #home-desc{
@@ -83,7 +83,7 @@
         background-color: black;
         color: white;
     }
-    
+
     .signup-container{
         position: relative;
         width: 100%;
@@ -131,7 +131,7 @@
         right: 0;
         top: 0;
     }
-    
+
         .navlist.responsive a {
             float: none;
             display: block;
@@ -139,7 +139,7 @@
         }
     }
   </style>
-    
+
   </head>
 
 <section id = navbar>
@@ -156,7 +156,7 @@
 
 <section id = home-desc>
     <h1>Get Started Now</h1>
-    <p>Sign up to upgrade your grading system and group <br> assessments 
+    <p>Sign up to upgrade your grading system and group <br> assessments
         with New Instance.</p>
 </section>
 
@@ -170,14 +170,24 @@
                         {{ form.username|as_crispy_field }}
                     </div>
                 </div>
-            
                 <div class="form-row col-4">
+                    <div class="form-group">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                </div>
+
+                <!-- <div class="form-row col-4">
                     <div class="form-group">
                         <label for="password">Email address</label>
                         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                     </div>
+                </div> -->
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form.date_of_birth|as_crispy_field }}
+                    </div>
                 </div>
-            
+
                 <div class="form-row" style="display: inline-flex;">
                     <div class="form-group" style="margin-right: 1.5em;">
                         {{ form.password1|as_crispy_field }}
@@ -186,9 +196,9 @@
                         {{ form.password2|as_crispy_field }}
                     </div>
                 </div>
-            
+
                 <div class="form-row col-4">
-                   
+
                 </div>
                 <button type="submit">Sign up</button>
             </form>
