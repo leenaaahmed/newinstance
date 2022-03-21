@@ -7,7 +7,7 @@ class SignUpForm(UserCreationForm):
     username = forms.CharField(help_text='Required')
     email = forms.EmailField(max_length = 40, help_text = 'Required')
     date_of_birth = forms.DateField(initial = datetime.date.today,help_text = 'Required')
-
+    
     class Meta:
         model = User
         fields = ('username','email', 'date_of_birth', 'password1',  'password2')

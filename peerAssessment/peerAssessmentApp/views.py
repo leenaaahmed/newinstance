@@ -51,4 +51,4 @@ def courseCreation(request):
 
 
 def home_view(request):
-    return HttpResponse('<h1> Home Page Test</h1>')
+    return render(request,'home.html')
