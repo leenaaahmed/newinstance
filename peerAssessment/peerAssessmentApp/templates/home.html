@@ -15,7 +15,7 @@
         src: url(./regularfont.otf)
     }
 
-    .h1 h2 h3 h4{
+    .h1 h2 h3 h4 a{
         color: white;
     }
 
@@ -57,12 +57,54 @@
     .logo{
         position: relative;
     }
+    
+    .home-content{
+      text-align:center;
+      margin-top: 2em;
+      color: white;
+    }
+
+    .home-content p{
+        color: gray;
+    }
+
+    .home-btn{
+            display: inline;
+            position: relative;
+            margin-top: 1em;
+            margin-right: 1em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 1px rgb(230, 48, 78);
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+    }
+
+    .home-btn a{
+        color: white;
+        text-decoration: none;
+    }
+
+    .home-btn a:hover{
+        color: rgb(230, 48, 78);
+        font-weight: 800;
+    }
+
   </style>
 </head>
 
 
 <body>
-    <a href="{% url 'login' %}">Log In</a>
+    <div class="home-content">
+        <h1>Welcome,</h1>
+        <p>Join hundreds of professors and students in using New Instance: <br>
+        the platform for peer assessments.</p>
+        <button class="home-btn"><a href="">Sign Up</a></button> 
+    </div>
+    
 </body>
  
 {% endblock %}
