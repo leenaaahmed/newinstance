@@ -135,6 +135,26 @@
             width: 33%;
         }
 
+        .sign-up-btn{
+            display: block;
+            position: relative;
+            margin-top: 1em;
+            margin-right: 1em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 1px rgb(230, 48, 78);
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sign-up-btn:hover{
+            color: rgb(230, 48, 78);
+            font-weight: 800;
+        }
+
         @media screen and (max-width: 600px) {
             .navlist a:not(:first-child) {display: none;}
             .navlist a.icon {
@@ -160,7 +180,6 @@
   </style>
 
   </head>
-
 <section id = home-desc>
     <h1>Get Started Now</h1>
     <p>Sign up to upgrade your grading system and group <br> assessments
@@ -183,12 +202,13 @@
                     </div>
                 </div>
 
-                <!-- <div class="form-row col-4">
+               <div class="form-row col-4">
                     <div class="form-group">
                         <label for="password">Email address</label>
                         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                     </div>
-                </div> -->
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         {{ form.date_of_birth|as_crispy_field }}
@@ -203,11 +223,7 @@
                         {{ form.password2|as_crispy_field }}
                     </div>
                 </div>
-
-                <div class="form-row col-4">
-
-                </div>
-                <button type="submit">Sign up</button>
+                <button class="sign-up-btn" type="submit">Sign up</button>
             </form>
         </div>
         <div class="right">

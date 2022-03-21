@@ -13,7 +13,7 @@
         }
 
         body{
-            background-image: url('web-background.jpeg');
+            background-color: black;
         }
 
         @font-face {
@@ -36,26 +36,27 @@
         .navlist{
             width: 100;
             overflow: hidden;
+            display: inline-flex;
         }
     
-        .navlist a{
-            float: left;
-            display: block;
+        .navlist ul{
+            display: inline-flex;
+            list-style: none; 
             color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
             text-decoration: none;
             font-size: 17px;
         }
-    
-        .navlist a:hover {
-            color: red;
+
+        .navlist ul li{
+            list-style: none;
         }
     
-        .navlist a.active {
-            color: red;
+        .navlist ul li a:hover {
+            color: rgb(230, 48, 78);
+            font-weight: 800;
         }
     
+        
         .navlist .icon {
              display: none;
         }
@@ -63,25 +64,83 @@
         .logo{
             position: relative; 
         }
+
+        .navigator{
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-top: 1em;
+            margin-right: 1em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 1px rgb(230, 48, 78);
+            color: #f2f2f2;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navigator:hover{
+            color: rgb(230, 48, 78);
+            font-weight: 800;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navlist a:not(:first-child) {display: none;}
+            .navlist a.icon {
+            float: right;
+            display: block;
+        }
+        }
+
+        @media screen and (max-width: 600px) {
+            .navlist.responsive {position: relative;}
+            .navlist.responsive .icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+            .navlist.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+
     </style>
+    
 </head>
 <body>
 
     <section id = navbar>
         <div class="navlist" id="mynav">
-            <a class="logo" href="#home" class="active">NEW INSTANCE</a>
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
+            <ul> 
+                <div class="logo"><a>NEW INSTANCE</a></div>
+                <li><a>|</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+            <button class="navigator"><a>Log In</a></button>
         </div>
     </section>
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("mynav");
+          if (x.className === "navlist") {
+            x.className += " responsive";
+          } else {
+            x.className = "navlist";
+          }
+        }
+    </script>
 
 {% block content %}
 
 {% endblock %}
+
+
 </body>
 </html>
 
