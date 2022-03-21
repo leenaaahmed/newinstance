@@ -4,40 +4,211 @@
 
 {% block content %}
 
-<ul style="list-style: none; display: inline-flex; float: right">
-    <li><a href="default.asp" style="padding-right:10px;">Home</a></li>
-    <li><a href="news.asp" style="padding-right:10px;">Groups</a></li>
-    <li><a href="contact.asp" style="padding-right:10px;">Forms</a></li>
-    <li><a href="about.asp" style="padding-right:10px;">Account</a></li>
-</ul>
+<head>
+    <style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-<h2 class="heading">Sign Up</h2>
-<form method="POST">
-    {% csrf_token %}
-    <div class="form-row col-4">
-        <div class="form-group">
-            {{ form.username|as_crispy_field }}
+    @font-face {
+        font-family: carmen-sans;
+        src: url(./regularfont.otf)
+    }  
+
+    .h1 h2 h3 h4{
+        color: white;
+    }
+
+    #navbar{
+        width: 100%;
+        height: 10vh;
+        background-color: black;
+        padding-top: 0.7em;
+        padding-left: 2em;
+    }
+
+    .navlist{
+        width: 100;
+        overflow: hidden;
+    }
+
+    .navlist a{
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .navlist a:hover {
+        color: red;
+    }
+
+    .navlist a.active {
+        color: red;
+    }
+
+    .navlist .icon {
+         display: none;
+    }
+
+    .logo{
+        position: relative; 
+    }
+
+    #home-desc{
+        width: 100%;
+        height: auto;
+        background-color: black;
+        color: gray;
+        text-align: center;
+        padding-top: 5em;
+        padding-bottom: 2em;
+    }
+
+    #home-desc h1{
+        color:white;
+    }
+
+    #signup{
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding-left: 4em;
+        padding-right: 4em;
+        padding-bottom: 4em;
+        background-color: black;
+        color: white;
+    }
+    
+    .signup-container{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: table;
+        content: "";
+    }
+
+    .left{
+        float: left;
+        background-color: black;
+        color: white;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .left h2{
+        margin-bottom: 1em;
+    }
+
+    .form-group{
+        margin-bottom: 1.5em;
+    }
+
+    .right{
+        display: none;
+        background-color: white;
+        float: right;
+        width: 33%;
+    }
+
+    @media screen and (max-width: 600px) {
+        .navlist a:not(:first-child) {display: none;}
+        .navlist a.icon {
+        float: right;
+        display: block;
+    }
+    }
+
+    @media screen and (max-width: 600px) {
+        .navlist.responsive {position: relative;}
+        .navlist.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    
+        .navlist.responsive a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+    }
+  </style>
+    
+  </head>
+
+<section id = navbar>
+    <div class="navlist" id="mynav">
+        <a class="logo" href="#home" class="active">NEW INSTANCE</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+</section>
+
+<section id = home-desc>
+    <h1>Get Started Now</h1>
+    <p>Sign up to upgrade your grading system and group <br> assessments 
+        with New Instance.</p>
+</section>
+
+<section id = signup>
+    <div class="signup-container">
+        <div class="left">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row col-4">
+                    <div class="form-group">
+                        {{ form.username|as_crispy_field }}
+                    </div>
+                </div>
+            
+                <div class="form-row col-4">
+                    <div class="form-group">
+                        <label for="password">Email address</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                </div>
+            
+                <div class="form-row" style="display: inline-flex;">
+                    <div class="form-group" style="margin-right: 1.5em;">
+                        {{ form.password1|as_crispy_field }}
+                    </div>
+                     <div class="form-group">
+                        {{ form.password2|as_crispy_field }}
+                    </div>
+                </div>
+            
+                <div class="form-row col-4">
+                   
+                </div>
+                <button type="submit">Sign up</button>
+            </form>
+        </div>
+        <div class="right">
+
         </div>
     </div>
 
-    <div class="form-row">
-        <div class="form-group">
-            {{ form.date_of_birth|as_crispy_field }}
-        </div>
-    </div>
+</section>
 
-    <div class="form-row">
-        <div class="form-group">
-            {{ form.password1|as_crispy_field }}
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group">
-            {{ form.password2|as_crispy_field }}
-        </div>
-    </div>
-    <button type="submit">Sign up</button>
-</form>
+<script>
+    function myFunction() {
+      var x = document.getElementById("mynav");
+      if (x.className === "navlist") {
+        x.className += " responsive";
+      } else {
+        x.className = "navlist";
+      }
+    }
+</script>
 
 {% endblock %}
