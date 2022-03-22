@@ -52,3 +52,5 @@ def courseCreation(request):
 
 def home_view(request):
     return render(request,'home.html')
+def dashboard(request):
+    return render(request, 'dashboard.html')
