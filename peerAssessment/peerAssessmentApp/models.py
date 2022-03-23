@@ -6,6 +6,7 @@ class SiteUsers(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     date_of_birth = models.DateField()
 
+
 '''
 ## Student object for db
 class Student(models.Model):
@@ -41,3 +42,5 @@ class Registry(models.Model):
 class Enrollment(models.Model):
     SiteUser = models.ForeignKey(SiteUsers, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
+    #group_name = models.CharField(max_length = 10, null = True)
+

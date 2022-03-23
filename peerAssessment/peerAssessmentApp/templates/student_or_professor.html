@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% csrf_token %}
 {% block content %}
 <head>
     <style>
@@ -72,6 +71,7 @@
             padding: 23px;
             text-decoration: none;
             font-size: 16px;
+            display: inline;
        }
        .btn-success:hover{
         color: rgb(230, 48, 78);
@@ -96,8 +96,12 @@
 
     </style>
 </head>
-
-<div class ="form-container" style ="margin-left: 5em;">
-<p> Hello {{request.user.username}}: </p> 
+    <div class = "form-container" style ="margin-left: 5em;">
+    {% csrf_token %}
+    <a href = "/login" style="color: rgb(230, 48, 78);"><button type="submit" class="btn-success" >STUDENT</a></button>
+    <a href = "/admin" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >PROFESSOR</a></button>
+    <br></br>
+    <p> Don't have account? create one <a href = "/signup" style="color: rgb(230, 48, 78);"> here</a></p>
 </div>
+
 {% endblock %}

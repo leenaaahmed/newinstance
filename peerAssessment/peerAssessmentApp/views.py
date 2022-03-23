@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from .forms import SignUpForm
-from .models import SiteUsers
+from .models import SiteUsers, Enrollment, Registry
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -53,4 +53,7 @@ def courseCreation(request):
 def home_view(request):
     return render(request,'home.html')
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    course_list = Registry.objects.get(id =1)
+    return render(request, 'dashboard.html', {'course_list':course_list})
+def student_or_professor(request):
+    return render(request, 'student_or_professor.html')

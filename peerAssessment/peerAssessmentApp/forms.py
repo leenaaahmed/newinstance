@@ -19,7 +19,12 @@ class CourseCreation(forms.Form):
     course_id = forms.CharField(max_length = 10, help_text = 'Required')
     year = forms.CharField(max_length = 4, help_text = 'Required')
     semester = forms.CharField(max_length = 1, help_text = 'S or F')
-
     class Meta:
         ##model = Course
         fields = ('course', 'course_id', 'year', 'semester')
+
+#class GroupCreation(forms.Form):
+ #   course = forms.CharField(max_length = 40, help_text = 'Required')
+  #  group_name = forms.CharField(max_length = 20, help_text = 'Required')
+   # class Meta:
+    #    fields = ('course', 'group_name')
