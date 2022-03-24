@@ -44,10 +44,11 @@ class Course(models.Model):
 class Registry(models.Model):
     User =  models.ForeignKey(User, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
+    
     def __str__(self):
        return str(self.User) + ': '  + str(self.course)
 
-#3 Enrollment to link the Student/SiteUsers to Courses
+## Enrollment to link the Student/SiteUsers to Courses
 class Enrollment(models.Model):
     SiteUser = models.ForeignKey(SiteUsers, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
@@ -56,3 +57,11 @@ class Enrollment(models.Model):
        return str(self.SiteUser) + ': '  + str(self.course)
     #group_name = models.CharField(max_length = 10, null = True)
 
+## Team models for associating Siteusers into teams
+class Team(models.Model):
+    team_name = models.CharField(max_length = 40, null = True)
+    course = models.ForeignKey(Course, on_delete = models.CASCADE, null = True)
+    memebers =  models.ManyToManyField(SiteUsers)
+
+    def __str__(self):
+        return str(self.course) + ",  Team: " + str(self.team_name)
