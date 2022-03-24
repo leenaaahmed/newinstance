@@ -53,7 +53,7 @@ def courseCreation(request):
 def home_view(request):
     return render(request,'home.html')
 def dashboard(request):
-    course_list = Registry.objects.get(id =1)
+    course_list = Registry.objects.all()
     return render(request, 'dashboard.html', {'course_list':course_list})
 def student_or_professor(request):
     return render(request, 'student_or_professor.html')

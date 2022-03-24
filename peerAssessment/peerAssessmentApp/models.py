@@ -6,6 +6,9 @@ class SiteUsers(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     date_of_birth = models.DateField()
 
+    def __str__(self):
+        return str(self.user)
+
 
 '''
 ## Student object for db
@@ -33,14 +36,23 @@ class Course(models.Model):
     year = models.CharField(max_length = 4, null = True)
     semester = models.CharField(max_length = 1, null = True)
 
+    def __str__(self):
+        return str(self.course)
+
+
 ## Registry To link the Professor to Courses
 class Registry(models.Model):
     User =  models.ForeignKey(User, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
+    def __str__(self):
+       return str(self.User) + ': '  + str(self.course)
 
 #3 Enrollment to link the Student/SiteUsers to Courses
 class Enrollment(models.Model):
     SiteUser = models.ForeignKey(SiteUsers, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
+
+    def __str__(self):
+       return str(self.SiteUser) + ': '  + str(self.course)
     #group_name = models.CharField(max_length = 10, null = True)
 
