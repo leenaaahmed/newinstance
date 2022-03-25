@@ -57,3 +57,5 @@ def dashboard(request):
     return render(request, 'dashboard.html', {'course_list':course_list})
 def student_or_professor(request):
     return render(request, 'student_or_professor.html')
+def about(request):
+    return render(request, 'about.html')

@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <style>
+         * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+        @font-face {
+            font-family: carmen-sans;
+            src: url(./regularfont.otf)
+        }
+        #navbar{
+        width: 100%;
+        height: 10vh;
+        background-color: black;
+        padding-top: 0.7em;
+        padding-left: 2em;
+    }
+
+    .navlist{
+        width: 100;
+        overflow: hidden;
+    }
+    .navlist a{
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+    .navlist a:hover {
+        color: red;
+    }
+    .navlist a.active {
+        color: red;
+    }
+    .navlist .icon {
+         display: none;
+    }
+    .logo{
+        position: relative;
+    }
+    h1{
+            color:red;
+            text-align: center;
+            text-shadow: 2ex;
+    }
+    h1:hover{
+        text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
+                     0 3px 0 #ccc, 0 4px 0 #ccc,
+                     0 5px 0 #ccc, 0 6px 0 #ccc,
+                     0 7px 0 #ccc, 0 8px 0 #ccc,
+                     0 9px 0 #ccc, 0 10px 0 #ccc,
+                     0 11px 0 #ccc, 0 12px 0 #ccc,
+                     0 20px 30px rgba(0, 0, 0, 0.5);
+            }
+
+    h2 {
+        color:white;
+        text-align: left;
+        margin-left: 3ex;
+    }
+    p{
+        color:white;
+        font-size: medium;
+        text-align: left;
+        line-height: 5ex;
+        margin-left: 7ex;
+        margin-right: 7ex;
+    }
+    .team_members {
+        color:white;
+        margin-left: 19ex;
+    }
+    h3{
+        margin-left: 15ex;
+        color: red;
+        font-size: 175%;
+    }
+    h4 {
+        margin-left: 15ex;
+        color:red;
+        font-size: 175%;
+    }
+    h5 {
+        margin-left: 15ex;
+        color:red;
+        font-size: 175%;
+    }
+    h6 {
+        margin-left: 15ex;
+        color: red;
+        font-size: 175%;
+    }
+    h7 {
+        margin-left: 1ex;
+        color: red;
+        font-size: 175%;
+    }
+    </style>
+</head>
+<body>
+    <h1>About New Instance</h1>
+    <br />
+    <p>New Instance is a dynamic peer assessment software designed to aid in classrooms and work environments.The goal of our software is to help users effectively evaluate their peers or collegues, while keeping the reviews anonymous, and simultaneously allowing professors full access into these responses. The dynamic nature of the software should allow administrators to be able to use this for whatever type of project desired with full range of options to establish another project or course whenever necessary. New Instance is designed to be effective and easy to use for both users and administrators, and provides a helpful hand in the classroom and outside.</p>
+    <br />
+    <h2>New Instance Team</h2>
+    <br />
+    <div class="imgs" style="float: left; margin-left: 6ex;">
+        <img src= "https://lh3.googleusercontent.com/1bWykoeBISbxf-fBA1QG3UZP1JMvWhjyxOlUMvqNgoakQOuWqfNzWeKBV-of4Yacz8_Fa6ZiUOy5lMe2d8fZCqfgzq4e9NdW6bGLedl88HyoeU7SO4dw3OrM8qPEj48g1Pgpp--8ew=w2400" width="150" height="145">
+    </div>
+    <h3>Lauren Sampson</h3>
+    <div class = "team_members">
+        <p>Lauren is a Computer Science student at Boston College.</p>
+        <br />
+        <br />
+        <br />
+    </div>
+    <div class="imgs" style="float:left; margin-left: 6ex;">
+        <img src="https://lh3.googleusercontent.com/_8XoGyV4gJvexsAzLdEwpx4MUruStgeNyOUvotlTfRJRVzjfgsljn-BlVMr6wR2dKp6zY_CduuhoRvgip8wJZ3Gap8ZY1h24CWQVuHSgQKn-yvR3rD4_ZdxgmseKuh7vul0_xxhJbA=w2400" width="150" height="145">
+    </div>
+    <h4>Leena Ahmed</h4>
+    <div class = "team_members">
+        <p>Leena is a Computer Science student at Boston College.</p>
+        <br />
+        <br />
+        <br />
+    </div>
+    <div class="imgs" style="float:left; margin-left:6ex;">
+        <img src="https://lh3.googleusercontent.com/geBm6xvm_LV5HwZ3YmE-Q5SJXg5Nn6O7vQbF_5lOcaLrqZ1Qi_2KN80g21gqs4OEBMWrU0sxrlq9aoDE_v1Bvt1Dm90B-tK8L00D4wMSagz8SUD35JNi_-Tje1ZYlMemHzUAE7RMLA=w2400" width="150" height="145">
+    </div>
+    <h5>Jack Bomba</h5>
+    <div class = "team_members">
+        <p>Jack is a Computer Science student at Boston College.</p>
+        <br />
+        <br />
+        <br />
+    </div>
+    <div class="imgs" style="float:left; margin-left: 6ex;">
+        <img src="https://lh3.googleusercontent.com/J4eaLZ-kyUXKzMRv_sY_zkaGTKMXVCc1OsmAtkgQht0B0232ZAUrO3Z7K8De_ayiNc7WWHWSiu700eWKtedv54_tjusQFzIYxjdSUJCFdt_QTb54MAT3rMSC5VKTzBecquLxPgLwzw=w2400" width="150" height="145">
+    </div>
+    <h6>Hannah Jiang</h6>
+    <div class = "team_members">
+        <p>Hannah is a Computer Science student at Boston College.</p>
+        <br />
+        <br />
+        <br />
+    </div>
+    <div class="imgs" style="float:left; margin-left: 6ex;">
+        <img src="https://lh3.googleusercontent.com/NlNnBcw5QKF4SFWdGux9B7iFwE-C6DdoQqS0yTS7MAOe1oGZPq9Ips57C6FdwJUMgRY8ZBSg25oDiYPHr8SSdS0Em2LZDIWiqNHTFeR6jnNkYHGRnD1KGoBk69ukv1dV-1HeEMKvcg=w2400" width="150" height="145">
+    </div>
+    <h7>Zijian Zhang</h7>
+    <div class = "team_members">
+        <p>Zijian is a Computer Science student at Boston College. </p>
+    </div>
+</body>
+{% endblock %}
