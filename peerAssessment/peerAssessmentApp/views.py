@@ -59,3 +59,5 @@ def student_or_professor(request):
     return render(request, 'student_or_professor.html')
 def about(request):
     return render(request, 'about.html')
+def contact(request):
+    return render(request, 'contact.html')
