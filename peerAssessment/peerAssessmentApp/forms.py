@@ -61,6 +61,6 @@ class RegistryForm(ModelForm):
             'course': '',
         }
         widgets = {
-            'User': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course Name'} ),
-            'course': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Professor Name'} ),
+            'User': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Professor Name'} ),
+            'course': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course Name'} ),
         }

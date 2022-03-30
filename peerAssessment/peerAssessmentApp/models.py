@@ -46,7 +46,7 @@ class Course(models.Model):
 
 ## Registry To link the Professor to Courses
 class Registry(models.Model):
-    User =  models.ForeignKey(User, on_delete = models.CASCADE)
+    User = models.ForeignKey(User, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
     
     def __str__(self):
