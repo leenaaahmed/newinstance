@@ -3,9 +3,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class SiteUsers(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    user = models.OneToOneField(User, on_delete = models.CASCADE, related_name = 'siteusers')
     date_of_birth = models.DateField()
-
+    TYPE_CHOICES = (
+        ('pro', 'professor'),
+        ('stu', 'student'),
+        )
+    type = models.CharField(max_length=3, choices=TYPE_CHOICES, unique=True, null=True, blank=True, default=None)
     def __str__(self):
         return str(self.user)
 
