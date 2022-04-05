@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .forms import SignUpForm, CourseForm, RegistryForm
-from .models import SiteUsers, Enrollment, Registry, Course
+from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm
+from .models import SiteUsers, Enrollment, Registry, Course, Cassess
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -105,19 +105,21 @@ def add_professor(request):
     return render(request, 'add_professor.html', {'form':form, 'submitted':submitted})
 
 def view_courses(request):
-    course_list = Registry.objects.filter(User=request.user)
+    course_list = Course.objects.all()
 
     return render(request,'view_courses.html', {'course_list': course_list})
 
-def create_assessment():
+def create_assessment(request):
     submitted = False
     if request.method == "POST":
-        form = RegistryForm(request.POST)
+        form = CassessForm(request.POST)
+        print('form: ', form)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/add_professor?submitted=True')
+            form_obj = Cassess.objects.create(assess_number=request.POST['assess_number'], due_date=request.POST['due_date'], publish_date=request.POST['publish_date'], question=request.POST['question'], question_format=request.POST['question_format'])
+            form_obj.save()
+            return HttpResponseRedirect('/create_assessment')
     else:
-        form = RegistryForm
+        form = CassessForm
         if 'submitted' in request.GET:
             submitted = True
-    return render(request, 'add_professor.html', {'form':form, 'submitted':submitted})
+    return render(request, 'create_assessment.html', {'form':form, 'submitted':submitted})
