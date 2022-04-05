@@ -63,22 +63,13 @@
     </style>
 </head>
 
-	<h1> Assign Professor to course </h1>
+	<h1> Your Courses </h1>
 	<br/> <br/>
-		{% if submitted %}
-			Course has been assigned
-		{% else %}
-
-			<form action = "" method=POST>
-				{% csrf_token %}
-
-				{{ form.as_p}}
-
-				<input type = "submit" value = "Submit" class = "btn btn-secondary">
-
-			</form>
-		{% endif %}
-		</center>
+    <ul>
+        {% for course in course_list %}
+        <li>{{course}}</li>
+        {%endfor %}
+    </ul>
 	<br/> <br/>
 
 

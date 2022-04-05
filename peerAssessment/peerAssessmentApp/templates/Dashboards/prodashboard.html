@@ -99,11 +99,14 @@
 </head>
 
 <div class ="form-container" style ="margin-left: 5em;">
-<p> Hello Professor: {{request.user.username}}: </p>
-<br> </br> 
+<p> Hello Professor {{request.user.username}} </p>
+<br> </br>
 <div class = "form-container" style ="margin-left: 5em;">
     {% csrf_token %}
     <a href = "/add_course" style="color: rgb(230, 48, 78);"><button type="submit" class="btn-success" >Create a Course</a></button>
     <a href = "/add_professor" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >Assign Yourself to a Course</a></button>
+    <a href = "/view_courses" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >View Courses</a></button>
+    <a href = "/create_assessment" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >Create Assessment</a></button>
+
 </div>
 {% endblock %}

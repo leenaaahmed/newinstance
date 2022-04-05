@@ -63,7 +63,7 @@
     </style>
 </head>
 
-	<h1> Assign Professor to course </h1>
+	<h1> Create Peer Assessment </h1>
 	<br/> <br/>
 		{% if submitted %}
 			Course has been assigned
@@ -73,7 +73,7 @@
 				{% csrf_token %}
 
 				{{ form.as_p}}
-
+                <!-- add in fields  -->
 				<input type = "submit" value = "Submit" class = "btn btn-secondary">
 
 			</form>

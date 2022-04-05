@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .forms import SignUpForm, CourseForm, RegistryForm
-from .models import SiteUsers, Enrollment, Registry
+from .models import SiteUsers, Enrollment, Registry, Course
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -92,6 +92,24 @@ def add_course(request):
     return render(request, 'add_course.html', {'form':form, 'submitted':submitted})
 
 def add_professor(request):
+    submitted = False
+    if request.method == "POST":
+        form = RegistryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_professor?submitted=True')
+    else:
+        form = RegistryForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'add_professor.html', {'form':form, 'submitted':submitted})
+
+def view_courses(request):
+    course_list = Course.objects.all()
+
+    return render(request,'view_courses.html', {'course_list': course_list})
+
+def create_assessment():
     submitted = False
     if request.method == "POST":
         form = RegistryForm(request.POST)
