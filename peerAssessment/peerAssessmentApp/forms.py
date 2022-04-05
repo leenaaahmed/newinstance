@@ -64,3 +64,43 @@ class RegistryForm(ModelForm):
             'User': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Professor Name'} ),
             'course': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course Name'} ),
         }
+
+# class PeerAssessmentForm(forms.Form):
+#     # course, project, deadlines,
+#     QUESTION_CHOICES = ((1, 'Short Response'), (2, 'Multiple Choice'), (3, 'Quantitative Rating'))
+
+
+#     course = forms.CharField
+#     project = forms.CharField
+#     deadline = forms.DateField
+#     # number_questions = forms.IntegerField
+#     question_1_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_2_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_3_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_4_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_5_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_6_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_7_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_8_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_9_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     question_10_type = forms.ChoiceField(choices=QUESTION_CHOICES)
+
+#     questions = [question_1_type, question_2_type]
+
+#     for number in number_questions
+
+# class QuestionForm(forms.Form):
+#     QUESTION_CHOICES = ((1, 'Short Response'), (2, 'Multiple Choice'), (3, 'Quantitative Rating'))
+#     # type of question
+#     type = forms.ChoiceField(choices=QUESTION_CHOICES)
+#     # is response required?
+#     required = forms.BooleanField
+#     if type == 1:
+#         min_length = forms.IntegerField
+#         max_length = forms.IntegerField
+#     if type == 2:
+#         choice_1 = forms.CharField
+#         choice_2 = forms.CharField
+#         choice_3 = forms.CharField
+#         choice_4 = forms.CharField
+#     if type == 3:

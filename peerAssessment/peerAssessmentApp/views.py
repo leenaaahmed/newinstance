@@ -105,7 +105,7 @@ def add_professor(request):
     return render(request, 'add_professor.html', {'form':form, 'submitted':submitted})
 
 def view_courses(request):
-    course_list = Course.objects.all()
+    course_list = Registry.objects.filter(User=request.user)
 
     return render(request,'view_courses.html', {'course_list': course_list})
 
