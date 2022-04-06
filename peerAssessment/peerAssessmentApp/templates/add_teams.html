@@ -94,18 +94,29 @@
         justify-content: space-between;
         margin-left: 5em;
     }
-    </style>
+</style>
 </head>
 
-	<h1> Your Courses </h1>
+	<h1> Assign Students to Teams</h1>
 	<br/> <br/>
-    <ul>
-        {% for course in course_list %}
-        <li>{{course}}</li>
-        {%endfor %}
-    </ul>
-	<br/> <br/>
-<div class ="form-container" style ="margin-left: 5em;">
+		{% if submitted %}
+			Team Has been created and class enrollment has been sent.
+		{% else %}
+
+			<form action = "" method=POST>
+				{% csrf_token %}
+
+				{{ form.as_p}}
+
+				<input type = "submit" value = "Submit" class = "btn btn-secondary">
+
+			</form>
+		{% endif %}
+		</center>
+    <div class = "form-container" style ="margin-left: 5em;">
+    {% csrf_token %}
+  <div class ="form-container" style ="margin-left: 5em;">
     <a href = "/Dashboards/prodashboard" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
-</div>
+    </div>
+
 {% endblock %}

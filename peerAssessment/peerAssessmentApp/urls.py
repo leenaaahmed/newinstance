@@ -17,5 +17,6 @@ urlpatterns = [
     path('add_course/', views.add_course, name= 'add_course'),
     path('add_professor/', views.add_professor, name= 'add_professor'),
     path('view_courses/', views.view_courses, name= 'view_courses'),
-     path('create_assessment/', views.create_assessment, name= 'create_assessment'),
+    path('create_assessment/', views.create_assessment, name= 'create_assessment'),
+    path('add_teams/', views.add_teams, name= 'add_teams'),
 ]

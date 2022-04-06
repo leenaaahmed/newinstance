@@ -9,9 +9,10 @@ class SiteUsers(models.Model):
         ('pro', 'professor'),
         ('stu', 'student'),
         )
-    type = models.CharField(max_length=3, choices=TYPE_CHOICES, unique=True, null=True, blank=True, default=None)
+    types = models.CharField(max_length=3, choices=TYPE_CHOICES, unique=False, null=True, blank=True, default=None)
     def __str__(self):
         return str(self.user)
+    email = models.EmailField(max_length = 50, null = True)
 
 
 '''
@@ -73,10 +74,10 @@ class Team(models.Model):
 ##Cassess object
 class Cassess(models.Model):
     assess_number = models.CharField(max_length = 6, null = True)
-    due_date= models.CharField(max_length = 1, null = True)
-    publish_date = models.CharField(max_length = 1, null = True)
+    due_date= models.DateField(max_length = 1, null = True)
+    publish_date = models.DateField(max_length = 1, null = True)
     question = models.CharField(max_length = 1000, null = True)
     question_format = models.CharField(max_length = 5, null = True)
 
     def __str__(self):
-        return str(self.User) + str(self.Cassess)
+        return str(self.assess_number)

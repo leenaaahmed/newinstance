@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 import datetime
 from django.forms import ModelForm
-from .models import Course, Registry, Cassess
+from .models import Course, Registry, Cassess, Team, SiteUsers
 
 
 class SignUpForm(UserCreationForm):
@@ -11,11 +11,9 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length = 40, help_text = 'Required')
     date_of_birth = forms.DateField(initial = datetime.date.today,help_text = 'Required')
     access_code = forms.CharField(max_length = 5, help_text='Required')
-
     class Meta:
         model = User
         fields = ('username','email', 'date_of_birth', 'password1', 'password2')
-
 
 class CourseCreation(forms.Form):
     course = forms.CharField(max_length = 40, help_text = 'Description')
@@ -82,4 +80,21 @@ class CassessForm(ModelForm):
             'publish_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Publish Date'}),
             'question': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Question'}),
             'question_format': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Question Format'}),
+        }
+
+class TeamForm(ModelForm):
+    class Meta:
+        model = Team
+        fields = ('team_name', 'course', 'memebers')
+        labels = {
+
+            'team_name': '', 
+            'course': '', 
+            'memebers': '',
+        }
+        widgets = {
+            'Team Name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Team Name'} ),
+            'course': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course'} ),
+            'memebers': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Members'} ),
+
         }
