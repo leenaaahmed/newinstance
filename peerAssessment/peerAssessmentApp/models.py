@@ -77,7 +77,7 @@ class Cassess(models.Model):
     due_date= models.DateField(max_length = 1, null = True)
     publish_date = models.DateField(max_length = 1, null = True)
     question = models.CharField(max_length = 1000, null = True)
-    question_format = models.CharField(max_length = 5, null = True)
+    question_format = models.CharField(max_length = 2, null = True)
 
     def __str__(self):
         return str(self.assess_number)

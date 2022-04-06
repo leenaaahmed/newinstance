@@ -69,17 +69,17 @@ class CassessForm(ModelForm):
         fields = ('assess_number', 'due_date', 'publish_date', 'question', 'question_format')
         labels = {
             'assess_number': '',
-            'due_date': '',
-            'publish_date': '',
             'question': '',
             'question_format': '',
+            'due_date': '',
+            'publish_date': '',
         }
         widgets = {
             'assess_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Assessment Number'}),
-            'due_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Due Date'}),
-            'publish_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Publish Date'}),
-            'question': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Question'}),
+            'question': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Question'}),
             'question_format': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Question Format'}),
+            'due_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Due Date'}),
+            'publish_date': forms.TextInput(attrs={'class': 'forms-control','placeholder': 'Publish Date'}),
         }
 
 class TeamForm(ModelForm):
