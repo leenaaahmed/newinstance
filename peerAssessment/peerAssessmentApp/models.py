@@ -73,10 +73,10 @@ class Team(models.Model):
 ##Cassess object
 class Cassess(models.Model):
     assess_number = models.CharField(max_length = 6, null = True)
-    due_date= models.CharField(max_length = 1, null = True)
-    publish_date = models.CharField(max_length = 1, null = True)
     question = models.CharField(max_length = 1000, null = True)
-    question_format = models.CharField(max_length = 5, null = True)
+    question_format = models.CharField(max_length = 2, null = True)
+    due_date= models.CharField(max_length = 1, null = True)
+    publish_date = models.CharField(max_length = 10, null = True)
 
-    def __str__(self):
-        return str(self.User) + str(self.Cassess)
+    def init(self):
+        return str(self.user) + str(self.Cassess)
