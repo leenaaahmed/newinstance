@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 import datetime
 from django.forms import ModelForm
-from .models import Course, Registry, Cassess, Team, SiteUsers
+from .models import Course, Registry, Cassess, Team, SiteUsers,Question,Response, MCResponse
 
 
 class SignUpForm(UserCreationForm):
@@ -66,20 +66,18 @@ class RegistryForm(ModelForm):
 class CassessForm(ModelForm):
     class Meta:
         model = Cassess
-        fields = ('assess_number', 'due_date', 'publish_date', 'question', 'question_format')
+        fields = ('assess_number', 'due_date', 'publish_date', 'course')
         labels = {
             'assess_number': '',
-            'question': '',
-            'question_format': '',
             'due_date': '',
             'publish_date': '',
+            'course': '',
         }
         widgets = {
             'assess_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Assessment Number'}),
-            'question': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Question'}),
-            'question_format': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Question Format'}),
             'due_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Due Date'}),
             'publish_date': forms.TextInput(attrs={'class': 'forms-control','placeholder': 'Publish Date'}),
+            'course': forms.Select(attrs={'class': 'forms-control','placeholder': 'Course'}),
         }
 
 class TeamForm(ModelForm):
@@ -98,3 +96,62 @@ class TeamForm(ModelForm):
             'memebers': forms.SelectMultiple(attrs={'class': 'form-control', 'placeholder': 'Members'} ),
 
         }
+
+class QuestionForm(ModelForm):
+    class Meta:
+        model = Question
+        fields = ('assessment', 'question')
+        labels = {
+
+            'assessment': '', 
+            'question': '', 
+            
+        }
+        widgets = {
+            'assessment': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
+            'question': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Question'} ),
+        }
+
+class ResponseForm(ModelForm):
+    class Meta:
+        model = Response
+        fields = ('assessment', 'response', 'question', 'user')
+        labels = {
+
+            'assessment': '', 
+            'response': '', 
+            'question': '',
+            'user': '', 
+            
+        }
+        widgets = {
+            'assessment': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
+            'response': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Response'} ),
+            'question': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'question'} ),
+            'user': forms.Select(attrs={'class': 'form-control', 'placeholder': 'User'} ),
+        
+         } 
+
+class MCResponseForm(ModelForm):
+    class Meta:
+        model = MCResponse
+
+        fields = ('assessment', 'mc', 'question', 'user')
+        labels = {
+
+            'assessment': '', 
+            'mc': '', 
+            'question': '',
+            'user': '', 
+            
+        }
+        widgets = {
+            'assessment': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
+            'mc': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
+            'question': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'question'} ),
+            'user': forms.Select(attrs={'class': 'form-control', 'placeholder': 'User'} ),
+
+         } 
+
+
+

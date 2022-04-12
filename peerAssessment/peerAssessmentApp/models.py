@@ -76,8 +76,38 @@ class Cassess(models.Model):
     assess_number = models.CharField(max_length = 6, null = True)
     due_date= models.DateField(max_length = 1, null = True)
     publish_date = models.DateField(max_length = 1, null = True)
-    question = models.CharField(max_length = 1000, null = True)
-    question_format = models.CharField(max_length = 2, null = True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, default = 3)
 
     def __str__(self):
         return str(self.assess_number)
+
+
+class Question(models.Model):
+    assessment = models.ForeignKey(Cassess, on_delete=models.CASCADE)
+    question = models.CharField(max_length = 1000, null = True)
+    def __str__(self):
+        return str(self.question)
+class MCResponse(models.Model):
+    OPTIONS = {
+        ("1", "Strongly Disagree"),
+        ("2", "Disagree"),
+        ("3", "Neutral"),
+        ("4", "Agree"),
+        ("5", "Strongly Agree"),
+    }
+    assessment = models.ForeignKey(Cassess, on_delete=models.CASCADE)
+    mc = models.CharField(max_length = 20, choices = OPTIONS, blank = True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    user = models.ForeignKey(SiteUsers, on_delete= models.CASCADE)
+
+    def __str__(self):
+        return str(self.question + ': ' + self.mc)
+
+class Response(models.Model):
+    assessment = models.ForeignKey(Cassess, on_delete=models.CASCADE)
+    response = models.CharField( max_length= 255, blank = True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    user = models.ForeignKey(SiteUsers, on_delete= models.CASCADE)
+    def __str__(self):
+        return str(self.user + ': ' + self.response)
+

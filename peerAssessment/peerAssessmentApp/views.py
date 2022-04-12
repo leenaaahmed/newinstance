@@ -121,7 +121,7 @@ def create_assessment(request):
         form = CassessForm(request.POST)
         print('form: ', form)
         if form.is_valid():
-            form_obj = Cassess.objects.create(assess_number=request.POST['assess_number'], due_date=request.POST['due_date'], publish_date=request.POST['publish_date'], question=request.POST['question'], question_format=request.POST['question_format'])
+            form_obj = Cassess.objects.create(assess_number=request.POST['assess_number'], due_date=request.POST['due_date'], publish_date=request.POST['publish_date'])
             form_obj.save()
             return HttpResponseRedirect('/create_assessment')
     else:
