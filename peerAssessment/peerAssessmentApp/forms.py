@@ -115,17 +115,15 @@ class QuestionForm(ModelForm):
 class ResponseForm(ModelForm):
     class Meta:
         model = Response
-        fields = ('assessment', 'response', 'question')
+        fields = ('response', 'question')
         labels = {
-
-            'assessment': '', 
+ 
             'response': '', 
             'question': '',
             
             
         }
         widgets = {
-            'assessment': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
             'response': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Response'} ),
             'question': forms.Select(attrs={'class': 'form-control', 'placeholder': 'question'} ),
             
@@ -135,17 +133,15 @@ class MCResponseForm(ModelForm):
     class Meta:
         model = MCResponse
 
-        fields = ('assessment', 'mc', 'question')
+        fields = ('mc', 'question')
         labels = {
 
-            'assessment': '', 
             'mc': '', 
             'question': '',
             
         }
         widgets = {
-            'assessment': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
-            'mc': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
+            'mc': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Multiple Choice Response'} ),
             'question': forms.Select(attrs={'class': 'form-control', 'placeholder': 'question'} ),
 
          } 

@@ -75,8 +75,7 @@ def prodashboard(request):
     return render(request, 'Dashboards/prodashboard.html', {'course_list':course_list})
 
 def studashboard(request):
-    course_list = Registry.objects.all()
-    return render(request, 'Dashboards/studashboard.html', {'course_list':course_list})
+        return render(request, 'Dashboards/studashboard.html', {'course_list':course_list})
 
 def student_or_professor(request):
     return render(request, 'student_or_professor.html')
@@ -206,3 +205,20 @@ def mc_response(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'mc_response.html', {'form':form, 'submitted':submitted})
+
+def view_assessment(request):
+    '''Grab all assessments, questions, resposnes'''
+    person = request.user.username
+    assess = Cassess.objects.all()
+    reg = Registry.objects.all()
+    question = Question.objects.all()
+    mc = MCResponse.objects.all()
+    oe = Response.objects.all() 
+
+    forma = MCResponseForm
+    formb = ResponseForm
+    
+    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'mc': mc, 'oe': oe, 'forma': forma, 'formb':formb})
+
+        
+

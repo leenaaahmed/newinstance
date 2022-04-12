@@ -1,0 +1,36 @@
+
+
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<h1> Assessment </h1>
+
+
+<form action="" method = POST>
+	{% csrf_token %}
+	{% for a in assess %}
+ 		<li> {{a}} </li>
+ 		{% for q in question %}
+ 			{% if q.assessment == a %}
+ 				<li> {{q}} </li>
+ 			{% endif %}
+			{% for b in mc %}
+				{% for c in oe %}
+  					{%if b.question == q %} 
+  						<li> {{forma.mc}} </li>
+  					{% elif c.question == q %}
+  						<li> {{formb.response}} </li>
+
+  			{% endif %}
+		{% endfor %}
+	{% endfor %}
+	{% endfor %}
+{% endfor %}
+	<input type = "submit" value="Submit" method = "post" value = POST class= "btn btn-success">
+</form>
+
+
+
+ {%endblock%}

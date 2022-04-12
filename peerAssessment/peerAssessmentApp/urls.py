@@ -23,4 +23,5 @@ urlpatterns = [
     path('choose_response/', views.choose_response, name= 'choose_response'),
     path('mc_response/', views.mc_response, name= 'mc_response'),
     path('oe_response/', views.oe_response, name= 'oe_response'),
+    path('view_assessment/', views.view_assessment, name= 'view_assessment'),
 ]

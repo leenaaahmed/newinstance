@@ -95,18 +95,22 @@ class MCResponse(models.Model):
         ("4", "Agree"),
         ("5", "Strongly Agree"),
     }
-    assessment = models.ForeignKey(Cassess, on_delete=models.CASCADE)
     mc = models.CharField(max_length = 20, choices = OPTIONS, blank = True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     
     def __str__(self):
-        return str(self.question + ': ' + self.mc)
+        return str("H")
 
 class Response(models.Model):
-    assessment = models.ForeignKey(Cassess, on_delete=models.CASCADE)
     response = models.CharField( max_length= 255, blank = True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
    
     def __str__(self):
-        return str(self.user + ': ' + self.response)
+        return str("H")
 
+class Submission(models.Model):
+    assessment = models.ForeignKey(Cassess, on_delete =models.CASCADE)
+    user = models.ForeignKey(SiteUsers, on_delete= models.CASCADE)
+    answer = models.ManyToManyField(Response)
+    satus = models.CharField(max_length = 255)
+    
