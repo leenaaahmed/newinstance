@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm
-from .models import SiteUsers, Enrollment, Registry, Course, Cassess, Team
+from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm
+from .models import SiteUsers, Enrollment, Registry, Course, Cassess, Team, Question, Response, MCResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from django.core import mail
 from django.template import loader
 from django.utils.html import strip_tags
+from django.forms.formsets import formset_factory
 
 # Create your views here.
 
@@ -121,9 +122,8 @@ def create_assessment(request):
         form = CassessForm(request.POST)
         print('form: ', form)
         if form.is_valid():
-            form_obj = Cassess.objects.create(assess_number=request.POST['assess_number'], due_date=request.POST['due_date'], publish_date=request.POST['publish_date'])
-            form_obj.save()
-            return HttpResponseRedirect('/create_assessment')
+            form.save()
+            return HttpResponseRedirect('/add_questions')
     else:
         form = CassessForm
         if 'submitted' in request.GET:
@@ -161,3 +161,48 @@ def add_teams(request):
     return render(request, 'add_teams.html', {'form':form, 'submitted':submitted})
 
 
+def add_questions(request):
+    submitted = False
+    if request.method == "POST":
+        form = QuestionForm(request.POST)
+        print('form: ', form)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/choose_response')
+    else:
+        form = QuestionForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'add_questions.html', {'form':form, 'submitted':submitted})
+
+def choose_response(request):
+    return render(request,'choose_response.html')
+
+
+def oe_response(request):
+    submitted = False
+    if request.method == "POST":
+        form = ResponseForm(request.POST)
+        print('form: ', form)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_questions')
+    else:
+        form = ResponseForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'oe_response.html', {'form':form, 'submitted':submitted})
+
+def mc_response(request):
+    submitted = False
+    if request.method == "POST":
+        form = MCResponseForm(request.POST)
+        print('form: ', form)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/add_questions')
+    else:
+        form = MCResponseForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'mc_response.html', {'form':form, 'submitted':submitted})

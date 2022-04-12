@@ -19,4 +19,8 @@ urlpatterns = [
     path('view_courses/', views.view_courses, name= 'view_courses'),
     path('create_assessment/', views.create_assessment, name= 'create_assessment'),
     path('add_teams/', views.add_teams, name= 'add_teams'),
+    path('add_questions/', views.add_questions, name= 'add_questions'),
+    path('choose_response/', views.choose_response, name= 'choose_response'),
+    path('mc_response/', views.mc_response, name= 'mc_response'),
+    path('oe_response/', views.oe_response, name= 'oe_response'),
 ]

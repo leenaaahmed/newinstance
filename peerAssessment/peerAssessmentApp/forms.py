@@ -115,41 +115,38 @@ class QuestionForm(ModelForm):
 class ResponseForm(ModelForm):
     class Meta:
         model = Response
-        fields = ('assessment', 'response', 'question', 'user')
+        fields = ('assessment', 'response', 'question')
         labels = {
 
             'assessment': '', 
             'response': '', 
             'question': '',
-            'user': '', 
+            
             
         }
         widgets = {
             'assessment': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
             'response': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Response'} ),
-            'question': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'question'} ),
-            'user': forms.Select(attrs={'class': 'form-control', 'placeholder': 'User'} ),
-        
+            'question': forms.Select(attrs={'class': 'form-control', 'placeholder': 'question'} ),
+            
          } 
 
 class MCResponseForm(ModelForm):
     class Meta:
         model = MCResponse
 
-        fields = ('assessment', 'mc', 'question', 'user')
+        fields = ('assessment', 'mc', 'question')
         labels = {
 
             'assessment': '', 
             'mc': '', 
             'question': '',
-            'user': '', 
             
         }
         widgets = {
             'assessment': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
             'mc': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
-            'question': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'question'} ),
-            'user': forms.Select(attrs={'class': 'form-control', 'placeholder': 'User'} ),
+            'question': forms.Select(attrs={'class': 'form-control', 'placeholder': 'question'} ),
 
          } 
 
