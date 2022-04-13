@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm
 from .models import SiteUsers, Enrollment, Registry, Course, Cassess, Team, Question, Response, MCResponse
 from django.contrib import messages
@@ -206,7 +206,7 @@ def mc_response(request):
             submitted = True
     return render(request, 'mc_response.html', {'form':form, 'submitted':submitted})
 
-def view_assessment(request):
+def view_assessment(request, ):
     '''Grab all assessments, questions, resposnes'''
     person = request.user.username
     assess = Cassess.objects.all()
@@ -214,11 +214,29 @@ def view_assessment(request):
     question = Question.objects.all()
     mc = MCResponse.objects.all()
     oe = Response.objects.all() 
+    submitted = False
+    if request.method == "POST":
+        for a in assess:
+            for q in question:
+                if q.assessment == a:
+                    for b in mc:
+                        if b.question == q and b.mc == '':
+                            instance = MCResponse(question = q, mc = request.POST['mc'] )
+                            instance.save()
+                    for c in oe:
+                        if c.question == q and c.response == '':
+                            inst=Response(question = q, response = request.POST['response'])
+                            inst.save()
+        return HttpResponseRedirect('/view_assessment?submitted=True')
 
-    forma = MCResponseForm
-    formb = ResponseForm
+    else:
+        forma = MCResponseForm
+        formb = ResponseForm
+        if 'submitted' in request.GET:
+            submitted = True
     
-    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb})
+
+    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
 
         
 

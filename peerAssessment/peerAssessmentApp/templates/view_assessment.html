@@ -16,20 +16,23 @@
  			{% if q.assessment == a %}
  				<li> {{q}} </li>
 				{% for b in mc %}
-  						{%if b.question == q %} 
+
+  						{%if b.question == q and b.mc == ''%}
   							<li> {{forma.mc}} </li>
+  							
   						{% endif %}
   				{% endfor %}
 
   				{% for c in oe %}	
-  						{% if c.question == q %}
+  						{% if c.question == q and c.response == '' %}
   							<li> {{formb.response}} </li>
+  							<input type = "submit" value="Submit" class= "btn btn-secondary" name = 'buttonoe'>
   						{% endif %}
   				{% endfor %}
   			{% endif %}
 		{% endfor %}
 	{% endfor %}
-	<input type = "submit" value="Submit" method = "post" value = POST class= "btn btn-success">
+	
 </form>
 
 
