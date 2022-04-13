@@ -15,19 +15,20 @@
  		{% for q in question %}
  			{% if q.assessment == a %}
  				<li> {{q}} </li>
- 			{% endif %}
-			{% for b in mc %}
-				{% for c in oe %}
-  					{%if b.question == q %} 
-  						<li> {{forma.mc}} </li>
-  					{% elif c.question == q %}
-  						<li> {{formb.response}} </li>
+				{% for b in mc %}
+  						{%if b.question == q %} 
+  							<li> {{forma.mc}} </li>
+  						{% endif %}
+  				{% endfor %}
 
+  				{% for c in oe %}	
+  						{% if c.question == q %}
+  							<li> {{formb.response}} </li>
+  						{% endif %}
+  				{% endfor %}
   			{% endif %}
 		{% endfor %}
 	{% endfor %}
-	{% endfor %}
-{% endfor %}
 	<input type = "submit" value="Submit" method = "post" value = POST class= "btn btn-success">
 </form>
 

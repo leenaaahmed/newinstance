@@ -218,7 +218,7 @@ def view_assessment(request):
     forma = MCResponseForm
     formb = ResponseForm
     
-    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'mc': mc, 'oe': oe, 'forma': forma, 'formb':formb})
+    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb})
 
         
 
