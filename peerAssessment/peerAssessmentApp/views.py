@@ -75,8 +75,12 @@ def prodashboard(request):
     return render(request, 'Dashboards/prodashboard.html', {'course_list':course_list})
 
 def studashboard(request):
-        course_list = Registry.objects.all()
-        return render(request, 'Dashboards/studashboard.html', {'course_list':course_list})
+    courses = Course.objects.all()
+    team = Team.objects.all()
+    person = request.user
+    users = SiteUsers.objects.get(user=person)
+    cassess = Cassess.objects.all()
+    return render(request, 'Dashboards/studashboard.html', {'team': team, 'cassess': cassess, 'courses:':courses, 'users': users})
 
 def student_or_professor(request):
     return render(request, 'student_or_professor.html')
@@ -211,7 +215,7 @@ def view_assessment(request, ):
     '''Grab all assessments, questions, resposnes'''
     person = request.user
     user = SiteUsers.objects.get(user =person)
-    
+    team = Team.objects.all()
     assess = Cassess.objects.all()
     reg = Registry.objects.all()
     question = Question.objects.all()
@@ -239,7 +243,7 @@ def view_assessment(request, ):
             submitted = True
     
 
-    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
+    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
 
         
 
