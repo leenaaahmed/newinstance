@@ -75,6 +75,7 @@ def prodashboard(request):
     return render(request, 'Dashboards/prodashboard.html', {'course_list':course_list})
 
 def studashboard(request):
+        course_list = Registry.objects.all()
         return render(request, 'Dashboards/studashboard.html', {'course_list':course_list})
 
 def student_or_professor(request):
@@ -208,7 +209,9 @@ def mc_response(request):
 
 def view_assessment(request, ):
     '''Grab all assessments, questions, resposnes'''
-    person = request.user.username
+    person = request.user
+    user = SiteUsers.objects.get(user =person)
+    
     assess = Cassess.objects.all()
     reg = Registry.objects.all()
     question = Question.objects.all()
@@ -221,11 +224,11 @@ def view_assessment(request, ):
                 if q.assessment == a:
                     for b in mc:
                         if b.question == q and b.mc == '':
-                            instance = MCResponse(question = q, mc = request.POST['mc'] )
+                            instance = MCResponse(question = q, mc = request.POST['mc'], responder = user)
                             instance.save()
                     for c in oe:
                         if c.question == q and c.response == '':
-                            inst=Response(question = q, response = request.POST['response'])
+                            inst=Response(question = q, response = request.POST['response'], responder = user)
                             inst.save()
         return HttpResponseRedirect('/view_assessment?submitted=True')
 

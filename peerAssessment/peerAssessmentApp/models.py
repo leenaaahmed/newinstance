@@ -97,16 +97,20 @@ class MCResponse(models.Model):
     }
     mc = models.CharField(max_length = 20, choices = OPTIONS, blank = True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    responder = models.ForeignKey(SiteUsers, on_delete= models.CASCADE, null = True)
+
+    
     
     def __str__(self):
-        return str("H")
+        return str(self.responder) + ": " + str(self.question)
 
 class Response(models.Model):
     response = models.CharField( max_length= 255, blank = True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-   
+    responder = models.ForeignKey(SiteUsers, on_delete= models.CASCADE, null = True)
+
     def __str__(self):
-        return str("H")
+        return str(self.responder) + ": " + str(self.question)
 
 class Submission(models.Model):
     assessment = models.ForeignKey(Cassess, on_delete =models.CASCADE)
