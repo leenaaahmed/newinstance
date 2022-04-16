@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm
+from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm, ContactForm
 from .models import SiteUsers, Enrollment, Registry, Course, Cassess, Team, Question, Response, MCResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate
@@ -13,6 +13,8 @@ from django.core import mail
 from django.template import loader
 from django.utils.html import strip_tags
 from django.forms.formsets import formset_factory
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -238,5 +240,25 @@ def view_assessment(request, ):
 
     return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
 
-        
+def contact(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			subject = "Website Inquiry" 
+			body = {
+			'first_name': form.cleaned_data['first_name'], 
+			'last_name': form.cleaned_data['last_name'], 
+			'email': form.cleaned_data['email_address'], 
+			'message':form.cleaned_data['message'], 
+			}
+			message = "\n".join(body.values())
+
+			try:
+				send_mail(subject, message, 'newinstanceco@gmail.com', ['newinstanceco@gmail.com']) 
+			except BadHeaderError:
+				return HttpResponse('Invalid header found.')
+			
+      
+	form = ContactForm()
+	return render(request, "contact.html", {'form':form})        
 
