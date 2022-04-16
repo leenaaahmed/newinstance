@@ -96,10 +96,27 @@
 
     </style>
 </head>
+<form action="" method = POST>
+    {%csrf_token%}
+    <p> Hello Student {{request.user.username}}: </p>
+    <br> </br> 
+    {% for t in team %}
+            {%for user in t.memebers.all%}
+                {% if users == user %}
+                    <p>{{t}}</p>
+                    {% for us in t.memebers.all%}
+                        <p>{{us}}</p>
+                    {% endfor %}
+                    {% for assess in cassess %}
+                        {% if t.course == assess.course %}
+                            <a href = "/view_assessment" style="color: rgb(230, 48, 78);"> Take Assessment {{assess}} Here</a></p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
 
-<div class ="form-container" style ="margin-left: 5em;">
-<p> Hello Student {{request.user.username}}: </p>
-<br> </br> 
-<p>  <p>
-</div>
+
+            {%endfor%}
+    {% endfor %}
+    {
+</form>
 {% endblock %}

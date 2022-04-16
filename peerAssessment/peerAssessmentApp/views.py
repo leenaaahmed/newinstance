@@ -77,7 +77,12 @@ def prodashboard(request):
     return render(request, 'Dashboards/prodashboard.html', {'course_list':course_list})
 
 def studashboard(request):
-        return render(request, 'Dashboards/studashboard.html', {'course_list':course_list})
+    courses = Course.objects.all()
+    team = Team.objects.all()
+    person = request.user
+    users = SiteUsers.objects.get(user=person)
+    cassess = Cassess.objects.all()
+    return render(request, 'Dashboards/studashboard.html', {'team': team, 'cassess': cassess, 'courses:':courses, 'users': users})
 
 def student_or_professor(request):
     return render(request, 'student_or_professor.html')
@@ -210,7 +215,9 @@ def mc_response(request):
 
 def view_assessment(request, ):
     '''Grab all assessments, questions, resposnes'''
-    person = request.user.username
+    person = request.user
+    user = SiteUsers.objects.get(user =person)
+    team = Team.objects.all()
     assess = Cassess.objects.all()
     reg = Registry.objects.all()
     question = Question.objects.all()
@@ -223,11 +230,11 @@ def view_assessment(request, ):
                 if q.assessment == a:
                     for b in mc:
                         if b.question == q and b.mc == '':
-                            instance = MCResponse(question = q, mc = request.POST['mc'] )
+                            instance = MCResponse(question = q, mc = request.POST['mc'], responder = user)
                             instance.save()
                     for c in oe:
                         if c.question == q and c.response == '':
-                            inst=Response(question = q, response = request.POST['response'])
+                            inst=Response(question = q, response = request.POST['response'], responder = user)
                             inst.save()
         return HttpResponseRedirect('/view_assessment?submitted=True')
 
@@ -238,7 +245,7 @@ def view_assessment(request, ):
             submitted = True
     
 
-    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
+    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
 
 def contact(request):
 	if request.method == 'POST':
