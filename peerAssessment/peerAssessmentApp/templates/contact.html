@@ -56,17 +56,41 @@
         margin-left: 7ex;
         margin-right: 7ex;
     }
+
+    .from-group{
+        position: relative;
+        color:white;
+        display: grid;
+        justify-content: center;
+        margin-left: 5em;
+    }
+
+    input[type=first_name] {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid red;
+        border-radius: 4px;
+    }
+    input[type=last_name] {
+        position: relative;
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 2px solid red;
+        border-radius: 4px;
+    }
     </style>
 </head>
 <body>
     <h1>Contact New Instance</h1>
     <p>If you have any questions or concerns about the software contact us. Your feedback is important to us.</p>
-    <div style="margin:80px">
-		<p>
-			Please write your name, email address and a message below if you have any questions.
-			One of our staff members will be happy to contact you directly and answer your questions as soon as possible. 
-		</p>
-		<form method="post">
+    <div>
+		<form method="post" class="form-group">
         {% csrf_token %}
             {{form.as_p}}
             <button type="submit">Submit</button>

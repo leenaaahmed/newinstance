@@ -1,110 +1,262 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
-
 {% block content %}
+
 <head>
   <style>
-    * {
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-    @font-face {
-        font-family: carmen-sans;
-        src: url(./regularfont.otf)
-    }
-
     .h1 h2 h3 h4 a{
-        color: white;
+        color: black;
     }
 
-    #navbar{
-        width: 100%;
-        height: 10vh;
-        background-color: black;
-        padding-top: 0.7em;
-        padding-left: 2em;
-    }
-
-    .navlist{
-        width: 100;
-        overflow: hidden;
-    }
-
-    .navlist a{
-        float: left;
-        display: block;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-    }
-
-    .navlist a:hover {
-        color: red;
-    }
-
-    .navlist a.active {
-        color: red;
-    }
-
-    .navlist .icon {
-         display: none;
-    }
-
-    .logo{
+    .homesection{
         position: relative;
-    }
-    
-    .home-content{
-      text-align:center;
-      margin-top: 2em;
-      color: white;
+        height: 80vh;
+        color: #707FE2;
+        width: 100%;
+        padding: 1.5em;
+        margin-top: 5em;
+        padding-left: 3em;
+        padding-right: 3em;
     }
 
-    .home-content p{
-        color: gray;
+    .homesection h1{
+        color: #000546;
+        font-size: 4.5vw;
+    }
+
+    .homesection p{
+        font-size: 2vw;
     }
 
     .home-btn{
-            display: inline;
-            position: relative;
-            margin-top: 1em;
-            margin-right: 1em;
-            border-radius: 17px;
-            background-color: transparent;
-            border: solid 1px rgb(230, 48, 78);
-            color: #f2f2f2;
-            text-align: center;
-            padding: 23px;
-            text-decoration: none;
-            font-size: 16px;
+        position: relative;
+        width: 300px;
+        height: 200px;
     }
 
     .home-btn a{
-        color: white;
         text-decoration: none;
+        border: 2px solid #010100;
+        padding: 15px;
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        display: inline-block;
     }
 
     .home-btn a:hover{
-        color: rgb(230, 48, 78);
-        font-weight: 800;
+        color: black;
     }
 
+    .home-btn a::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: -2px;
+        width: calc(100% + 6px);
+        height: calc(100% - 10px);
+        background-color: #ffffff;
+        transition: all 0.5s ease-in-out;
+        transform: scaleY(1);
+    }
+
+    span {
+        position: relative;
+        z-index: 3;
+    }   
+
+    .home-btn a:hover::before{
+        transform: scaleY(0);
+    }
+
+    .home-btn a::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: -5px;
+        width: calc(100% - 10px);
+        /*100% plus double the times left values*/
+        height: calc(100% + 10px);
+        background-color: white;
+        transition: all 0.5s ease-in-out;
+        transform: scaleX(1);
+    }
+
+
+    .home-btn a:hover::after{
+        transform: scaleX(0);
+    }
+
+    .homesection img{
+        z-index: -1;
+        position: absolute;
+        right: 2em;
+        bottom: 2em;
+        width: 60%;
+        height: auto;
+    }
+
+    .team{
+        position: relative;
+        margin-top: 4em;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+
+    .team h1{
+        color: #000546;
+        font-size: 4.5vw;
+    }
+
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 30px;
+        grid-row-gap: 25px;
+    }
+
+    .wrapper > div {
+        max-width: 100%;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .wrapper > div img{
+        max-width: 100%;
+        border-radius: 20px;
+    }
+
+    .wrapper > div h4{
+        font-weight: 600;
+        margin-top: 15px;
+        font-size: 0.9em;
+    }
+
+    .goals{
+        position: relative;
+        margin-top: 4em;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+
+    .wrappercol{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 30px;
+    }
+
+    .wrappercol > div {
+        max-width: 100%;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .wrappercol > div img{
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 20px;
+        padding: 40px;
+    }
+
+    .wrappercol > div h4{
+        font-weight: 600;
+        margin-top: 15px;
+        font-size: 0.9em;
+    }
+
+    .info-text h1{
+        color: #000546;
+        font-size: 3.5vw;
+        margin-top: 4em;
+    }
+
+    .info-text p{
+        font-size: 2vw;
+        color: #707FE2;
+        font-weight: 300;
+    }
   </style>
 </head>
 
 
 <body>
-    <div class="home-content">
+    <div class="homesection">
         <h1>Welcome,</h1>
-        <p>Join hundreds of professors and students in using New Instance: <br>
-        the platform for peer assessments.</p>
-        <button class="home-btn"><a href="/signup">Sign Up</a></button> 
+        <p>Join hundreds of professors & students  <br> inusing New Instance: 
+            the platform <br> for peer assessments.
+        </p>
+        <div class="home-btn">
+            <a href="/signup"><span>TRY IT NOW</span></a>
+        </div> 
+        <img src="https://lh3.googleusercontent.com/oTj1kqTXJtNX8U_H-cW52am_OgkYi3zjbPeJb4A6wSf4Nvl3CHxgFr4dMN-3lEkOo2JxmLvsyElqZg4dXaB195eEf81e3Uvn-lhgyBKtVO5aJXMwG5J2YZIaIUl9d59KEilPmX0IQw=w600-h315-p-k" alt="">
+    </div>
+
+<div class="goals">
+    <div class="wrappercol">
+        <div>
+            <img src="https://lh3.googleusercontent.com/3sWlJuPQQMpMir82RewuqHRzFKSsFBWv3qXxG_AbynobZvqrC9MauuyxT8ldxe8ShArtiEpamN_qFiePPIQNWieA-NMzAhc0YuzD-9ihrbhC0C6f_Cs0PAD1UOUd0EFUWG67t7xdyQ=w2400?source=screenshot.guru">
+        </div>
+        <div class="info-text">
+            <h1>Grading for Professors</h1>
+            <p>Create Peer Assessments and Teams within your <br>
+            courses and ensure you are grading fairly.</h4>
+        </div>
+        <div class="info-text">
+            <h1>Increase Team Success</h1>
+            <p>Give feedback to your team members week by <br> week and increase their productivity</h4>
+        </div>
+        <div>
+            <img src="https://lh3.googleusercontent.com/2fcpodn2gqMu_O1uJWtyulZWM2PGOW8c1rYAjmkWhXpiwGodY8htXA0og1Fyh1hb82xwBxycn5XtgpT1HsjUWnZpTr2pbSMDoLHwbsPxcA85aF3T6n3O70k_7eys0hx2J5ikseaGXA=w2400?source=screenshot.guru" alt="">
+        </div>
+    </div>
+
+</div>
+    <svg style="z-index: -1; position: absolute;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#D4DFFF" d="M33.9,-48C48.3,-43.5,67.3,-41.5,76.1,-31.9C84.8,-22.4,83.3,-5.3,81.1,11.9C79,29.1,76.3,46.4,66.5,57.5C56.7,68.6,39.9,73.5,25.2,71.1C10.5,68.6,-1.9,58.9,-12.6,51.7C-23.3,44.6,-32.3,40.2,-43.3,33.9C-54.3,27.7,-67.4,19.6,-72.4,8.2C-77.4,-3.1,-74.4,-17.8,-67.9,-30.7C-61.5,-43.5,-51.8,-54.4,-39.9,-60C-28,-65.7,-14,-66,-2.1,-62.7C9.7,-59.3,19.5,-52.4,33.9,-48Z" transform="translate(100 100)" />
+    </svg>
+
+    <div class="team" style="background-color: transparent;">
+        <h1 style="text-align: center; margin-bottom: .5em;">Meet our Engineers</h1>
+        <div class="wrapper">
+            <div>
+                <img src="https://lh3.googleusercontent.com/geBm6xvm_LV5HwZ3YmE-Q5SJXg5Nn6O7vQbF_5lOcaLrqZ1Qi_2KN80g21gqs4OEBMWrU0sxrlq9aoDE_v1Bvt1Dm90B-tK8L00D4wMSagz8SUD35JNi_-Tje1ZYlMemHzUAE7RMLA=w2400">
+                <h4>Jack Bomba, <span style="font-style: italic; font-weight: 400;">Backend</span></h4>
+            </div>
+            <div> 
+                <img src="https://lh3.googleusercontent.com/J4eaLZ-kyUXKzMRv_sY_zkaGTKMXVCc1OsmAtkgQht0B0232ZAUrO3Z7K8De_ayiNc7WWHWSiu700eWKtedv54_tjusQFzIYxjdSUJCFdt_QTb54MAT3rMSC5VKTzBecquLxPgLwzw=w2400">
+                <h4>Hannah Jiang, <span style="font-style: italic; font-weight: 400;">Backend</span></h4>
+            </div>
+            <div>
+                <img src="https://lh3.googleusercontent.com/_8XoGyV4gJvexsAzLdEwpx4MUruStgeNyOUvotlTfRJRVzjfgsljn-BlVMr6wR2dKp6zY_CduuhoRvgip8wJZ3Gap8ZY1h24CWQVuHSgQKn-yvR3rD4_ZdxgmseKuh7vul0_xxhJbA=w2400">
+                <h4>Leena Ahmed, <span style="font-style: italic; font-weight: 400;">Frontend</span></h4>
+            </div> 
+            <div>
+                <img src="https://lh3.googleusercontent.com/NlNnBcw5QKF4SFWdGux9B7iFwE-C6DdoQqS0yTS7MAOe1oGZPq9Ips57C6FdwJUMgRY8ZBSg25oDiYPHr8SSdS0Em2LZDIWiqNHTFeR6jnNkYHGRnD1KGoBk69ukv1dV-1HeEMKvcg=w2400">
+                <h4>Micheal Zhang, <span style="font-style: italic; font-weight: 400;">Backend</span></h4>
+            </div>
+            
+            <div>
+                <img src= "https://lh3.googleusercontent.com/1bWykoeBISbxf-fBA1QG3UZP1JMvWhjyxOlUMvqNgoakQOuWqfNzWeKBV-of4Yacz8_Fa6ZiUOy5lMe2d8fZCqfgzq4e9NdW6bGLedl88HyoeU7SO4dw3OrM8qPEj48g1Pgpp--8ew=w2400" >
+                <h4>Lauren Sampson, <span style="font-style: italic; font-weight: 400;">Frontend</span></h4>
+            </div>
+        </div>
     </div>
     
+    <h1 style="text-align: center; margin-top: 2em;">Contact New Instance</h1>
+    <p  style="text-align: center; padding-left: 2em; padding-right: 2em;">If you have any questions or concerns about the software, contact us. Your feedback is important to us.</p>
+    <div class="home-btn" style="margin-left: 42%">
+        <a href="/contact"><span>CONTACT US</span></a>
+    </div> 
 </body>
  
 {% endblock %}

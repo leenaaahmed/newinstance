@@ -1,0 +1,260 @@
+.hero_area {
+    height: 100vh;
+    background-image: url(../images/hero-bg.png);
+    background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+  
+.sub_page .hero_area {
+    height: auto;
+}
+  
+.hero_area.sub_pages {
+    height: auto;
+}
+  
+.header_section {
+    overflow-x: hidden;
+}
+  
+.header_section .container-fluid {
+    padding-right: 25px;
+    padding-left: 25px;
+}
+  
+.header_section .nav_container {
+    margin: 0 auto;
+}
+  
+.header_section .user_option {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+  
+.header_section .user_option a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #ffffff;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+  
+.header_section .user_option a img {
+    min-width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+  
+  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item .nav-link {
+    padding: 10px 15px;
+    color: #060606;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link, .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item:hover .nav-link {
+    color: #582fd7;
+  }
+  
+  a,
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+  
+  a:hover,
+  a:focus {
+    color: initial;
+  }
+  
+  .btn,
+  .btn:focus {
+    outline: none !important;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  
+  .custom_nav-container .nav_search-btn {
+    background-image: url(../images/search-icon.png);
+    background-size: 17px;
+    background-repeat: no-repeat;
+    background-position-y: 7px;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: none;
+  }
+  
+  .navbar-brand {
+    margin-right: 5%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .navbar-brand img {
+    width: 35px;
+    margin-right: 10px;
+  }
+  
+  .navbar-brand span {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 22px;
+  }
+  
+  .custom_nav-container {
+    z-index: 99999;
+    padding: 0;
+    height: 80px;
+  }
+  
+  .custom_nav-container .navbar-toggler {
+    outline: none;
+  }
+  
+  .custom_nav-container .navbar-toggler .navbar-toggler-icon {
+    background-image: url(../images/menu.png);
+    background-size: 50px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .lg_toggl-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 56px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .lg_toggl-btn:focus {
+    outline: none;
+  }
+  
+  .User_option {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: auto;
+    margin-right: 35px;
+  }
+  
+  .User_option a {
+    color: #ffffff;
+  }
+  
+  .custom_menu-btn {
+    z-index: 9;
+    position: absolute;
+    right: 0;
+    top: 7px;
+  }
+  
+  .custom_menu-btn button {
+    margin-top: 12px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .custom_menu-btn button span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: #fff;
+    margin: 7px 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border-radius: 10px;
+  }
+  
+  .menu_btn-style {
+    position: fixed;
+    right: 14px;
+    top: 7px;
+  }
+  
+  .custom_menu-btn .s-2 {
+    -webkit-transition: all .1s;
+    transition: all .1s;
+    margin-left: -12px;
+  }
+  
+  .menu_btn-style button .s-1 {
+    -webkit-transform: rotate(45deg) translateY(17px);
+            transform: rotate(45deg) translateY(17px);
+  }
+  
+  .menu_btn-style button .s-2 {
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+  }
+  
+  .menu_btn-style button .s-3 {
+    -webkit-transform: rotate(-45deg) translateY(-17px);
+            transform: rotate(-45deg) translateY(-17px);
+  }
+  
+  .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: black;
+    background-color: rgba(93, 42, 225, 0.9);
+    overflow-x: hidden;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    font-size: 60px;
+  }
+  
+  .overlay a {
+    padding: 0px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #f1f1f1;
+    display: block;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    margin-bottom: 15px;
+  }
+  
+  .overlay a:hover {
+    color: #30f7fe;
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 30%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .menu_width {
+    width: 100%;
+  }

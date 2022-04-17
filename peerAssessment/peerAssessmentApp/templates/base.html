@@ -6,106 +6,42 @@
     <meta charset="UTF-8">
     <title>Peer Assessment</title>
 
-    <style>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>New Instance</title>
+
+    <!-- slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+
+    <!--<style>
         * {
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         body{
-            background-color: black;
+            background-color: white;
         }
 
-        @font-face {
-            font-family: carmen-sans;
-            src: url(./regularfont.otf)
-        }  
-    
         .h1 h2 h3 h4{
-            color: white;
-        }
-    
-        #navbar{
-            width: 100%;
-            height: 10vh;
-            background-color: black;
-            padding-top: 0.7em;
-            padding-left: 2em;
-        }
-    
-        .navlist{
-            width: 100;
-            overflow: hidden;
-            display: inline-flex;
-        }
-    
-        .navlist ul{
-            display: inline-flex;
-            list-style: none; 
-            color: #f2f2f2;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .navlist ul li{
-            list-style: none;
-        }
-    
-        .navlist ul li a:hover {
-            color: rgb(230, 48, 78);
-            font-weight: 800;
-        }
-    
-        
-        .navlist .icon {
-             display: none;
-        }
-    
-        .logo{
-            position: relative; 
-        }
-
-        .navigator{
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin-top: 1em;
-            margin-right: 1em;
-            border-radius: 17px;
-            background-color: transparent;
-            border: solid 1px rgb(230, 48, 78);
-            color: #f2f2f2;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .navigator:hover{
-            color: rgb(230, 48, 78);
-            font-weight: 800;
-        }
-
-        @media screen and (max-width: 600px) {
-            .navlist a:not(:first-child) {display: none;}
-            .navlist a.icon {
-            float: right;
-            display: block;
-        }
-        }
-
-        @media screen and (max-width: 600px) {
-            .navlist.responsive {position: relative;}
-            .navlist.responsive .icon {
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-
-            .navlist.responsive a {
-                float: none;
-                display: block;
-                text-align: left;
-            }
+            color: black;
         }
 
     </style>
@@ -136,12 +72,341 @@
         }
     </script>
 
+-->
+<style>
+
+* {
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: white;
+        }
+
+        
+
+body {
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  background-color: white;
+}
+
+.h1 h2 h3 h4{
+    color: black;
+}
+
+.layout_padding2-top {
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
+.layout_padding2-bottom {
+  padding-bottom: 45px;
+}
+
+.layout_padding-top {
+  padding-top: 90px;
+}
+
+.layout_padding-bottom {
+  padding-bottom: 90px;
+}
+
+.heading_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.heading_container h2 {
+  color: white;
+  position: relative;
+  font-size: 2.5rem;
+}
+
+.heading_container h2::before {
+  content: "";
+  width: 60px;
+  height: 1px;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  background-color: #252525;
+}
+
+.hero_area {
+    height: 100vh;
+    background-image: url(../images/hero-bg.png);
+    background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+  
+.sub_page .hero_area {
+    height: auto;
+}
+  
+.hero_area.sub_pages {
+    height: auto;
+}
+  
+.header_section {
+    overflow-x: hidden;
+}
+  
+.header_section .container-fluid {
+    padding-right: 25px;
+    padding-left: 25px;
+}
+  
+.header_section .nav_container {
+    margin: 0 auto;
+}
+  
+.header_section .user_option {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+  
+.header_section .user_option a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: black;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+  
+.header_section .user_option a img {
+    min-width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+  
+  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item .nav-link {
+    padding: 10px 15px;
+    color: #060606;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item.active .nav-link, .custom_nav-container.navbar-expand-lg .navbar-nav .nav-item:hover .nav-link {
+    color: #582fd7;
+  }
+  
+  a,
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+  
+  a:hover,
+  a:focus {
+    color: initial;
+  }
+  
+  .btn,
+  .btn:focus {
+    outline: none !important;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  
+  .custom_nav-container .nav_search-btn {
+    background-image: url(../images/search-icon.png);
+    background-size: 17px;
+    background-repeat: no-repeat;
+    background-position-y: 7px;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border: none;
+  }
+  
+  .navbar-brand {
+    margin-right: 5%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .navbar-brand img {
+    width: 35px;
+    margin-right: 10px;
+  }
+  
+  .navbar-brand span {
+    font-weight: bold;
+    color: black;
+    font-size: 22px;
+  }
+  
+  .custom_nav-container {
+    z-index: 99999;
+    padding: 0;
+    height: 80px;
+  }
+  
+  .custom_nav-container .navbar-toggler {
+    outline: none;
+  }
+  
+  .custom_nav-container .navbar-toggler .navbar-toggler-icon {
+    background-image: url(../images/menu.png);
+    background-size: 50px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .lg_toggl-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 56px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .lg_toggl-btn:focus {
+    outline: none;
+  }
+  
+  .User_option {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: auto;
+    margin-right: 35px;
+  }
+  
+  .User_option a {
+    color: black;
+  }
+  
+  .custom_menu-btn {
+    z-index: 9;
+    position: absolute;
+    right: 0;
+    top: 7px;
+  }
+  
+  .custom_menu-btn button {
+    margin-top: 12px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .custom_menu-btn button span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 7px 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border-radius: 10px;
+  }
+  
+  .menu_btn-style {
+    position: fixed;
+    right: 14px;
+    top: 7px;
+  }
+  
+  .custom_menu-btn .s-2 {
+    -webkit-transition: all .1s;
+    transition: all .1s;
+    margin-left: -12px;
+  }
+  
+  .menu_btn-style button .s-1 {
+    -webkit-transform: rotate(45deg) translateY(17px);
+            transform: rotate(45deg) translateY(17px);
+  }
+  
+  .menu_btn-style button .s-2 {
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+  }
+  
+  .menu_btn-style button .s-3 {
+    -webkit-transform: rotate(-45deg) translateY(-17px);
+            transform: rotate(-45deg) translateY(-17px);
+  }
+  
+  .menu_width {
+    width: 100%;
+  }
+</style>
+<body>
+    <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="/home">
+              <img src="https://lh3.googleusercontent.com/ZuljydE7AgChX3sNtRzCApaVjt16aUHZuXy6zA82tpX3Ptv2-I2GfJ1Z4DDzHiCwWm33glrVymkQMPuY7T-ZXNaC7-SQP2cdsw-Rt7EboLurQ5CDjQ-fm9Ci8x342bDMA2QBj21yPg=w2400?source=screenshot.guru">
+              <span style="font-weight: 300;">
+                New Instance
+              </span>
+            </a>
+            <div class="navbar-collapse" id="">
+              <div class="container">
+                <div class=" mr-auto flex-column flex-lg-row align-items-center">
+                  <ul class="navbar-nav justify-content-between ">
+                    <div class="User_option">
+                      <li class="">
+                        <a class="" href="/login">
+                          Login
+                        </a>
+                      </li>
+                      <form class="form-inline my-2 ml-5 mb-3 mb-lg-0">
+                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                      </form>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+  
+              <div class="custom_menu-btn">
+                <button onclick="openNav()">
+                  <span class="s-1">
+  
+                  </span>
+                  <span class="s-2">
+  
+                  </span>
+                  <span class="s-3">
+  
+                  </span>
+                </button>
+              </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+    </header>
+
 {% block content %}
 
 {% endblock %}
 
-
 </body>
+
+<script>
+
+</script>
 </html>
 
 
