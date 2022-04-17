@@ -44,12 +44,12 @@
         position: relative;
     }
     h1{
-        color:red;
+        color:#707FE2;
         text-align: center;
         text-shadow: 2ex;
     }
     p{
-        color:white;
+        color:black;
         font-size: medium;
         text-align: center;
         line-height: 5ex;
@@ -58,31 +58,52 @@
     }
 
     .from-group{
-        position: relative;
-        color:white;
+        position: fixed;
+        color:#707FE2;
         display: grid;
         justify-content: center;
-        margin-left: 5em;
+        margin-left: 3em;
     }
-
-    input[type=first_name] {
+    input[type=text] {
         position: relative;
         display: block;
-        width: 100%;
-        padding: 12px 20px;
-        box-sizing: border-box;
-        border: 2px solid red;
-        border-radius: 4px;
-    }
-    input[type=last_name] {
-        position: relative;
-        display: block;
-        width: 100%;
-        padding: 12px 20px;
+        padding: 5px 5px;
         margin: 10px 0;
         box-sizing: border-box;
-        border: 2px solid red;
+        border: 2px solid #707FE2;
         border-radius: 4px;
+    }
+    input[type=email] {
+        position: relative;
+        display: block;
+        padding: 5px 5px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+    }
+    input[type=message] {
+        position: relative;
+        display: block;
+        padding: 5px 5px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+    }
+    submit-btn{
+        display: block;
+            position: relative;
+            margin-top: 1em;
+            margin-right: 1em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: black;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
     }
     </style>
 </head>
@@ -93,7 +114,7 @@
 		<form method="post" class="form-group">
         {% csrf_token %}
             {{form.as_p}}
-            <button type="submit">Submit</button>
+            <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
 </body>

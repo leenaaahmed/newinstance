@@ -64,9 +64,10 @@
             margin-top: 1em;
             position: relative;
             margin-right: 1em;
+            margin-left: 30em;
             border-radius: 17px;
             background-color: transparent;
-            border: solid 1px rgb(230, 48, 78);
+            border: solid 2px #707FE2;
             color: white;
             text-align: center;
             padding: 23px;
@@ -75,10 +76,10 @@
             display: inline;
        }
        .btn-success:hover{
-        color: rgb(230, 48, 78);
+        color: #707FE2;
         font-weight: 800;
         background-color: transparent;
-        border: solid 1px rgb(230, 48, 78);
+        border: solid 2px #707FE2;
     }
        #navbar{
         width: 100%;
@@ -94,6 +95,13 @@
         justify-content: space-between;
         margin-left: 5em;
     }
+    h1{
+        color:#707FE2;
+        text-align: center;
+    }
+    li{
+        font-size: larger;
+    }
     </style>
 </head>
 
@@ -106,6 +114,6 @@
     </ul>
 	<br/> <br/>
 <div class ="form-container" style ="margin-left: 5em;">
-    <a href = "/Dashboards/prodashboard" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
+    <a href = "/Dashboards/prodashboard" style="color:#707FE2;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 </div>
 {% endblock %}

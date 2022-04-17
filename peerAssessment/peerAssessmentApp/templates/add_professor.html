@@ -48,7 +48,7 @@
         position: relative;
     }
     h1{
-        color:red;
+        color:#707FE2;
         text-align: center;
         text-shadow: 2ex;
     }
@@ -60,10 +60,32 @@
         margin-left: 7ex;
         margin-right: 7ex;
     }
+    .btn-success{
+            display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 39em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 1px #707FE2;
+            color: black;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+    }
+    .btn-success:hover{
+        color: #707FE2;
+        font-weight: 800;
+        background-color: transparent;
+        border: solid 2px #707FE2;
+    }
     </style>
 </head>
 
-	<h1> Assign Professor to course </h1>
+	<h1> Assign Professor to a Course </h1>
 	<br/> <br/>
 		{% if submitted %}
 			Course has been assigned
@@ -74,7 +96,7 @@
 
 				{{ form.as_p}}
 
-				<input type = "submit" value = "Submit" class = "btn btn-secondary">
+				<input type = "submit" value = "Submit" class = "btn-success">
 
 			</form>
 		{% endif %}

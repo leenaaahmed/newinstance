@@ -42,11 +42,11 @@ gi{% extends 'base.html' %}
     }
 
     .navlist a:hover {
-        color: red;
+        color: #707FE2;
     }
 
     .navlist a.active {
-        color: red;
+        color: #707FE2;
     }
 
     .navlist .icon {
@@ -57,7 +57,8 @@ gi{% extends 'base.html' %}
         position: relative;
     }
        p {
-           color: white;
+           color: black;
+           font-size:1cm;
        }
        .btn-success{
         display: block;
@@ -65,20 +66,20 @@ gi{% extends 'base.html' %}
             position: relative;
             margin-right: 1em;
             border-radius: 17px;
-            background-color: transparent;
-            border: solid 1px rgb(230, 48, 78);
+            background-color: white;
+            border: solid 3px #707FE2;
             color: white;
             text-align: center;
             padding: 23px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 30px;
             display: inline;
        }
        .btn-success:hover{
-        color: rgb(230, 48, 78);
+        color: #707FE2;
         font-weight: 800;
         background-color: transparent;
-        border: solid 1px rgb(230, 48, 78);
+        border: solid 3px #707FE2;
     }
        #navbar{
         width: 100%;
@@ -94,20 +95,25 @@ gi{% extends 'base.html' %}
         justify-content: space-between;
         margin-left: 5em;
     }
-
+    body{
+        background-image: url("https://lh3.googleusercontent.com/9dboiQxDkYDUhX-SmMAiNGfKeugKqSzkOCuMtA6B0lqf9mBevtl5pgEjWmjCEcT6sBwc_cyw-5bGT7dGG7Qyt2LzwAOSs-sJgw9RBDgQm0ZYAQ_8mNfLELy-wUmFodS1c1sdYIc7Ow=w2400");
+        background-size: cover;
+    }
     </style>
 </head>
 
+<body>
 <div class ="form-container" style ="margin-left: 5em;">
-<p> Hello Professor {{request.user.username}} </p>
+<p> Hello Professor {{request.user.username}}:</p>
 <br> </br>
 <div class = "form-container" style ="margin-left: 5em;">
     {% csrf_token %}
-    <a href = "/add_course" style="color: rgb(230, 48, 78);"><button type="submit" class="btn-success" >Create a Course</a></button>
-    <a href = "/add_professor" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >Assign Yourself to a Course</a></button>
-    <a href = "/view_courses" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >View Courses</a></button>
-    <a href = "/create_assessment" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >Create Assessment</a></button>
-    <a href = "/add_teams" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >Add Teams</a></button>
+    <a href = "/add_course" style="color: black"><button type="submit" class="btn-success" >Create a Course</a></button>
+    <a href = "/add_professor" style="color: black"><button type ="submit" class="btn-success" >Assign Yourself to a Course</a></button>
+    <a href = "/view_courses" style="color: black"><button type ="submit" class="btn-success" >View Courses</a></button>
+    <a href = "/create_assessment" style="color: black"><button type ="submit" class="btn-success" >Create Assessment</a></button>
+    <a href = "/add_teams" style="color: black"><button type ="submit" class="btn-success" >Add Teams</a></button>
 
 </div>
+</body>
 {% endblock %}

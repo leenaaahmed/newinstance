@@ -48,9 +48,9 @@
         position: relative;
     }
     h1{
-        color:red;
-        text-align: center;
+        color:#707FE2;
         text-shadow: 2ex;
+        text-align: center;
     }
     p{
         color:white;
@@ -59,6 +59,49 @@
         line-height: 5ex;
         margin-left: 7ex;
         margin-right: 7ex;
+    }
+    input[type=assess_number]{
+        position: relative;
+        display: block;
+        width: 50%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+    }
+    input[type=text]{
+        position: relative;
+        display: block;
+        width: 50%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+    }
+    input[type=course]{
+        padding: 12px 20px;
+    }
+    .btn-success{
+            display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 39em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: black;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+    }
+    .btn-success:hover{
+        color: #707FE2;
+        font-weight: 800;
+        background-color: transparent;
+        border: solid 2px #707FE2;
     }
     </style>
 </head>
@@ -75,7 +118,7 @@
 				{{ form.as_p}}
             
                 <!-- add in fields  -->
-				<input type = "submit" value = "Submit" class = "btn btn-secondary">
+				<input type = "submit" value = "Submit" class = "btn-success">
 
 			</form>
 		{% endif %}

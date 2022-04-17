@@ -93,13 +93,19 @@
         justify-content: space-between;
         margin-left: 5em;
     }
+    h1{
+        color: white;
+        size: 50px;
+    }
 
     </style>
 </head>
+    <h1>Welcome Back,</h1>
     <div class = "form-container" style ="margin-left: 5em;">
     {% csrf_token %}
-    <a href = "/login" style="color: rgb(230, 48, 78);"><button type="submit" class="btn-success" >STUDENT</a></button>
-    <a href = "/login" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >PROFESSOR</a></button>
+    <a href = "/login" style="color:#707FE2"><button type="submit" class="btn-success" >STUDENT</a></button>
+    <br/>
+    <a href = "/login" style="color: #707FE2"><button type ="submit" class="btn-success" >PROFESSOR</a></button>
     <br></br>
     <p> Don't have account? create one <a href = "/signup" style="color: rgb(230, 48, 78);"> here</a></p>
 </div>
