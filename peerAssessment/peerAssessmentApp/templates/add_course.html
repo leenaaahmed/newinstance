@@ -64,10 +64,11 @@
             margin-top: 1em;
             position: relative;
             margin-right: 1em;
+            margin-left: 39em;
             border-radius: 17px;
             background-color: transparent;
-            border: solid 1px rgb(230, 48, 78);
-            color: white;
+            border: solid 1px #707FE2;
+            color: black;
             text-align: center;
             padding: 23px;
             text-decoration: none;
@@ -75,10 +76,10 @@
             display: inline;
        }
        .btn-success:hover{
-        color: rgb(230, 48, 78);
+        color: #707FE2;
         font-weight: 800;
         background-color: transparent;
-        border: solid 1px rgb(230, 48, 78);
+        border: solid 2px #707FE2;
     }
        #navbar{
         width: 100%;
@@ -93,6 +94,12 @@
         display: block;
         justify-content: space-between;
         margin-left: 5em;
+        padding-left: 2em;
+
+    }
+    h1{
+        text-align: center;
+        color:#707FE2;
     }
     </style>
 </head>
@@ -109,7 +116,7 @@
 
 				{{ form.as_p}}
 
-				<input type = "submit" value = "Submit" class = "btn btn-secondary">
+				<input type = "submit" value = "Submit" class = "btn-success">
 
 			</form>
 		{% endif %}
