@@ -51,8 +51,8 @@
     p{
         color:black;
         font-size: medium;
-        text-align: center;
-        line-height: 5ex;
+        text-align: left;
+        line-height: 3ex;
         margin-left: 7ex;
         margin-right: 7ex;
     }
@@ -91,11 +91,15 @@
         border: 2px solid #707FE2;
         border-radius: 4px;
     }
-    submit-btn{
+    label{
         display: block;
+    }
+    .submit-btn{
+            display: block;
             position: relative;
             margin-top: 1em;
             margin-right: 1em;
+            margin-left: 4em;
             border-radius: 17px;
             background-color: transparent;
             border: solid 2px #707FE2;
@@ -105,15 +109,30 @@
             text-decoration: none;
             font-size: 16px;
     }
+    .submit-btn:hover{
+            color: #707FE2;
+            font-weight: 800;
+        }
+    textarea{
+        position: relative;
+        display: block;
+        padding: 5px 5px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+    }
     </style>
 </head>
 <body>
     <h1>Contact New Instance</h1>
+    <br/>
     <p>If you have any questions or concerns about the software contact us. Your feedback is important to us.</p>
     <div>
 		<form method="post" class="form-group">
         {% csrf_token %}
             {{form.as_p}}
+            <br/>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
