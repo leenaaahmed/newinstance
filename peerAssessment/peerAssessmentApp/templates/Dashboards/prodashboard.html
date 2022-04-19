@@ -108,11 +108,11 @@ gi{% extends 'base.html' %}
 <br> </br>
 <div class = "form-container" style ="margin-left: 5em;">
     {% csrf_token %}
-    <a href = "/add_course" style="color: black"><button type="submit" class="btn-success" >Create a Course</a></button>
-    <a href = "/add_professor" style="color: black"><button type ="submit" class="btn-success" >Assign Yourself to a Course</a></button>
+    <a href = "/add_course" style="color: black"><button type="submit" class="btn-success" >Create Course</a></button>
+    <a href = "/add_admin" style="color: black"><button type ="submit" class="btn-success" >Assign Admin to Course</a></button>
     <a href = "/view_courses" style="color: black"><button type ="submit" class="btn-success" >View Courses</a></button>
     <a href = "/create_assessment" style="color: black"><button type ="submit" class="btn-success" >Create Assessment</a></button>
-    <a href = "/add_teams" style="color: black"><button type ="submit" class="btn-success" >Add Teams</a></button>
+    <a href = "/add_teams" style="color: black"><button type ="submit" class="btn-success" >Create Team</a></button>
 
 </div>
 </body>
