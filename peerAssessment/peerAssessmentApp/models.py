@@ -22,7 +22,7 @@ class Student(models.Model):
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
     email = models.EmailField(max_length = 50, primary_key = True)
-    
+
 
 ## Professor object db
 class Professor(models.Model):
@@ -36,31 +36,25 @@ class Professor(models.Model):
 
 ## Course object
 class Course(models.Model):
-    course = models.CharField(max_length = 40, null = True)
-    course_id = models.CharField(max_length = 10, primary_key = True)
+    course_name = models.CharField(max_length = 40, null = True)
+    course_id = models.CharField(max_length = 8, primary_key = True)
     year = models.CharField(max_length = 4, null = True)
-    semester = models.CharField(max_length = 1, null = True)
+    semester = models.CharField(max_length = 6, null = True)
+    admins = models.ManyToManyField(User, related_name='admins', blank=True)
+    students = models.ManyToManyField(SiteUsers, related_name='students', blank=True)
+    access_code = models.CharField(max_length = 5, blank = True, null = True)
 
     def __str__(self):
-        return str(self.course)
+        return str(self.course_id)
 
 
-## Registry To link the Professor to Courses
+## Registry to add additional admin to course
 class Registry(models.Model):
-    User = models.ForeignKey(User, on_delete = models.CASCADE)
-    course = models.ForeignKey(Course, on_delete = models.CASCADE)
-    
-    def __str__(self):
-       return str(self.User) + ': '  + str(self.course)
-
-## Enrollment to link the Student/SiteUsers to Courses
-class Enrollment(models.Model):
-    SiteUser = models.ForeignKey(SiteUsers, on_delete = models.CASCADE)
-    course = models.ForeignKey(Course, on_delete = models.CASCADE)
+    admin = models.ForeignKey(User, on_delete = models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete = models.CASCADE)
 
     def __str__(self):
-       return str(self.SiteUser) + ': '  + str(self.course)
-    #group_name = models.CharField(max_length = 10, null = True)
+       return str(self.admin) + ': '  + str(self.course_id)
 
 ## Team models for associating Siteusers into teams
 class Team(models.Model):
@@ -71,50 +65,86 @@ class Team(models.Model):
     def __str__(self):
         return str(self.course) + ",  Team: " + str(self.team_name)
 
-##Cassess object
-class Cassess(models.Model):
-    assess_number = models.CharField(max_length = 6, null = True)
-    due_date= models.DateField(max_length = 1, null = True)
-    publish_date = models.DateField(max_length = 1, null = True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, default = 3)
-
-    def __str__(self):
-        return str(self.assess_number)
-
+class Choice(models.Model):
+    choice = models.CharField(max_length=5000)
+    is_answer = models.BooleanField(default=False)
 
 class Question(models.Model):
-    assessment = models.ForeignKey(Cassess, on_delete=models.CASCADE)
-    question = models.CharField(max_length = 1000, null = True)
+    question = models.CharField(max_length= 10000)
+    question_type = models.CharField(max_length=20)
+    required = models.BooleanField(default= False)
+    assessment = models.CharField(max_length = 5)
+    choices = models.ManyToManyField(Choice, related_name = "choices")
     def __str__(self):
         return str(self.question)
-class MCResponse(models.Model):
-    OPTIONS = {
-        ("1", "Strongly Disagree"),
-        ("2", "Disagree"),
-        ("3", "Neutral"),
-        ("4", "Agree"),
-        ("5", "Strongly Agree"),
-    }
-    mc = models.CharField(max_length = 20, choices = OPTIONS, blank = True)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    responder = models.ForeignKey(SiteUsers, on_delete= models.CASCADE, null = True)
 
-    
-    
+class Answer(models.Model):
+    answer = models.CharField(max_length=5000)
+    answer_to = models.ForeignKey(Question, on_delete = models.CASCADE ,related_name = "answer_to")
     def __str__(self):
-        return str(self.responder) + ": " + str(self.question)
-
-class Response(models.Model):
-    response = models.CharField( max_length= 255, blank = True)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    responder = models.ForeignKey(SiteUsers, on_delete= models.CASCADE, null = True)
-
+        return str(self.answer)
+class Assessment(models.Model):
+    assessment_number = models.CharField(max_length = 5, null = True)
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=10000, blank = True)
+    creator = models.ForeignKey(User, on_delete = models.CASCADE, related_name = "creator")
+    createdAt = models.DateTimeField(auto_now_add = True)
+    updatedAt = models.DateTimeField(auto_now = True)
+    due_date = models.DateField(max_length = 1, null = True)
+    publish_date = models.DateField(max_length = 1, null = True)
+    questions = models.ManyToManyField(Question, related_name = "questions")
     def __str__(self):
-        return str(self.responder) + ": " + str(self.question)
-
+        return str(self.title)
 class Submission(models.Model):
-    assessment = models.ForeignKey(Cassess, on_delete =models.CASCADE)
-    user = models.ForeignKey(SiteUsers, on_delete= models.CASCADE)
-    answer = models.ManyToManyField(Response)
-    satus = models.CharField(max_length = 255)
-    
+    assessment = models.ForeignKey(Assessment, on_delete = models.CASCADE, related_name = "response_to")
+    response = models.ManyToManyField(Answer, related_name = "response")
+    reviewer = models.ForeignKey(SiteUsers, on_delete= models.CASCADE, related_name='reviewer')
+    reviewee = models.ForeignKey(SiteUsers, on_delete=models.CASCADE, related_name='reviewee')
+    status = models.CharField(max_length = 255)
+    def __str__(self):
+        return str(self.id)
+
+##Cassess object
+# class Cassess(models.Model):
+#     assess_number = models.CharField(max_length = 6, null = True)
+#     due_date= models.DateField(max_length = 1, null = True)
+#     publish_date = models.DateField(max_length = 1, null = True)
+#     course = models.ForeignKey(Course, on_delete=models.CASCADE, default = 3)
+
+#     def __str__(self):
+#         return str(self.assess_number)
+
+# class Question(models.Model):
+#     assessment = models.ForeignKey(Cassess, on_delete=models.CASCADE)
+#     question = models.CharField(max_length = 1000, null = True)
+#     def __str__(self):
+#         return str(self.question)
+# class MCResponse(models.Model):
+#     OPTIONS = {
+#         ("1", "Strongly Disagree"),
+#         ("2", "Disagree"),
+#         ("3", "Neutral"),
+#         ("4", "Agree"),
+#         ("5", "Strongly Agree"),
+#     }
+#     mc = models.CharField(max_length = 20, choices = OPTIONS, blank = True)
+#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+#     responder = models.ForeignKey(SiteUsers, on_delete= models.CASCADE, null = True)
+
+#     def __str__(self):
+#         return str(self.responder) + ": " + str(self.question)
+
+# class Response(models.Model):
+#     response = models.CharField( max_length= 255, blank = True)
+#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+#     responder = models.ForeignKey(SiteUsers, on_delete= models.CASCADE, null = True)
+
+#     def __str__(self):
+#         return str(self.responder) + ": " + str(self.question)
+
+# class Submission(models.Model):
+#     assessment = models.ForeignKey(Cassess, on_delete =models.CASCADE)
+#     reviewer = models.ForeignKey(SiteUsers, on_delete= models.CASCADE)
+#     reviewee = models.ForeignKey(SiteUsers, on_delete=models.CASCADE)
+#     answer = models.ManyToManyField(Response)
+#     status = models.CharField(max_length = 255)
