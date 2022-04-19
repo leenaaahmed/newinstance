@@ -3,7 +3,7 @@
 {% csrf_token %}
 
 {% block content %}
-'''
+
 <head>
     <style>
          * {
@@ -36,10 +36,10 @@
         font-size: 17px;
     }
     .navlist a:hover {
-        color: red;
+        color: #707FE2;
     }
     .navlist a.active {
-        color: red;
+        color: #707FE2;
     }
     .navlist .icon {
          display: none;
@@ -78,19 +78,25 @@
         border: 2px solid #707FE2;
         border-radius: 4px;
     }
-    input[type=course]{
+    select{
+        position: relative;
+        display: block;
+        width: 50%;
         padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
     }
     .btn-success{
             display: block;
             margin-top: 1em;
             position: relative;
             margin-right: 1em;
-            margin-left: 39em;
+            margin-left: 37em;
             border-radius: 17px;
             background-color: transparent;
             border: solid 2px #707FE2;
-            color: black;
+            color: #707FE2;
             text-align: center;
             padding: 23px;
             text-decoration: none;
@@ -102,6 +108,14 @@
         font-weight: 800;
         background-color: transparent;
         border: solid 2px #707FE2;
+    }
+    .TextWrap {
+        float: right;
+        position: absolute;
+        top: 175px;
+        right: 120px;
+        margin: 10px;
+        clear: right;
     }
     </style>
 </head>
@@ -116,7 +130,7 @@
 				{% csrf_token %}
 
 				{{ form.as_p}}
-            
+                <img src="https://lh3.googleusercontent.com/lTwS3CYToWZjTblzx76ls4wfo_G_sAusq42urVYQUWHT4Ps_0jb91ZmYCUe4h66woW5R_642GBQpzlRFJAdipHw63GcwKk4YiyfKyUOIMar2Gqgp9iw-1qyjIftMiTh_hXx2sPlM4Q=w2400" height="270" width="400" class="TextWrap">
                 <!-- add in fields  -->
 				<input type = "submit" value = "Submit" class = "btn-success">
 
