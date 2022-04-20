@@ -288,68 +288,118 @@
     color: black;
   }
   
-  .custom_menu-btn {
-    z-index: 9;
-    position: absolute;
-    right: 0;
-    top: 7px;
-  }
-  
-  .custom_menu-btn button {
-    margin-top: 12px;
-    outline: none;
-    border: none;
-    background-color: transparent;
-  }
-  
-  .custom_menu-btn button span {
-    display: block;
-    width: 35px;
-    height: 5px;
+  .burger div{
+    width: 25px;
+    height: 1px;
+    border-radius: 40px;
     background-color: black;
-    margin: 7px 0;
-    -webkit-transition: all .3s;
-    transition: all .3s;
-    border-radius: 10px;
-  }
-  
-  .menu_btn-style {
-    position: fixed;
-    right: 14px;
-    top: 7px;
-  }
-  
-  .custom_menu-btn .s-2 {
-    -webkit-transition: all .1s;
-    transition: all .1s;
-    margin-left: -12px;
-  }
-  
-  .menu_btn-style button .s-1 {
-    -webkit-transform: rotate(45deg) translateY(17px);
-            transform: rotate(45deg) translateY(17px);
-  }
-  
-  .menu_btn-style button .s-2 {
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
-  }
-  
-  .menu_btn-style button .s-3 {
-    -webkit-transform: rotate(-45deg) translateY(-17px);
-            transform: rotate(-45deg) translateY(-17px);
-  }
+    margin: 3px;
+    transition: all 0.3s ease;
+
+}
+
+.burger{
+    z-index: 9999;
+    cursor: pointer;
+    position: absolute;
+    right: 4em;
+    top: 3.3em;
+}
+
+.toggle .line1{
+    transform: rotate(-45deg) translate(1px, 6px);
+}
+
+.toggle .line2{
+   opacity: 0;
+}
+
+.toggle .line3{
+    transform: rotate(45deg) translate(1px,-7px);
+}
   
   .menu_width {
     width: 100%;
   }
+
+  .logo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    margin-top:2.5em;
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #9979f9;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.menu.active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.nav-links{
+    position: absolute;
+    top: 10em;
+    left: 2.5em;
+}
+
+.links {
+    position: absolute;
+    bottom: 2%;
+    left: 2%;
+    height: 200px;
+}
+
+.links ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 4em;
+}
+
+.menu-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-wrap a {
+    display: block;
+    font-size: 4em;
+    font-weight: 300;
+    color: black;
+    transform: translateY(100%);
+    transition: 0.5s;
+
+}
+
+.menu-wrap.active a {
+    transform: translateY(0);
+}
+
+.menu-wrap a:hover{
+    font-style: italic;
+    color: white;
+    font-weight: 100;
+}
 </style>
 <body>
     <header class="header_section">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
             <a class="navbar-brand" href="/home">
-              <img src="https://lh3.googleusercontent.com/ZuljydE7AgChX3sNtRzCApaVjt16aUHZuXy6zA82tpX3Ptv2-I2GfJ1Z4DDzHiCwWm33glrVymkQMPuY7T-ZXNaC7-SQP2cdsw-Rt7EboLurQ5CDjQ-fm9Ci8x342bDMA2QBj21yPg=w2400?source=screenshot.guru">
+              
               <span style="font-weight: 300;">
                 New Instance
               </span>
@@ -372,19 +422,24 @@
                 </div>
               </div>
   
-              <div class="custom_menu-btn">
-                <button onclick="openNav()">
-                  <span class="s-1">
-  
-                  </span>
-                  <span class="s-2">
-  
-                  </span>
-                  <span class="s-3">
-  
-                  </span>
-                </button>
+              <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
               </div>
+
+              <div class="menu">
+                <div class="main-menu">
+                    <h1 class="logo">New Instance</h1>
+                    <ul class="nav-links">
+                        <li class="menu-wrap"><a href="#">About</a></li>
+                        <li class="menu-wrap"><a href="#">Contact</a></li>
+                        <li class="menu-wrap"><a href="#">Dashboard</a></li>
+                        <li class="menu-wrap"><a href="#">Log In</a></li>
+                    </ul>
+                </div>
+              </div>
+
               </div>
             </div>
           </nav>
@@ -398,7 +453,84 @@
 </body>
 
 <script>
+const wraps = [...document.querySelectorAll('.wrap')];
+const burger = document.querySelector('.burger');
+const menu = document.querySelector('.menu');
+const menuWraps = [...document.querySelectorAll('.menu-wrap')];
 
+  
+  burger.addEventListener('click',() => {
+      burger.classList.toggle('toggle');
+  });       
+
+  function init(){
+      document.body.style.height = `${content.getBoundingClientRect().height}px`;
+  }
+  window.addEventListener('resize', init);
+  burger.addEventListener('click', toggleMenu)
+
+  function displayWraps(){
+      wraps.forEach((wrap, idx) => {
+          setTimeout(() => {
+              wrap.classList.add('active');
+          }, (idx + 1) * 50)
+      })
+  }
+
+  function toggleMenu(){
+      if(menu.classList.contains('active')){
+          burger.classList.remove('active');
+          toggleMenuWraps(false);
+          setTimeout(() => {
+              menu.classList.remove('active')
+          }, 300)
+          setTimeout(() => {
+              toggleWraps(true);
+          }, 300)
+      }else{
+          burger.classList.add('active');
+          toggleWraps(false);
+          setTimeout(() => {
+              menu.classList.add('active')
+          }, 300)
+          setTimeout(() => {
+              toggleMenuWraps(true);
+          }, 300)
+      }
+  }
+
+  function toggleWraps(active){
+      wraps.forEach(wrap => {
+          toggleWrap(wrap, active);
+      })
+  }
+
+  function toggleMenuWraps(active){
+      menuWraps.forEach(wrap => {
+          toggleWrap(wrap, active);
+      })
+  }
+
+  function toggleWrap(wrap, active){
+      setTimeout(() => {
+          if(active){
+              wrap.classList.add('active');
+          }else{
+              wrap.classList.remove('active');
+          }
+      })
+}
+
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    
+    document.getElementById("main-shopnav").style.background = "#501e27";
+  } else {
+   
+    document.getElementById("main-shopnav").style.background = "none";
+  }
+}
 </script>
 </html>
 
