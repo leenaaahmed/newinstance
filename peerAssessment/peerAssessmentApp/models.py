@@ -22,7 +22,7 @@ class Student(models.Model):
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
     email = models.EmailField(max_length = 50, primary_key = True)
-    
+
 
 ## Professor object db
 class Professor(models.Model):
@@ -49,17 +49,17 @@ class Course(models.Model):
 class Registry(models.Model):
     User = models.ForeignKey(User, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
-    
+
     def __str__(self):
        return str(self.User) + ': '  + str(self.course)
 
 ## Enrollment to link the Student/SiteUsers to Courses
-class Enrollment(models.Model):
-    SiteUser = models.ForeignKey(SiteUsers, on_delete = models.CASCADE)
-    course = models.ForeignKey(Course, on_delete = models.CASCADE)
+# class Enrollment(models.Model):
+#     SiteUser = models.ForeignKey(SiteUsers, on_delete = models.CASCADE)
+#     course = models.ForeignKey(Course, on_delete = models.CASCADE)
 
-    def __str__(self):
-       return str(self.SiteUser) + ': '  + str(self.course)
+#     def __str__(self):
+#        return str(self.SiteUser) + ': '  + str(self.course)
     #group_name = models.CharField(max_length = 10, null = True)
 
 ## Team models for associating Siteusers into teams
@@ -99,8 +99,8 @@ class MCResponse(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     responder = models.ForeignKey(SiteUsers, on_delete= models.CASCADE, null = True)
 
-    
-    
+
+
     def __str__(self):
         return str(self.responder) + ": " + str(self.question)
 
@@ -119,4 +119,3 @@ class Submission(models.Model):
     answerMC = models.ManyToManyField(MCResponse)
     satus = models.CharField(max_length = 255, blank = True)
     reviewee = models.ForeignKey(SiteUsers, on_delete=models.CASCADE, blank = True, related_name = 'reviewee')
-    

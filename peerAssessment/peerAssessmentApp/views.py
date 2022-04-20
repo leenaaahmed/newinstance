@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm, ContactForm,SubmissionForm
-from .models import SiteUsers, Enrollment, Registry, Course, Cassess, Team, Question, Response, MCResponse, Submission
+from .models import SiteUsers, Registry, Course, Cassess, Team, Question, Response, MCResponse, Submission
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -148,7 +148,7 @@ def add_teams(request):
             subject = "You have been Registered to a Team and Course"
             message = ''
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = {user.email,}  
+            recipient_list = {user.email,}
             html_message = loader.render_to_string(
                         'email.html',
                         {
@@ -156,8 +156,8 @@ def add_teams(request):
                         'user_name': user.user
                         }
                     )
-            
-            send_mail(subject, message, email_from, recipient_list, html_message = html_message)          
+
+            send_mail(subject, message, email_from, recipient_list, html_message = html_message)
         return HttpResponseRedirect('/add_teams?submitted=True')
 
     else:
@@ -222,7 +222,7 @@ def view_assessment(request, ):
     reg = Registry.objects.all()
     question = Question.objects.all()
     mc = MCResponse.objects.all()
-    oe = Response.objects.all() 
+    oe = Response.objects.all()
     submitted = False
     submission = Submission()
     if request.method == "POST":
@@ -252,7 +252,7 @@ def view_assessment(request, ):
         formb = ResponseForm
         if 'submitted' in request.GET:
             submitted = True
-    
+
 
     return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
 
@@ -260,20 +260,20 @@ def contact(request):
 	if request.method == 'POST':
 		form = ContactForm(request.POST)
 		if form.is_valid():
-			subject = "Website Inquiry" 
+			subject = "Website Inquiry"
 			body = {
-			'first_name': form.cleaned_data['first_name'], 
-			'last_name': form.cleaned_data['last_name'], 
-			'email': form.cleaned_data['email_address'], 
-			'message':form.cleaned_data['message'], 
+			'first_name': form.cleaned_data['first_name'],
+			'last_name': form.cleaned_data['last_name'],
+			'email': form.cleaned_data['email_address'],
+			'message':form.cleaned_data['message'],
 			}
 			message = "\n".join(body.values())
 
 			try:
-				send_mail(subject, message, 'newinstanceco@gmail.com', ['newinstanceco@gmail.com']) 
+				send_mail(subject, message, 'newinstanceco@gmail.com', ['newinstanceco@gmail.com'])
 			except BadHeaderError:
 				return HttpResponse('Invalid header found.')
-			
-      
+
+
 	form = ContactForm()
-	return render(request, "contact.html", {'form':form})        
+	return render(request, "contact.html", {'form':form})
