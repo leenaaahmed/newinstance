@@ -1,4 +1,4 @@
-gi{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% csrf_token %}
 {% block content %}
@@ -70,6 +70,7 @@ gi{% extends 'base.html' %}
     <a href = "/view_courses" style="color: black"><button type ="submit" class="btn-success" >View Courses</a></button>
     <a href = "/create_assessment" style="color: black"><button type ="submit" class="btn-success" >Create Assessment</a></button>
     <a href = "/add_teams" style="color: black"><button type ="submit" class="btn-success" >Add Teams</a></button>
+    <a href = "/view_responses" style="color: black"><button type ="submit" class="btn-success" >View Assessment Responses</a></button>
 
 </div>
 </body>

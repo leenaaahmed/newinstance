@@ -41,11 +41,11 @@
     }
 
     .navlist a:hover {
-        color: red;
+        color: #707FE2;
     }
 
     .navlist a.active {
-        color: red;
+        color: #707FE2;
     }
 
     .navlist .icon {
@@ -60,13 +60,13 @@
            color: white;
        }
        .btn-success{
-        display: block;
+            display: block;
             margin-top: 1em;
             position: relative;
             margin-right: 1em;
             border-radius: 17px;
             background-color: transparent;
-            border: solid 1px rgb(230, 48, 78);
+            border: solid 2px #707FE2;
             color: white;
             text-align: center;
             padding: 23px;
@@ -75,10 +75,10 @@
             display: inline;
        }
        .btn-success:hover{
-        color: rgb(230, 48, 78);
+        color: #707FE2;
         font-weight: 800;
         background-color: transparent;
-        border: solid 1px rgb(230, 48, 78);
+        border: solid 2px #707FE2;
     }
        #navbar{
         width: 100%;
@@ -100,8 +100,8 @@
 
 <div class = "form-container" style ="margin-left: 5em;">
     {% csrf_token %}
-    <a href = "/mc_response" style="color: rgb(230, 48, 78);"><button type="submit" class="btn-success" >Multiple Choice</a></button>
-    <a href = "/oe_response" style="color: rgb(230, 48, 78);"><button type ="submit" class="btn-success" >Open ended</a></button>
+    <a href = "/mc_response" style="color: #707FE2; font-size: 5ex;"><button type="submit" class="btn-success" >Multiple Choice</a></button>
+    <a href = "/oe_response" style="color: #707FE2; font-size: 5ex;"><button type ="submit" class="btn-success" >Open ended</a></button>
     <br></br>
 </div>
 

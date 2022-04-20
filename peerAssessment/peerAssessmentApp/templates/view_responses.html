@@ -1,0 +1,28 @@
+
+
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<h1> Responses {{assessment}}</h1>
+
+<form action="" method = POST>
+	{% csrf_token %}
+ 	{% for submission in submissions %}
+        <p>{{ submission }}</p>
+        <p>{{ submission.course }}</p>
+        <p>{{ submission.user }}</p>
+        <p>{{ submission.reviewee }}</p>
+			{% for answer in submission.answer.all %}
+  				<li> {{answer.responnse}} </li>
+  			{% endfor %}
+            {% for answerMC in submission.answerMC.all %}
+  				<li> {{answerMC.mc}} </li>
+  			{% endfor %}
+	{% endfor %}
+</form>
+
+
+
+ {%endblock%}
