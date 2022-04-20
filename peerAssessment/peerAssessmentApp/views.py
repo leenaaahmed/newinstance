@@ -224,12 +224,12 @@ def mc_response(request):
             submitted = True
     return render(request, 'mc_response.html', {'form':form, 'submitted':submitted})
 
-def view_assessment(request, ):
+def view_assessment(request, assessment):
     '''Grab all assessments, questions, resposnes'''
     person = request.user
     user = SiteUsers.objects.get(user =person)
     team = Team.objects.all()
-    assess = Cassess.objects.all()
+    assess = Cassess.objects.get(assess_number = assessment)
     reg = Registry.objects.all()
     question = Question.objects.all()
     mc = MCResponse.objects.all()
@@ -237,35 +237,34 @@ def view_assessment(request, ):
     submitted = False
     submission = Submission()
     if request.method == "POST":
-        for a in assess:
-            for q in question:
-                if q.assessment == a:
-                    submission.assessment = a
-                    submission.user = user
-                    submission.save()
-                    for b in mc:
-                        if b.question == q and b.mc == '':
-                            instance = MCResponse(question = q, mc = request.POST['mc'], responder = user)
-                            instance.save()
-                            submission.answerMC.add(instance)
+        for q in question:
+            if q.assessment == assess:
+                submission.assessment = assess
+                submission.user = user
+                submission.save()
+                for b in mc:
+                    if b.question == q and b.mc == '':
+                        instance = MCResponse(question = q, mc = request.POST['mc'], responder = user)
+                        instance.save()
+                        submission.answerMC.add(instance)
 
-                    for c in oe:
-                        if c.question == q and c.response == '':
-                            inst=Response(question = q, response = request.POST['response'], responder = user)
-                            inst.save()
-                            submission.answer.add(inst)
-        submission.satus = "S"
+                for c in oe:
+                    if c.question == q and c.response == '':
+                        inst=Response(question = q, response = request.POST['response'], responder = user)
+                        inst.save()
+                        submission.answer.add(inst)
         submission.save()
-        return HttpResponseRedirect('/view_assessment?submitted=True')
+        return HttpResponseRedirect('/Dashboards/studashboard')
 
     else:
         forma = MCResponseForm
         formb = ResponseForm
+        formc = SubmissionForm
         if 'submitted' in request.GET:
             submitted = True
 
 
-    return render(request, 'view_assessment.html', {'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
+    return render(request, 'view_assessment.html', {'assessment': assessment, 'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'formc': formc,'submitted':submitted})
 
 def contact(request):
 	if request.method == 'POST':
