@@ -116,10 +116,13 @@ class Response(models.Model):
         return str(self.responder) + ": " + str(self.question)
 
 class Submission(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     assessment = models.ForeignKey(Cassess, on_delete =models.CASCADE)
     user = models.ForeignKey(SiteUsers, on_delete= models.CASCADE)
     answer = models.ManyToManyField(Response)
     answerMC = models.ManyToManyField(MCResponse)
     satus = models.CharField(max_length = 255, blank = True)
     reviewee = models.ForeignKey(SiteUsers, on_delete = models.CASCADE, related_name = "reviewer", default= None, blank=True, null=True)
-    reviewee = models.ForeignKey(SiteUsers, on_delete = models.CASCADE, related_name = "reviewee", default= None, blank=True, null=True)
+
+    def __str__(self):
+        return str(self.id)

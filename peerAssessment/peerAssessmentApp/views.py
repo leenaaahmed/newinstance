@@ -240,6 +240,7 @@ def view_assessment(request, assessment):
         for q in question:
             if q.assessment == assess:
                 submission.assessment = assess
+                submission.course = assess.course
                 submission.user = user
                 submission.save()
                 for b in mc:
@@ -286,3 +287,14 @@ def contact(request):
 
 	form = ContactForm()
 	return render(request, "contact.html", {'form':form})
+
+def view_responses(request):
+    courses = Course.objects.filter(admins__username__icontains=request.user)
+    course_submissions = []
+    for course in courses:
+        submissions = Submission.objects.filter(course__course__icontains=course)
+        for submission in submissions:
+            course_submissions.append(submission)
+
+
+    return render(request, 'view_responses.html', {'submissions': course_submissions})
