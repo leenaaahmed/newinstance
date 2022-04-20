@@ -263,7 +263,6 @@ def view_assessment(request, assessment):
         if 'submitted' in request.GET:
             submitted = True
 
-
     return render(request, 'view_assessment.html', {'assessment': assessment, 'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'formc': formc,'submitted':submitted})
 
 def contact(request):
