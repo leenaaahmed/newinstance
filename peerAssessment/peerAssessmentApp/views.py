@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm, ContactForm,SubmissionForm
-from .models import SiteUsers, Enrollment, Registry, Course, Cassess, Team, Question, Response, MCResponse, Submission
+from .models import SiteUsers, Registry, Course, Cassess, Team, Question, Response, MCResponse, Submission
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -15,6 +15,7 @@ from django.utils.html import strip_tags
 from django.forms.formsets import formset_factory
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+import random
 
 # Create your views here.
 
@@ -24,12 +25,16 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
+            access_code=form.cleaned_data.get('access_code')
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password1')
             email = form.cleaned_data.get('email')
             user=authenticate(username=username, password=password)
             date_of_birth=form.cleaned_data.get('date_of_birth')
-            SiteUsers.objects.create(user=user, date_of_birth=date_of_birth, email = email)
+            student = SiteUsers.objects.create(user=user, date_of_birth=date_of_birth, email=email)
+            course = Course.objects.get(access_code=access_code)
+            if (course):
+                course.students.add(student)
             messages.success(request, 'Account Created')
         else:
             messages.error(request, "Unsuccessful registration. Invalid information.")
@@ -96,7 +101,10 @@ def add_course(request):
     if request.method == "POST":
         form = CourseForm(request.POST)
         if form.is_valid():
-            form.save()
+            course = form.save()
+            course.admins.add(request.user)
+            course.access_code = random.randint(10000,99999)
+            course.save()
             return HttpResponseRedirect('/add_course?submitted=True')
     else:
         form = CourseForm
@@ -109,7 +117,10 @@ def add_professor(request):
     if request.method == "POST":
         form = RegistryForm(request.POST)
         if form.is_valid():
-            form.save()
+            admin = form.cleaned_data.get('admin')
+            course = form.cleaned_data.get('course')
+            current_course = Course.objects.get(course=course)
+            current_course.admins.add(admin)
             return HttpResponseRedirect('/add_professor?submitted=True')
     else:
         form = RegistryForm
@@ -148,7 +159,7 @@ def add_teams(request):
             subject = "You have been Registered to a Team and Course"
             message = ''
             email_from = settings.EMAIL_HOST_USER
-            recipient_list = {user.email,}  
+            recipient_list = {user.email,}
             html_message = loader.render_to_string(
                         'email.html',
                         {
@@ -156,8 +167,8 @@ def add_teams(request):
                         'user_name': user.user
                         }
                     )
-            
-            send_mail(subject, message, email_from, recipient_list, html_message = html_message)          
+
+            send_mail(subject, message, email_from, recipient_list, html_message = html_message)
         return HttpResponseRedirect('/add_teams?submitted=True')
 
     else:
@@ -222,13 +233,13 @@ def view_assessment(request, assessment):
     reg = Registry.objects.all()
     question = Question.objects.all()
     mc = MCResponse.objects.all()
-    oe = Response.objects.all() 
+    oe = Response.objects.all()
     submitted = False
     submission = Submission()
     if request.method == "POST":
         for q in question:
-            if q.assessment == assessment:
-                submission.assessment = a
+            if q.assessment == assess:
+                submission.assessment = assess
                 submission.user = user
                 submission.save()
                 for b in mc:
@@ -242,37 +253,36 @@ def view_assessment(request, assessment):
                         inst=Response(question = q, response = request.POST['response'], responder = user)
                         inst.save()
                         submission.answer.add(inst)
-        submission.satus = "S"
         submission.save()
-        return HttpResponseRedirect('/view_assessment?submitted=True')
+        return HttpResponseRedirect('/Dashboards/studashboard')
 
     else:
         forma = MCResponseForm
         formb = ResponseForm
+        formc = SubmissionForm
         if 'submitted' in request.GET:
             submitted = True
-    
 
-    return render(request, 'view_assessment.html', {'assessment': assessment, 'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
+    return render(request, 'view_assessment.html', {'assessment': assessment, 'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'formc': formc,'submitted':submitted})
 
 def contact(request):
 	if request.method == 'POST':
 		form = ContactForm(request.POST)
 		if form.is_valid():
-			subject = "Website Inquiry" 
+			subject = "Website Inquiry"
 			body = {
-			'first_name': form.cleaned_data['first_name'], 
-			'last_name': form.cleaned_data['last_name'], 
-			'email': form.cleaned_data['email_address'], 
-			'message':form.cleaned_data['message'], 
+			'first_name': form.cleaned_data['first_name'],
+			'last_name': form.cleaned_data['last_name'],
+			'email': form.cleaned_data['email_address'],
+			'message':form.cleaned_data['message'],
 			}
 			message = "\n".join(body.values())
 
 			try:
-				send_mail(subject, message, 'newinstanceco@gmail.com', ['newinstanceco@gmail.com']) 
+				send_mail(subject, message, 'newinstanceco@gmail.com', ['newinstanceco@gmail.com'])
 			except BadHeaderError:
 				return HttpResponse('Invalid header found.')
-			
-      
+
+
 	form = ContactForm()
-	return render(request, "contact.html", {'form':form})        
+	return render(request, "contact.html", {'form':form})
