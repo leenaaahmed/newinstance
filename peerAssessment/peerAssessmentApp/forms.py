@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 import datetime
 from django.forms import ModelForm
-from .models import Course, Registry, Cassess, Team, SiteUsers,Question,Response, MCResponse
+from .models import Course, Registry, Cassess, Team, SiteUsers,Question,Response, MCResponse, Submission
 
 
 class SignUpForm(UserCreationForm):
@@ -145,6 +145,27 @@ class MCResponseForm(ModelForm):
             'question': forms.Select(attrs={'class': 'form-control', 'placeholder': 'question'} ),
 
          } 
+
+class SubmissionForm(ModelForm):
+    class Meta:
+        model = Submission
+        fields = ('assessment', 'user', 'answerMC', 'answer', 'satus', 'reviewee')
+        labels = {
+            'assessment': '',
+            'user': '',
+            'answerMC': '',
+            'answer': '',
+            'satus': '',
+            'reviewee': '',
+        }
+        widgets = {
+            'assess': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Assessment Number'}),
+            'user': forms.Select(attrs={'class': 'form-control', 'placeholder': 'user'}),
+            'answerMC': forms.TextInput(attrs={'class': 'forms-control','placeholder': 'answerMC'}),
+            'answer': forms.TextInput(attrs={'class': 'forms-control','placeholder': 'answer'}),
+            'satus': forms.TextInput(attrs={'class': 'forms-control','placeholder': 'status'}),
+            'reviewee': forms.Select(attrs={'class': 'forms-control','placeholder': 'reviewee'}),
+        }
 
 class ContactForm(forms.Form):
 	first_name = forms.CharField(max_length = 50)

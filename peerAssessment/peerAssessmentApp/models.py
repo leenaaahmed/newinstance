@@ -116,5 +116,7 @@ class Submission(models.Model):
     assessment = models.ForeignKey(Cassess, on_delete =models.CASCADE)
     user = models.ForeignKey(SiteUsers, on_delete= models.CASCADE)
     answer = models.ManyToManyField(Response)
-    satus = models.CharField(max_length = 255)
+    answerMC = models.ManyToManyField(MCResponse)
+    satus = models.CharField(max_length = 255, blank = True)
+    reviewee = models.ForeignKey(SiteUsers, on_delete=models.CASCADE, blank = True, related_name = 'reviewee')
     

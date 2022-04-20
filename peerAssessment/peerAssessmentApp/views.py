@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm, ContactForm
-from .models import SiteUsers, Enrollment, Registry, Course, Cassess, Team, Question, Response, MCResponse
+from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm, ContactForm,SubmissionForm
+from .models import SiteUsers, Enrollment, Registry, Course, Cassess, Team, Question, Response, MCResponse, Submission
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -224,18 +224,27 @@ def view_assessment(request, ):
     mc = MCResponse.objects.all()
     oe = Response.objects.all() 
     submitted = False
+    submission = Submission()
     if request.method == "POST":
         for a in assess:
             for q in question:
                 if q.assessment == a:
+                    submission.assessment = a
+                    submission.user = user
+                    submission.save()
                     for b in mc:
                         if b.question == q and b.mc == '':
                             instance = MCResponse(question = q, mc = request.POST['mc'], responder = user)
                             instance.save()
+                            submission.answerMC.add(instance)
+
                     for c in oe:
                         if c.question == q and c.response == '':
                             inst=Response(question = q, response = request.POST['response'], responder = user)
                             inst.save()
+                            submission.answer.add(inst)
+        submission.satus = "S"
+        submission.save()
         return HttpResponseRedirect('/view_assessment?submitted=True')
 
     else:

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SiteUsers, Course, Registry, Enrollment, Team, Cassess, Question, Response, MCResponse
+from .models import SiteUsers, Course, Registry, Enrollment, Team, Cassess, Question, Response, MCResponse, Submission
 
 # Register your models here.
 
@@ -12,3 +12,4 @@ admin.site.register(Cassess)
 admin.site.register(Question)
 admin.site.register(Response)
 admin.site.register(MCResponse)
+admin.site.register(Submission)
