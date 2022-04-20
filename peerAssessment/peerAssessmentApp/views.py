@@ -227,8 +227,8 @@ def view_assessment(request, assessment):
     submission = Submission()
     if request.method == "POST":
         for q in question:
-            if q.assessment == assessment:
-                submission.assessment = a
+            if q.assessment == assess:
+                submission.assessment = assess
                 submission.user = user
                 submission.save()
                 for b in mc:
@@ -242,18 +242,18 @@ def view_assessment(request, assessment):
                         inst=Response(question = q, response = request.POST['response'], responder = user)
                         inst.save()
                         submission.answer.add(inst)
-        submission.satus = "S"
         submission.save()
-        return HttpResponseRedirect('/view_assessment?submitted=True')
+        return HttpResponseRedirect('/Dashboards/studashboard')
 
     else:
         forma = MCResponseForm
         formb = ResponseForm
+        formc = SubmissionForm
         if 'submitted' in request.GET:
             submitted = True
     
 
-    return render(request, 'view_assessment.html', {'assessment': assessment, 'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'submitted':submitted})
+    return render(request, 'view_assessment.html', {'assessment': assessment, 'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'formc': formc,'submitted':submitted})
 
 def contact(request):
 	if request.method == 'POST':
