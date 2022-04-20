@@ -15,10 +15,10 @@
         <p>{{ submission.user }}</p>
         <p>{{ submission.reviewee }}</p>
 			{% for answer in submission.answer.all %}
-  				<li> {{submission.answer}} </li>
+  				<li> {{answer.responnse}} </li>
   			{% endfor %}
             {% for answerMC in submission.answerMC.all %}
-  				<li> {{submission.answerMC.}} </li>
+  				<li> {{answerMC.mc}} </li>
   			{% endfor %}
 	{% endfor %}
 </form>
