@@ -5,33 +5,27 @@
 
 
 {% block content %}
-<h1> Assessment </h1>
+<h1> Assessment {{assessment}}</h1>
 
 <form action="" method = POST>
 	{% csrf_token %}
-	{% for a in assess %}
- 		<li> {{a}} </li>
- 		{% for q in question %}
- 			{% if q.assessment == a %}
- 				<li> {{q}} </li>
-				{% for b in mc %}
+ 	{% for q in question %}
+ 		{% if q.assessment == assess %}
+ 			<li> {{q}} </li>
+			{% for b in mc %}
+  				{%if b.question == q and b.mc == ''%}
+  					<li> {{forma.mc}} </li>	
+  				{% endif %}
+  			{% endfor %}
 
-  						{%if b.question == q and b.mc == ''%}
-  							<li> {{forma.mc}} </li>
-  							
-  						{% endif %}
-  				{% endfor %}
-
-  				{% for c in oe %}	
-  						{% if c.question == q and c.response == '' %}
-  							<li> {{formb.response}} </li>
-  							<input type = "submit" value="Submit" class= "btn btn-secondary" name = 'buttonoe'>
-  						{% endif %}
-  				{% endfor %}
-  			{% endif %}
-		{% endfor %}
+  			{% for c in oe %}	
+  				{% if c.question == q and c.response == '' %}
+  					<li> {{formb.response}} </li>
+  					<input type = "submit" value="Submit" class= "btn btn-secondary" name = 'buttonoe'>
+  				{% endif %}
+  			{% endfor %}
+  		{% endif %}
 	{% endfor %}
-	
 </form>
 
 

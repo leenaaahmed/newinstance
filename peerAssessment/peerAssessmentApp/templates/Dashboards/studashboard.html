@@ -114,7 +114,7 @@
                     {% endfor %}
                     {% for assess in cassess %}
                         {% if t.course == assess.course %}
-                            <a href = "/view_assessment" style="color: #707FE2;"> Take Assessment {{assess}} Here</a></p>
+                            <a href = "/view_assessment/{{assess}}/"style="color: #707FE2;"> Take Assessment {{assess}} Here</a></p>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
