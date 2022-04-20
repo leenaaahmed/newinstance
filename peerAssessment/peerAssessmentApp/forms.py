@@ -13,7 +13,7 @@ class SignUpForm(UserCreationForm):
     access_code = forms.CharField(max_length = 5, help_text='Required')
     class Meta:
         model = User
-        fields = ('username','email', 'date_of_birth', 'password1', 'password2')
+        fields = ('username','email', 'date_of_birth', 'password1', 'password2', 'access_code')
 
 class CourseCreation(forms.Form):
     course = forms.CharField(max_length = 40, help_text = 'Description')
@@ -40,27 +40,38 @@ class CourseForm(ModelForm):
             'course_id':'',
             'year': '',
             'semester': '',
-
+        }
+        YEAR_CHOICES = {
+            ("2021", "2021"),
+            ("2022", "2022"),
+            ("2023", "2023"),
+            ("2024", "2024"),
+        }
+        SEMESTER_CHOICES = {
+            ("Fall", "FALL"),
+            ("Spring", "SPRING"),
         }
         widgets = {
             'course': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course Name'} ),
             'course_id': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course ID'} ),
-            'year': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Year'} ),
-            'semester': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Semester'} ),
+            'year': forms.Select(choices=YEAR_CHOICES, attrs={'class': 'form-control', 'placeholder': 'Year'} ),
+            'semester': forms.Select(choices=YEAR_CHOICES, attrs={'class': 'form-control', 'placeholder': 'Semester'} ),
         }
 
 class RegistryForm(ModelForm):
     class Meta:
         model = Registry
-        fields = ('User','course')
+        # fields = ('User','course')
+        fields = ('course','admin')
         labels = {
-
-            'User': '',
             'course': '',
+            'admin': '',
         }
         widgets = {
-            'User': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Professor Name'} ),
-            'course': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course Name'} ),
+            'course': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course Name', 'help_text': 'Course ID'} ),
+            'admin': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select Admin'} ),
+            # 'User': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Professor Name'} ),
+            # 'course': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Course Name'} ),
         }
 
 class CassessForm(ModelForm):
@@ -86,8 +97,8 @@ class TeamForm(ModelForm):
         fields = ('team_name', 'course', 'memebers')
         labels = {
 
-            'team_name': '', 
-            'course': '', 
+            'team_name': '',
+            'course': '',
             'memebers': '',
         }
         widgets = {
@@ -103,9 +114,9 @@ class QuestionForm(ModelForm):
         fields = ('assessment', 'question')
         labels = {
 
-            'assessment': '', 
-            'question': '', 
-            
+            'assessment': '',
+            'question': '',
+
         }
         widgets = {
             'assessment': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Assessment'} ),
@@ -117,17 +128,17 @@ class ResponseForm(ModelForm):
         model = Response
         fields = ('response', 'question')
         labels = {
- 
-            'response': '', 
+
+            'response': '',
             'question': '',
-            
-            
+
+
         }
         widgets = {
             'response': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Response'} ),
             'question': forms.Select(attrs={'class': 'form-control', 'placeholder': 'question'} ),
-            
-         } 
+
+         }
 
 class MCResponseForm(ModelForm):
     class Meta:
@@ -136,15 +147,15 @@ class MCResponseForm(ModelForm):
         fields = ('mc', 'question')
         labels = {
 
-            'mc': '', 
+            'mc': '',
             'question': '',
-            
+
         }
         widgets = {
             'mc': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Multiple Choice Response'} ),
             'question': forms.Select(attrs={'class': 'form-control', 'placeholder': 'question'} ),
 
-         } 
+         }
 
 class SubmissionForm(ModelForm):
     class Meta:
@@ -172,6 +183,3 @@ class ContactForm(forms.Form):
 	last_name = forms.CharField(max_length = 50)
 	email_address = forms.EmailField(max_length = 150)
 	message = forms.CharField(widget = forms.Textarea, max_length = 2000)
-
-
-

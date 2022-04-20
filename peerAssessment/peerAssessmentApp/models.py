@@ -37,9 +37,12 @@ class Professor(models.Model):
 ## Course object
 class Course(models.Model):
     course = models.CharField(max_length = 40, null = True)
-    course_id = models.CharField(max_length = 10, primary_key = True)
+    course_id = models.CharField(max_length = 8, primary_key = True)
     year = models.CharField(max_length = 4, null = True)
-    semester = models.CharField(max_length = 1, null = True)
+    semester = models.CharField(max_length = 6, null = True)
+    admins = models.ManyToManyField(User, related_name='admins', blank=True)
+    students = models.ManyToManyField(SiteUsers, related_name='students', blank=True)
+    access_code = models.CharField(max_length = 5, blank = True, null = True)
 
     def __str__(self):
         return str(self.course)
@@ -47,11 +50,11 @@ class Course(models.Model):
 
 ## Registry To link the Professor to Courses
 class Registry(models.Model):
-    User = models.ForeignKey(User, on_delete = models.CASCADE)
+    admin = models.ForeignKey(User, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
 
     def __str__(self):
-       return str(self.User) + ': '  + str(self.course)
+       return str(self.admin) + ': '  + str(self.course)
 
 ## Enrollment to link the Student/SiteUsers to Courses
 # class Enrollment(models.Model):
@@ -118,4 +121,5 @@ class Submission(models.Model):
     answer = models.ManyToManyField(Response)
     answerMC = models.ManyToManyField(MCResponse)
     satus = models.CharField(max_length = 255, blank = True)
-    reviewee = models.ForeignKey(SiteUsers, on_delete=models.CASCADE, blank = True, related_name = 'reviewee')
+    reviewee = models.ForeignKey(SiteUsers, on_delete = models.CASCADE, related_name = "reviewer", default= None, blank=True, null=True)
+    reviewee = models.ForeignKey(SiteUsers, on_delete = models.CASCADE, related_name = "reviewee", default= None, blank=True, null=True)

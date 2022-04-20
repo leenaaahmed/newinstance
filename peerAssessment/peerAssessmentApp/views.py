@@ -15,6 +15,7 @@ from django.utils.html import strip_tags
 from django.forms.formsets import formset_factory
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+import random
 
 # Create your views here.
 
@@ -24,12 +25,16 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
+            access_code=form.cleaned_data.get('access_code')
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password1')
             email = form.cleaned_data.get('email')
             user=authenticate(username=username, password=password)
             date_of_birth=form.cleaned_data.get('date_of_birth')
-            SiteUsers.objects.create(user=user, date_of_birth=date_of_birth, email = email)
+            student = SiteUsers.objects.create(user=user, date_of_birth=date_of_birth, email=email)
+            course = Course.objects.get(access_code=access_code)
+            if (course):
+                course.students.add(student)
             messages.success(request, 'Account Created')
         else:
             messages.error(request, "Unsuccessful registration. Invalid information.")
@@ -96,7 +101,10 @@ def add_course(request):
     if request.method == "POST":
         form = CourseForm(request.POST)
         if form.is_valid():
-            form.save()
+            course = form.save()
+            course.admins.add(request.user)
+            course.access_code = random.randint(10000,99999)
+            course.save()
             return HttpResponseRedirect('/add_course?submitted=True')
     else:
         form = CourseForm
@@ -109,7 +117,10 @@ def add_professor(request):
     if request.method == "POST":
         form = RegistryForm(request.POST)
         if form.is_valid():
-            form.save()
+            admin = form.cleaned_data.get('admin')
+            course = form.cleaned_data.get('course')
+            current_course = Course.objects.get(course=course)
+            current_course.admins.add(admin)
             return HttpResponseRedirect('/add_professor?submitted=True')
     else:
         form = RegistryForm
