@@ -25,6 +25,7 @@ urlpatterns = [
     path('oe_response/', views.oe_response, name= 'oe_response'),
     path('view_assessment/<assessment>/', views.view_assessment, name= 'view_assessment'),
     path('view_responses/', views.view_responses, name= 'view_responses'),
+    path('reviews/', views.reviews, name='reviews'), 
     # path('view_responses/<response>/', views.view_response, name= 'view_response'),
 
 ]

@@ -55,7 +55,7 @@ class CourseForm(ModelForm):
             'course': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course Name'} ),
             'course_id': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course ID'} ),
             'year': forms.Select(choices=YEAR_CHOICES, attrs={'class': 'form-control', 'placeholder': 'Year'} ),
-            'semester': forms.Select(choices=YEAR_CHOICES, attrs={'class': 'form-control', 'placeholder': 'Semester'} ),
+            'semester': forms.Select(choices=SEMESTER_CHOICES, attrs={'class': 'form-control', 'placeholder': 'Semester'} ),
         }
 
 class RegistryForm(ModelForm):

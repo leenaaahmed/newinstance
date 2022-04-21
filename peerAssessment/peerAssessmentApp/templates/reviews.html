@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <style>
+       h1{
+            color: #707FE2;
+            text-align: center;
+            text-shadow: 2ex;
+            font-size: 3em;
+        }
+        h1:hover{
+        text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
+                     0 3px 0 #ccc, 0 4px 0 #ccc,
+                     0 5px 0 #ccc, 0 6px 0 #ccc,
+                     0 7px 0 #ccc, 0 8px 0 #ccc,
+                     0 9px 0 #ccc, 0 10px 0 #ccc,
+                     0 11px 0 #ccc, 0 12px 0 #ccc,
+                     0 20px 30px rgba(0, 0, 0, 0.5);
+            }
+        h2{
+            color:black;
+            margin-left:2em;
+        }
+        h3{
+            color:#707FE2;
+            margin-left:5em;
+            font-size: large;
+        }
+        p{
+            margin-left: 7em;
+            color:#ccc;
+        }
+        h4{
+            color:#707FE2;
+            margin-left:5em;
+            font-size: large;
+        }
+        body{
+            background-image: url('https://lh3.googleusercontent.com/tL6MWDV7J-URx5dQkqIke1fa2x1rqrv4BjlHeH_IQqqdon10G18HdN8KNZhAzm9EtAcaqDOVtQHU188LZQ-W96CasEj9vyNDE8WP-NZVdRC0fRPbQPI5Os0FJQnrR86mHzEzVc2O3w=w2400');
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Reviews</h1>
+    <br/>
+    <br/>
+    <h2>User Feedback</h2>
+    <br/>
+    <h3>User1:</h3>
+    <p>The New Instance software was extremely helpful in aiding my classroom with peer reviews. The software was succinct and easy to use.</p>
+    <br/>
+    <br/>
+    <h4>Lauren1:</h4>
+    <p>Great for coworker review. The anonymity of the whole system makes it great for teams.</p>
+</body>
+{% endblock %}

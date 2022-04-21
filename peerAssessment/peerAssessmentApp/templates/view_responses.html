@@ -1,12 +1,40 @@
 
 
-
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
-
 {% block content %}
+<head>
+	<style>
+		h1{
+			text-align: center;
+			color: #707FE2;
+		}
+		.btn-success{
+			display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 35em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: white;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+		}
+		.btn-success:hover{
+			color: #707FE2;
+        	font-weight: 800;
+        	background-color: transparent;
+        	border: solid 2px #707FE2;
+		}
+	</style>
+</head>
 <h1> Responses {{assessment}}</h1>
-
+<a href = "/Dashboards/prodashboard" style="color: #707FE2;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 <form action="" method = POST>
 	{% csrf_token %}
  	{% for submission in submissions %}
