@@ -96,6 +96,42 @@
         justify-content: space-between;
         margin-left: 5em;
     }
+    h1{
+        text-align: center;
+        color: #707FE2;
+    }
+    .form-control{
+        position: relative;
+        display: block;
+        width: 90%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+        margin-left: 3em;
+    }
+    .btn-secondary{
+        display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 38em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: white;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+    }
+    .btn-secondary:hover{
+        color: #707FE2;
+        font-weight: 800;
+        background-color: transparent;
+        border: solid 2px #707FE2;
+    }
 </style>
 </head>
 
@@ -111,7 +147,7 @@
                 {{ form.as_p}}
             
                 <!-- add in fields  -->
-                <input type = "submit" value = "Submit" class = "btn btn-secondary">
+                <input type = "submit" value = "Submit" class = "btn-secondary" style="color: #707FE2;">
 
             </form>
         {% endif %}

@@ -26,6 +26,7 @@ urlpatterns = [
     path('view_assessment/<assessment>/', views.view_assessment, name= 'view_assessment'),
     path('view_responses/', views.view_responses, name= 'view_responses'),
     path('reviews/', views.reviews, name='reviews'), 
+    path('stu_view_team/', views.stu_view_team, name = 'stu_view_team'),
     # path('view_responses/<response>/', views.view_response, name= 'view_response'),
 
 ]

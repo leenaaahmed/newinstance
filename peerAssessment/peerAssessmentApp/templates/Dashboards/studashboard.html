@@ -11,7 +11,7 @@
       
     .from-group{
         position: relative;
-        color:white;
+        color:black;
         display: block;
         justify-content: space-between;
         margin-left: 5em;
@@ -24,6 +24,27 @@
         color: black;
         font-size:1cm;
         margin-left: 1.4em;
+    }
+    .btn-success{
+            display: block;
+            margin-top: 1em;
+            margin-left: 3em;
+            position: relative;
+            border-radius: 17px;
+            background-color: white;
+            border: solid 3px #707FE2;
+            color: white;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 30px;
+            display: inline;
+    }
+    .btn-success:hover{
+        color: #707FE2;
+        font-weight: 800;
+        background-color: transparent;
+        border: solid 3px #707FE2;
     }
     </style>
 </head>
@@ -42,7 +63,7 @@
                     {% endfor %}
                     {% for assess in cassess %}
                         {% if t.course == assess.course %}
-                            <a href = "/view_assessment/{{assess}}/"style="color: #707FE2;"> Take Assessment {{assess}} Here</a></p>
+                            <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success"> Take Assessment {{assess}} Here</a></p>
                         {% endif %}
                     {% endfor %}
                 {% endif %}
@@ -51,5 +72,9 @@
             {%endfor%}
     {% endfor %}
 </form>
+<div class = "form-container" style ="margin-left: 5em;">
+    {% csrf_token %}
+    <a href = "/stu_view_team" style="color: black"><button type="submit" class="btn-success" >View Assigned Teams</a></button>
+</div>
 </body>
 {% endblock %}

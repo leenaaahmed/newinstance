@@ -97,6 +97,8 @@ def reviews(request):
     return render(request, 'reviews.html')
 def contact(request):
     return render(request, 'contact.html')
+def stu_view_team(request):
+    return render(request, 'stu_view_team.html')
 
 def add_course(request):
     submitted = False
@@ -227,7 +229,7 @@ def mc_response(request):
     return render(request, 'mc_response.html', {'form':form, 'submitted':submitted})
 
 def view_assessment(request, assessment):
-    '''Grab all assessments, questions, resposnes'''
+    '''Grab all assessments, questions, responses'''
     person = request.user
     user = SiteUsers.objects.get(user =person)
     team = Team.objects.all()

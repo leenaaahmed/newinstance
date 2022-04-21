@@ -1,6 +1,39 @@
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
 {% block content %}
+<head>
+	<style>
+		h1{
+			text-align:center;
+			color: #707FE2;
+		}
+		.btn-secondary{
+			display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 37em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: #707FE2;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+		}
+		.btn-secondary:hover{
+			color: #707FE2;
+        	font-weight: 800;
+        	background-color: transparent;
+        	border: solid 2px #707FE2;
+		}
+		li{
+			color: black;
+		}
+	</style>
+</head>
 <h1> Assessment {{assessment}}</h1>
 
 <form action="" method = POST>
@@ -17,7 +50,7 @@
   			{% for c in oe %}	
   				{% if c.question == q and c.response == '' %}
   					<li> {{formb.response}} </li>
-  					<input type = "submit" value="Submit" class= "btn btn-secondary" name = 'buttonoe'>
+  					<input type = "submit" value="Submit" class= "btn-secondary" name = 'button'>
   				{% endif %}
   			{% endfor %}
   		{% endif %}
