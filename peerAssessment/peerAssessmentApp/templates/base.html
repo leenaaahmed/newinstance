@@ -225,6 +225,7 @@
   
   .navbar-brand {
     margin-right: 5%;
+    margin-left: 1.5em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -303,7 +304,7 @@
     cursor: pointer;
     position: absolute;
     right: 4em;
-    top: 3.3em;
+    top: 2em;
 }
 
 .toggle .line1{
@@ -336,7 +337,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: #9979f9;
+    background-color: gainsboro;
     z-index: 3;
     opacity: 0;
     pointer-events: none;
@@ -391,15 +392,13 @@
 .menu-wrap a:hover{
     font-style: italic;
     color: white;
-    font-weight: 100;
 }
 </style>
 <body>
     <header class="header_section">
         <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container">
+          <nav style="margin-top: 1em;" class="navbar navbar-expand-lg custom_nav-container">
             <a class="navbar-brand" href="/home">
-              
               <span style="font-weight: 300;">
                 New Instance
               </span>
@@ -417,6 +416,9 @@
                       <form class="form-inline my-2 ml-5 mb-3 mb-lg-0">
                         <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
                       </form>
+                      <form class="form-inline my-2 ml-5 mb-3 mb-lg-0">
+                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                      </form>
                     </div>
                   </ul>
                 </div>
@@ -430,12 +432,12 @@
 
               <div class="menu">
                 <div class="main-menu">
-                    <h1 class="logo">New Instance</h1>
+                    <img style = "margin: 4.2em; margin-top: 2.5em; width: 20em;" src="https://lh3.googleusercontent.com/5u50eCUBMxi4l4ANljX1zm3dJdmQhwxouAYN5eNFNXUENJvbsMjz9KIcWhFWvoXu1RYiIXzSGZJ-1ULKsNHkff3AwAzcucheUcihq_TgwGF5O2fUga1aTJSvzNTg_StnmbYIN1Avxg=w2400?source=screenshot.guru" alt="">
                     <ul class="nav-links">
-                        <li class="menu-wrap"><a href="#">About</a></li>
-                        <li class="menu-wrap"><a href="#">Contact</a></li>
-                        <li class="menu-wrap"><a href="#">Dashboard</a></li>
-                        <li class="menu-wrap"><a href="#">Log In</a></li>
+                        <li class="menu-wrap"><a href="/about">ABOUT</a></li>
+                        <li class="menu-wrap"><a href="/signup">SIGN UP</a></li>
+                        <li class="menu-wrap"><a href="/studashboard">DASHBOARD</a></li>
+                        <li class="menu-wrap"><a href="/contact">CONTACT</a></li>
                     </ul>
                 </div>
               </div>
