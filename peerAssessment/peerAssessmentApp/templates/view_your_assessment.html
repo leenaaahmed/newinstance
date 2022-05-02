@@ -1,0 +1,14 @@
+
+
+
+{% for t in team %}
+    {%for user in t.memebers.all%}
+        {% if users == user %}
+            <p>{{t}}</p>
+            {% for assess in cassess %}
+                {% if t.course == assess.course %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+    {% endfor %}
+{% endfor %}

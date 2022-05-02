@@ -71,6 +71,10 @@
 
             {%endfor%}
     {% endfor %}
+
+    {% for w in i %}
+        <a href = "/view_your_assessment/{{w}}/" style="color:black;"><button type="submit" class="btn-success"> View your team members evaluations for Assessment {{w}} Here</a></p>
+    {% endfor %} 
 </form>
 <div class = "form-container" style ="margin-left: 5em;">
     {% csrf_token %}

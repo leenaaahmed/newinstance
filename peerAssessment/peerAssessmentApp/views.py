@@ -16,7 +16,7 @@ from django.forms.formsets import formset_factory
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 import random
-
+from datetime import datetime, timedelta
 # Create your views here.
 
 @csrf_protect
@@ -87,7 +87,17 @@ def studashboard(request):
     person = request.user
     users = SiteUsers.objects.get(user=person)
     cassess = Cassess.objects.all()
-    return render(request, 'Dashboards/studashboard.html', {'team': team, 'cassess': cassess, 'courses:':courses, 'users': users})
+    i = []
+    for c in cassess:
+        for t in team:
+            if t.course == c.course:
+                for user in t.memebers.all():
+                    if users == user:
+                        assess = c
+                        if assess.due_date < datetime.now().date():
+                            i.append(assess.assess_number)
+
+    return render(request, 'Dashboards/studashboard.html', {'team': team, 'cassess': cassess, 'courses:':courses, 'users': users, 'i': i})
 
 def student_or_professor(request):
     return render(request, 'student_or_professor.html')
@@ -139,12 +149,19 @@ def view_courses(request):
 
 def create_assessment(request):
     submitted = False
+    users = SiteUsers.objects.all()
+    teams = Team.objects.all()
+    assessment = Cassess.objects.all()
+    submission = Submission.objects.all()
+    
     if request.method == "POST":
         form = CassessForm(request.POST)
         print('form: ', form)
+
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/add_questions')
+
     else:
         form = CassessForm
         if 'submitted' in request.GET:
@@ -317,3 +334,35 @@ def view_responses(request):
 
 
     return render(request, 'view_responses.html', {'submissions': course_submissions, 'questions':questions, 'response': response, 'mc': mc})
+
+'''def submission_deadline():
+    students = SiteUsers.objects.all()
+    team = Team.objects.all()
+    person = request.user
+    cassess = Cassess.objects.all()
+    for c in cassess:
+        for t in team:
+            if t.course == c.course:
+                date = c.due_date 
+                if date - timedelta(hours = 24) == datetime.now():
+                    for p in t.memebers.all()
+                        subject = "You have 24 hours left to answer assessment"
+                        message = ''
+                        email_from = settings.EMAIL_HOST_USER
+                        recipient_list = {p.email,}
+                        html_message = loader.render_to_string(
+                            'email1.html',
+                        {
+                        'context':'values',
+                        }
+                    )
+
+                    send_mail(subject, message, email_from, recipient_list, html_message = html_message)'''
+
+def view_your_assessment(request, assessment):
+    courses = Course.objects.all()
+    team = Team.objects.all()
+    person = request.user
+    users = SiteUsers.objects.get(user=person)
+    cassess = Cassess.objects.all()
+    return render(request, 'view_your_assessment.html', {'team': team, 'cassess': cassess, 'courses:':courses, 'users': users})
