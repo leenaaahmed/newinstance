@@ -59,8 +59,8 @@
                 {% if users == user %}
                     <p>{{t}}</p>
                     {% for us in t.memebers.all%}
-                        <p>{{us}}</p>
-                    {% endfor %}
+                        <li>{{us}}</li>
+                    {% endfor %} 
                     {% for assess in cassess %}
                         {% if t.course == assess.course %}
                             <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success"> Take Assessment {{assess}} Here</a></p>
