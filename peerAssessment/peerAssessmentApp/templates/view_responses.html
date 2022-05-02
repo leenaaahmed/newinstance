@@ -38,16 +38,25 @@
 <form action="" method = POST>
 	{% csrf_token %}
  	{% for submission in submissions %}
-        <p>{{ submission }}</p>
         <p>{{ submission.course }}</p>
-        <p>{{ submission.user }}</p>
-        <p>{{ submission.reviewee }}</p>
+        <p> user - {{ submission.user }}</p>
+        <p> Who response is about - {{ submission.reviewee }}</p>
+        {% for r in response %}
 			{% for answer in submission.answer.all %}
-  				<li> {{answer.responnse}} </li>
+				{% if r.response == answer.response %}
+					<li> {{r.question}} </li>
+  					<li> {{answer.response}} </li>
+  				{% endif %}
   			{% endfor %}
+  		{% endfor %}
+  		{% for a in mc %}
             {% for answerMC in submission.answerMC.all %}
-  				<li> {{answerMC.mc}} </li>
+            	{% if a.mc == answerMC.mc %}
+            		<li> {{a.question}} </li>
+  					<li> {{answerMC.mc}} </li>
+  				{% endif %}
   			{% endfor %}
+  		{% endfor %}
 	{% endfor %}
 </form>
 

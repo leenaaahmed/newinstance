@@ -33,13 +33,14 @@ class CourseCreation(forms.Form):
 class CourseForm(ModelForm):
     class Meta:
         model = Course
-        fields = ('course', 'course_id', 'year', 'semester')
+        fields = ('course', 'course_id', 'year', 'semester', 'students')
         labels = {
 
             'course': '',
             'course_id':'',
             'year': '',
             'semester': '',
+            'students': '',
         }
         YEAR_CHOICES = {
             ("2021", "2021"),
@@ -56,6 +57,7 @@ class CourseForm(ModelForm):
             'course_id': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Course ID'} ),
             'year': forms.Select(choices=YEAR_CHOICES, attrs={'class': 'form-control', 'placeholder': 'Year'} ),
             'semester': forms.Select(choices=SEMESTER_CHOICES, attrs={'class': 'form-control', 'placeholder': 'Semester'} ),
+            'students': forms.SelectMultiple(attrs= {'class': 'form-control', 'placeholder': 'Students'}),
         }
 
 class RegistryForm(ModelForm):

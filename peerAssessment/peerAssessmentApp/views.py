@@ -233,14 +233,24 @@ def view_assessment(request, assessment):
     person = request.user
     user = SiteUsers.objects.get(user =person)
     team = Team.objects.all()
+    for t in team:
+        for users in t.memebers.all():
+            if users == user:
+                team = t
     assess = Cassess.objects.get(assess_number = assessment)
+    course = Course.objects.all()
     reg = Registry.objects.all()
     question = Question.objects.all()
     mc = MCResponse.objects.all()
     oe = Response.objects.all()
+    test = SiteUsers.objects.all()
     submitted = False
     submission = Submission()
+
     if request.method == "POST":
+        respondee = request.POST["reviewee"]
+        test = SiteUsers.objects.get(id = respondee)
+        submission.reviewee = test
         for q in question:
             if q.assessment == assess:
                 submission.assessment = assess
@@ -265,10 +275,11 @@ def view_assessment(request, assessment):
         forma = MCResponseForm
         formb = ResponseForm
         formc = SubmissionForm
+        formd = CourseForm
         if 'submitted' in request.GET:
             submitted = True
 
-    return render(request, 'view_assessment.html', {'assessment': assessment, 'assess': assess, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'formc': formc,'submitted':submitted})
+    return render(request, 'view_assessment.html', {'assessment': assessment, 'assess': assess, 'course': course, 'user':user, 'question':question, 'team': team, 'mc': mc, 'oe': oe, 'forma':forma, 'formb':formb, 'formc': formc, 'formd':formd, 'submitted':submitted})
 
 def contact(request):
 	if request.method == 'POST':
@@ -295,10 +306,14 @@ def contact(request):
 def view_responses(request):
     courses = Course.objects.filter(admins__username__icontains=request.user)
     course_submissions = []
+    assessment = Cassess.objects.all()
+    questions = Question.objects.all()
+    mc = MCResponse.objects.all()
+    response = Response.objects.all()
     for course in courses:
         submissions = Submission.objects.filter(course__course__icontains=course)
         for submission in submissions:
             course_submissions.append(submission)
 
 
-    return render(request, 'view_responses.html', {'submissions': course_submissions})
+    return render(request, 'view_responses.html', {'submissions': course_submissions, 'questions':questions, 'response': response, 'mc': mc})

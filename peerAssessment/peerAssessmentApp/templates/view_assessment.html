@@ -38,6 +38,12 @@
 
 <form action="" method = POST>
 	{% csrf_token %}
+	{%for users in team.memebers.all%}
+		{{users}}
+		<br> </br>
+	{% endfor %}
+	<li> Select Team Member from list above </li>
+		{{formc.reviewee}}
  	{% for q in question %}
  		{% if q.assessment == assess %}
  			<li> {{q}} </li>
