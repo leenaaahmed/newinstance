@@ -111,11 +111,12 @@
 	<br/> <br/>
     <ul>
         {% for course in course_list %}
-        <li>{{course}}</li>
+        <li>Course #{{course.course_id}} ({{course.semester}} {{course.year}}) - {{course}} </li>
+        <br/>
         {%endfor %}
     </ul>
-	<br/> <br/>
 <div class ="form-container" style ="margin-left: 5em;">
-    <a href = "/Dashboards/prodashboard" style="color:#707FE2;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
+    <a href = "/Dashboards/prodashboard" style="color:black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 </div>
+<br/><br/>
 {% endblock %}

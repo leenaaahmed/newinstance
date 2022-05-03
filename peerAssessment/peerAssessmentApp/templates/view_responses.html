@@ -52,10 +52,9 @@
 <form action="" method = POST>
 	{% csrf_token %}
  	{% for submission in submissions %}
-	 <div>
         <p>Course: {{ submission.course }}</p>
         <p> User: {{ submission.user }}</p>
-        <p> Who response is about: {{ submission.reviewee }}</p>
+        <p> Reviewing: {{ submission.reviewee }}</p>
         {% for r in response %}
 			{% for answer in submission.answer.all %}
 				{% if r.response == answer.response %}
@@ -71,13 +70,12 @@
   					<li> Response: {{answerMC.mc}} </li>
   				{% endif %}
   			{% endfor %}
-			<br/>
-			</div>
   		{% endfor %}
+		  <br/><br/>
 	{% endfor %}
 	<a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
-	<br/>
 </form>
+<br/>
 
 
 

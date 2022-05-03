@@ -79,17 +79,17 @@ class RegistryForm(ModelForm):
 class CassessForm(ModelForm):
     class Meta:
         model = Cassess
-        fields = ('assess_number', 'due_date', 'publish_date', 'course')
+        fields = ('assess_number', 'publish_date', 'due_date','course')
         labels = {
             'assess_number': '',
-            'due_date': '',
             'publish_date': '',
+            'due_date': '',
             'course': '',
         }
         widgets = {
             'assess_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Assessment Number'}),
-            'due_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Due Date'}),
             'publish_date': forms.TextInput(attrs={'class': 'forms-control','placeholder': 'Publish Date'}),
+            'due_date': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Due Date'}),
             'course': forms.Select(attrs={'class': 'forms-control','placeholder': 'Course'}),
         }
 

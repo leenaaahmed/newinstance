@@ -20,10 +20,15 @@
         background-image: url("https://lh3.googleusercontent.com/9dboiQxDkYDUhX-SmMAiNGfKeugKqSzkOCuMtA6B0lqf9mBevtl5pgEjWmjCEcT6sBwc_cyw-5bGT7dGG7Qyt2LzwAOSs-sJgw9RBDgQm0ZYAQ_8mNfLELy-wUmFodS1c1sdYIc7Ow=w2400");
         background-size: cover;
     }
-    p{
+    h1{
         color: black;
         font-size:1cm;
         margin-left: 1.4em;
+    }
+    p{
+        margin-left: 3em;
+        color: black;
+        font-weight: bold;
     }
     .btn-success{
             display: block;
@@ -49,29 +54,32 @@
     li{
         list-style-type: none;
         margin-left: 3em;
+        display:inline-block;
     }
     </style>
 </head>
 <body>
 <form action="" method = POST>
     {%csrf_token%}
-    <p> Hello {{request.user.username}}: </p>
+    <h1> Hello {{request.user.username}}: </h1>
 
-    <br> </br> 
+    <br>
     {% for t in team %}
             {%for user in t.memebers.all%}
                 {% if users == user %}
+                    <br/>
                     <p>Course: {{t}}</p>
+                    <li>Members:</li>
                     {% for us in t.memebers.all%}
-                        <li>Members: {{us}}</li>
+                        <li>{{us}}</li>
                     {% endfor %} 
+                    <br/>
                     {% for assess in cassess %}
                         {% if t.course == assess.course %}
                            {% if assess.publish_date < x and x < assess.due_date %}
-                                <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success"> Take Assessment {{assess}} Here</a></p>
+                                <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success"> Take Assessment {{assess}} Here - Due Date: {{assess.due_date}} </a></p>
                             {% endif %}
                         {% endif %}
-
                     {% endfor %}
                 {% endif %}
 

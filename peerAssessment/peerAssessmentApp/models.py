@@ -76,9 +76,9 @@ class Team(models.Model):
 
 ##Cassess object
 class Cassess(models.Model):
-    assess_number = models.CharField(max_length = 6, null = True)
-    due_date= models.DateField(max_length = 1, null = True)
-    publish_date = models.DateField(max_length = 1, null = True)
+    assess_number = models.CharField(max_length = 6, null = True, help_text='* 6 Digits')
+    publish_date = models.DateField(max_length = 1, null = True, help_text='* MM/DD/YYYY')
+    due_date= models.DateField(max_length = 1, null = True, help_text='* MM/DD/YYYY')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, default = 3)
 
     def __str__(self):

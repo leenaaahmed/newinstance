@@ -53,9 +53,10 @@
         text-align: center;
     }
     p{
-        color:white;
+        color: gray;
         font-size: medium;
-        text-align: center;
+        margin-left: 3em;
+        text-align: left;
         line-height: 5ex;
         margin-left: 7ex;
         margin-right: 7ex;
@@ -109,6 +110,28 @@
         background-color: transparent;
         border: solid 2px #707FE2;
     }
+    .btn-secondary{
+            display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 34em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: #707FE2;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+    }
+    .btn-secondary:hover{
+        color: #707FE2;
+        font-weight: 800;
+        background-color: transparent;
+        border: solid 2px #707FE2;
+    }
     .TextWrap {
         float: right;
         position: absolute;
@@ -132,8 +155,8 @@
 				{{ form.as_p}}
                 <img src="https://lh3.googleusercontent.com/lTwS3CYToWZjTblzx76ls4wfo_G_sAusq42urVYQUWHT4Ps_0jb91ZmYCUe4h66woW5R_642GBQpzlRFJAdipHw63GcwKk4YiyfKyUOIMar2Gqgp9iw-1qyjIftMiTh_hXx2sPlM4Q=w2400" height="270" width="400" class="TextWrap">
                 <!-- add in fields  -->
-				<input type = "submit" value = "Submit" class = "btn-success">
-
+				<input type = "submit" value = "Submit" class = "btn-success" style="color: black;">
+                <a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-secondary" >Return To Dashboard</a></button>
 			</form>
 		{% endif %}
 		</center>
