@@ -46,6 +46,10 @@
         background-color: transparent;
         border: solid 3px #707FE2;
     }
+    li{
+        list-style-type: none;
+        margin-left: 3em;
+    }
     </style>
 </head>
 <body>
@@ -57,9 +61,9 @@
     {% for t in team %}
             {%for user in t.memebers.all%}
                 {% if users == user %}
-                    <p>{{t}}</p>
+                    <p>Course: {{t}}</p>
                     {% for us in t.memebers.all%}
-                        <li>{{us}}</li>
+                        <li>Members: {{us}}</li>
                     {% endfor %} 
                     {% for assess in cassess %}
                         {% if t.course == assess.course %}

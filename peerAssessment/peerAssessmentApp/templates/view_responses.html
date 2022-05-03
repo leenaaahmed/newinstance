@@ -31,33 +31,52 @@
         	background-color: transparent;
         	border: solid 2px #707FE2;
 		}
+		li{
+		margin-left: 3em;
+        font-size: large;
+        list-style-type: none;
+		padding: 0;
+    	}
+		p{
+			margin-left: 3em;
+			font-size: larger;
+			color: #707FE2;
+		}
+		div{
+			border-style: solid;
+			border: 2px #707FE2;
+		}
 	</style>
 </head>
 <h1> Responses {{assessment}}</h1>
-<a href = "/Dashboards/prodashboard" style="color: #707FE2;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 <form action="" method = POST>
 	{% csrf_token %}
  	{% for submission in submissions %}
-        <p>{{ submission.course }}</p>
-        <p> user - {{ submission.user }}</p>
-        <p> Who response is about - {{ submission.reviewee }}</p>
+	 <div>
+        <p>Course: {{ submission.course }}</p>
+        <p> User: {{ submission.user }}</p>
+        <p> Who response is about: {{ submission.reviewee }}</p>
         {% for r in response %}
 			{% for answer in submission.answer.all %}
 				{% if r.response == answer.response %}
-					<li> {{r.question}} </li>
-  					<li> {{answer.response}} </li>
+					<li> Question: {{r.question}} </li>
+  					<li> Response: {{answer.response}} </li>
   				{% endif %}
   			{% endfor %}
   		{% endfor %}
   		{% for a in mc %}
             {% for answerMC in submission.answerMC.all %}
             	{% if a.mc == answerMC.mc %}
-            		<li> {{a.question}} </li>
-  					<li> {{answerMC.mc}} </li>
+            		<li> Question: {{a.question}} </li>
+  					<li> Response: {{answerMC.mc}} </li>
   				{% endif %}
   			{% endfor %}
+			<br/>
+			</div>
   		{% endfor %}
 	{% endfor %}
+	<a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
+	<br/>
 </form>
 
 

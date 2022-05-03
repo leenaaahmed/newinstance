@@ -53,7 +53,7 @@
         text-shadow: 2ex;
     }
     p{
-        color:white;
+        color:black;
         font-size: medium;
         text-align: center;
         line-height: 5ex;
@@ -83,7 +83,7 @@
             margin-top: 1em;
             position: relative;
             margin-right: 1em;
-            margin-left: 37em;
+            margin-left: 34em;
             border-radius: 17px;
             background-color: transparent;
             border: solid 2px #707FE2;
@@ -106,7 +106,8 @@
 	<h1> Assign Professor to a Course </h1>
 	<br/> <br/>
 		{% if submitted %}
-			Course has been assigned
+			<p>Course has been assigned</p>
+            <a href = "/Dashboards/prodashboard" style="color:#707FE2;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 		{% else %}
 
 			<form action = "" method=POST>

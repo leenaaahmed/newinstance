@@ -57,14 +57,15 @@
         position: relative;
     }
        p {
-           color: white;
+           color: black;
+           text-align: center;
        }
        .btn-success{
         display: block;
             margin-top: 1em;
             position: relative;
             margin-right: 1em;
-            margin-left: 39em;
+            margin-left: 35em;
             border-radius: 17px;
             background-color: transparent;
             border: solid 2px #707FE2;
@@ -128,7 +129,9 @@
 	<h1> Add Course </h1>
 	<br/> <br/>
 		{% if submitted %}
-			Course has been created
+			<p>Course has been created</p>
+            <br/>
+            <a href = "/Dashboards/prodashboard" style="color:#707FE2;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 		{% else %}
 
 			<form action = "" method=POST>

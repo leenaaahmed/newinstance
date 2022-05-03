@@ -141,13 +141,18 @@
         margin-left: 3em;
         color: #707FE2;
     }
+    h2{
+        color: black;
+        text-align: center;
+        font-size: large;
+    }
 </style>
 </head>
 
 	<h1> Assign Students to Teams</h1>
 	<br/> <br/>
 		{% if submitted %}
-			Team Has been created and class enrollment has been sent.
+			<h2>Team has been created and class enrollment has been sent.</h2>
 		{% else %}
 
 			<form action = "" method=POST>
@@ -155,7 +160,7 @@
 
 				{{ form.as_p}}
 
-				<input type = "submit" value = "Submit" class = "btn-secondary" style="color: #707FE2;">
+				<input type = "submit" value = "Submit" class = "btn-secondary" style="color: black;">
 
 			</form>
 		{% endif %}
@@ -163,7 +168,8 @@
     <div class = "form-container" style ="margin-left: 5em;">
     {% csrf_token %}
   <div class ="form-container" style="margin-left: 30em;">
-    <a href = "/Dashboards/prodashboard" style="color: #707FE2;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
+    <br/>
+    <a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
     </div>
 
 {% endblock %}
