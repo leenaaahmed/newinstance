@@ -48,10 +48,11 @@
 		}
 	</style>
 </head>
-<h1> Responses {{assessment}}</h1>
+<h1> Responses {{assess}}</h1>
 <form action="" method = POST>
 	{% csrf_token %}
  	{% for submission in submissions %}
+<<<<<<< Updated upstream
         <p>Course: {{ submission.course }}</p>
         <p> User: {{ submission.user }}</p>
         <p> Reviewing: {{ submission.reviewee }}</p>
@@ -61,22 +62,48 @@
 					<li> Question: {{r.question}} </li>
   					<li> Response: {{answer.response}} </li>
   				{% endif %}
+=======
+		{% if submission.assessment == assess%}
+	 		<div>
+        	<p>Course: {{ submission.course }}</p>
+        	<p> User: {{ submission.user }}</p>
+       		<p> Who response is about: {{ submission.reviewee }}</p>
+       		{% for r in response %}
+				{% for answer in submission.answer.all %}					{% if r.response == answer.response %}
+						<li> Question: {{r.question}} </li>
+  						<li> Response: {{answer.response}} </li>
+  					{% endif %}
+  				{% endfor %}
+>>>>>>> Stashed changes
   			{% endfor %}
-  		{% endfor %}
-  		{% for a in mc %}
-            {% for answerMC in submission.answerMC.all %}
-            	{% if a.mc == answerMC.mc %}
-            		<li> Question: {{a.question}} </li>
-  					<li> Response: {{answerMC.mc}} </li>
-  				{% endif %}
+  			{% for a in mc %}
+            	{% for answerMC in submission.answerMC.all %}
+            		{% if a.mc == answerMC.mc %}
+            			{%if submission.user == a.responder%}
+            				<li> Question: {{a.question}} </li>
+  							<li> Response: {{answerMC.mc}} </li>
+  						{% endif %}
+  					{% endif %}
+  				{% endfor %}
+				<br/>
+				</div>
   			{% endfor %}
+<<<<<<< Updated upstream
   		{% endfor %}
 		  <br/><br/>
 	{% endfor %}
 	<a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 </form>
 <br/>
+=======
+  		{% endif%}
+  	{% endfor %}
+	
+>>>>>>> Stashed changes
 
+</form>
+<a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
+<br/>
 
 
  {%endblock%}

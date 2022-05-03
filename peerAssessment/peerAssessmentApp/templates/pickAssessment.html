@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<head>
+	<style>
+		h1{
+			text-align: center;
+			color: #707FE2;
+		}
+		.btn-success{
+			display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 35em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: white;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+		}
+		.btn-success:hover{
+			color: #707FE2;
+        	font-weight: 800;
+        	background-color: transparent;
+        	border: solid 2px #707FE2;
+		}
+		li{
+		margin-left: 3em;
+        font-size: large;
+        list-style-type: none;
+		padding: 0;
+    	}
+		p{
+			margin-left: 3em;
+			font-size: larger;
+			color: #707FE2;
+		}
+		div{
+			border-style: solid;
+			border: 2px #707FE2;
+		}
+	</style>
+</head>
+
+
+	<form action="" method = POST>
+		{% csrf_token %}
+		{% for a in assess %}
+			{% for r in registry %}
+				{% if user == r.admin %}
+					{% if r.course == a.course %}
+						<a href = "/view_responses/{{a}}" style="color: black;"><button type ="submit" class="btn-success" >View responses to Assessment {{a}} Here</a></button>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+	<br/>
+</form>
+
+{% endblock %}
+

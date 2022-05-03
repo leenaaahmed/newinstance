@@ -321,10 +321,10 @@ def contact(request):
 	form = ContactForm()
 	return render(request, "contact.html", {'form':form})
 
-def view_responses(request):
+def view_responses(request, assessment):
     courses = Course.objects.filter(admins__username__icontains=request.user)
     course_submissions = []
-    assessment = Cassess.objects.all()
+    assess = Cassess.objects.get(assess_number = assessment)
     questions = Question.objects.all()
     mc = MCResponse.objects.all()
     response = Response.objects.all()
@@ -334,7 +334,7 @@ def view_responses(request):
             course_submissions.append(submission)
 
 
-    return render(request, 'view_responses.html', {'submissions': course_submissions, 'questions':questions, 'response': response, 'mc': mc})
+    return render(request, 'view_responses.html', {'submissions': course_submissions, 'assess': assess, 'questions':questions, 'response': response, 'mc': mc})
 
 '''def submission_deadline():
     students = SiteUsers.objects.all()
@@ -381,4 +381,12 @@ def view_your_assessment(request, assessment):
                             count = count +1
                             total = total + int(answerMC.mc)
                             avg = total / count
-    return render(request, 'view_your_assessment.html', {'team': team, 'avg':avg, 'response': response, 'mc': mc, 'cassess': cassess, 'courses:':courses, 'users': users, 'submission': submission})
+    return render(request, 'view_your_assessment.html', { 'assessment': assessment, 'team': team, 'avg':avg, 'response': response, 'mc': mc, 'cassess': cassess, 'courses:':courses, 'users': users, 'submission': submission})
+
+def pickAssessment(request):
+    assess = Cassess.objects.all()
+    course = Course.objects.all()
+    person = request.user
+    users = SiteUsers.objects.get(user=person)
+    registry = Registry.objects.all()
+    return render(request, 'pickAssessment.html', {'assess': assess, 'course:':course, 'users': users, 'registry': registry})
