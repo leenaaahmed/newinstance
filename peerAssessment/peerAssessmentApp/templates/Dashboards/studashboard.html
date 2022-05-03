@@ -63,8 +63,11 @@
                     {% endfor %} 
                     {% for assess in cassess %}
                         {% if t.course == assess.course %}
-                            <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success"> Take Assessment {{assess}} Here</a></p>
+                           {% if assess.publish_date < x and x < assess.due_date %}
+                                <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success"> Take Assessment {{assess}} Here</a></p>
+                            {% endif %}
                         {% endif %}
+
                     {% endfor %}
                 {% endif %}
 

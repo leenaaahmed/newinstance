@@ -87,6 +87,7 @@ def studashboard(request):
     person = request.user
     users = SiteUsers.objects.get(user=person)
     cassess = Cassess.objects.all()
+    x = datetime.now().date()   
     i = []
     for c in cassess:
         for t in team:
@@ -97,7 +98,7 @@ def studashboard(request):
                         if assess.due_date < datetime.now().date():
                             i.append(assess.assess_number)
 
-    return render(request, 'Dashboards/studashboard.html', {'team': team, 'cassess': cassess, 'courses:':courses, 'users': users, 'i': i})
+    return render(request, 'Dashboards/studashboard.html', {'team': team, 'cassess': cassess, 'courses:':courses, 'users': users, 'i': i, 'x':x})
 
 def student_or_professor(request):
     return render(request, 'student_or_professor.html')
@@ -364,5 +365,20 @@ def view_your_assessment(request, assessment):
     team = Team.objects.all()
     person = request.user
     users = SiteUsers.objects.get(user=person)
-    cassess = Cassess.objects.all()
-    return render(request, 'view_your_assessment.html', {'team': team, 'cassess': cassess, 'courses:':courses, 'users': users})
+    cassess = assessment
+    response = Response.objects.all()
+    mc = MCResponse.objects.all()
+    submission = Submission.objects.all()
+    count = 0
+    total = 0
+    avg = 0
+    for s in submission:
+        if s.reviewee == users:
+            for a in mc:
+                for answerMC in s.answerMC.all():
+                    if a.mc == answerMC.mc:
+                        if s.reviewee == users:
+                            count = count +1
+                            total = total + int(answerMC.mc)
+                            avg = total / count
+    return render(request, 'view_your_assessment.html', {'team': team, 'avg':avg, 'response': response, 'mc': mc, 'cassess': cassess, 'courses:':courses, 'users': users, 'submission': submission})
