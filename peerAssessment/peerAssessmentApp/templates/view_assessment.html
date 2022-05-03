@@ -72,7 +72,7 @@
 	{% csrf_token %}
 	<h2>Due Date: {{assess.due_date}}</h2>
 </br>
-	<li> Select Team Member from list above </li>
+	<li> Select Team Member from list below </li>
 		{{formc.reviewee}}
 	<br/>
  	{% for q in question %}
@@ -83,8 +83,9 @@
   					<li> {{forma.mc}} </li>	
   				{% endif %}
   			{% endfor %}
+ 
   			{% for c in oe %}	
-  				{% if c.question == q and c.response == '' %}
+  				{% if c.question == q and c.response == ''%}
   					<li> {{formb.response}} </li>
   				{% endif %}
   			{% endfor %}

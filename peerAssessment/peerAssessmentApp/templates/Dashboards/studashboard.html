@@ -8,23 +8,25 @@
         * {
         box-sizing: border-box;
          }
-      
-    .from-group{
+
+      .from-group{
         position: relative;
         color:black;
         display: block;
         justify-content: space-between;
         margin-left: 5em;
     }
+    
     body{
         background-image: url("https://lh3.googleusercontent.com/9dboiQxDkYDUhX-SmMAiNGfKeugKqSzkOCuMtA6B0lqf9mBevtl5pgEjWmjCEcT6sBwc_cyw-5bGT7dGG7Qyt2LzwAOSs-sJgw9RBDgQm0ZYAQ_8mNfLELy-wUmFodS1c1sdYIc7Ow=w2400");
         background-size: cover;
     }
-    h1{
+     h1{
         color: black;
         font-size:1cm;
         margin-left: 1.4em;
     }
+   
     p{
         margin-left: 3em;
         color: black;
@@ -45,6 +47,7 @@
             font-size: 30px;
             display: inline;
     }
+    
     .btn-success:hover{
         color: #707FE2;
         font-weight: 800;
@@ -56,6 +59,7 @@
         margin-left: 3em;
         display:inline-block;
     }
+    
     </style>
 </head>
 <body>
@@ -74,21 +78,22 @@
                         <li>{{us}}</li>
                     {% endfor %} 
                     <br/>
+                    <br> </br>
                     {% for assess in cassess %}
                         {% if t.course == assess.course %}
                            {% if assess.publish_date < x and x < assess.due_date %}
-                                <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success"> Take Assessment {{assess}} Here - Due Date: {{assess.due_date}} </a></p>
+                                <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success">Take Assessment {{assess}} Here - Due Date: {{assess.due_date}}</a></button>
                             {% endif %}
                         {% endif %}
                     {% endfor %}
+                
                 {% endif %}
 
 
             {%endfor%}
     {% endfor %}
-
     {% for w in i %}
-        <a href = "/view_your_assessment/{{w}}/" style="color:black;"><button type="submit" class="btn-success"> View your team members evaluations for Assessment {{w}} Here</a></p>
+        <a href = "/view_your_assessment/{{w}}/" style="color:black;"><button type="submit" class="btn-success"> View your team members evaluations for Assessment {{w}} Here</button></a>
     {% endfor %} 
 </form>
 <div class = "form-container" style ="margin-left: 5em;">
