@@ -1,38 +1,84 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
 
+<head>
+    <style>
+        body{
+            background-image: url('https://lh3.googleusercontent.com/tL6MWDV7J-URx5dQkqIke1fa2x1rqrv4BjlHeH_IQqqdon10G18HdN8KNZhAzm9EtAcaqDOVtQHU188LZQ-W96CasEj9vyNDE8WP-NZVdRC0fRPbQPI5Os0FJQnrR86mHzEzVc2O3w=w2400');
+            background-size: cover;
+        }
 
+        .dash-header{
+        font-weight: 300;
+        justify-content: center;
+        padding: 2em;
+        padding-left: 3em;
+    }
 
-{% for t in team %}
-    {%for user in t.memebers.all%}
-        {% if users == user %}
-            {% if assess.course == t.course %}
-                {{t}}
+    .dash-header h1{
+        font-weight: 300;
+    }
+    
+
+    .dash-header h2{
+        font-weight: 500;
+    }
+
+    .result-container{
+        padding-left: 3em;
+    }
+    </style>
+
+    
+</head>
+
+<body> 
+    
+    <div class="dash-header">
+            <h2>Results</h2>
+            <hr style="width: 90%;">
+    </div>
+    <div class="result-container">
+       
+            {% for t in team %}
+            {%for user in t.memebers.all%}
+                {% if users == user %}
+                    {% if assess.course == t.course %}
+                        {{t}}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        {% for s in submission %}
+            {% if s.reviewee == users%}
+                {% if assess.course == s.course %}
+                <br> </br>
+                
+                    {% for answer in s.answer.all %}
+                        {% if s.assessment == assess %}
+                            <li> {{answer.question}} </li>
+                            <li> {{answer.response}} </li> 
+                        {% endif %}           
+                    {% endfor %}
+                    
+                    {% for answerMC in s.answerMC.all %}
+                            {% if s.assessment == assess %}
+                                <li> {{answerMC.question}} </li>
+                                <li> {{answerMC.mc}} </li>
+                        {% endif %}
+                    {% endfor %}
+                
+                    
+                {% endif %}
             {% endif %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
+        {% endfor %}
 
-{% for s in submission %}
-    {% if s.reviewee == users%}
-        {% if assess.course == s.course %}
-        <br> </br>
-        
-            {% for answer in s.answer.all %}
-                {% if s.assessment == assess %}
-                    <li> {{answer.question}} </li>
-                    <li> {{answer.response}} </li> 
-                {% endif %}           
-            {% endfor %}
-            
-            {% for answerMC in s.answerMC.all %}
-                    {% if s.assessment == assess %}
-                        <li> {{answerMC.question}} </li>
-                        <li> {{answerMC.mc}} </li>
-                 {% endif %}
-            {% endfor %}
-        
-            
-        {% endif %}
-    {% endif %}
-{% endfor %}
+        <p> Your average on multiple choice questions was {{avg}}.</p>
 
-<p> Your average on multiple choice questions was {{avg}} </p>
+        <br>
+        <a href="/Dashboards/studashboard/">Back To Dashboard</a>
+    </div>
+</body>
+{% endblock %}
