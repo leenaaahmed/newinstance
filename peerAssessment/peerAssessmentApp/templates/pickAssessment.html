@@ -12,7 +12,7 @@
             margin-top: 1em;
             position: relative;
             margin-right: 1em;
-            margin-left: 35em;
+			margin-left: 1em;
             border-radius: 17px;
             background-color: transparent;
             border: solid 2px #707FE2;
@@ -44,23 +44,31 @@
 			border-style: solid;
 			border: 2px #707FE2;
 		}
+		h1{
+			text-align: center;
+        	color: #707FE2;
+		}
+		body{
+            background-image: url('https://lh3.googleusercontent.com/tL6MWDV7J-URx5dQkqIke1fa2x1rqrv4BjlHeH_IQqqdon10G18HdN8KNZhAzm9EtAcaqDOVtQHU188LZQ-W96CasEj9vyNDE8WP-NZVdRC0fRPbQPI5Os0FJQnrR86mHzEzVc2O3w=w2400');
+            background-size: cover;
+        }
 	</style>
 </head>
-
-
+<body>
+<h1>Assessment Responses</h1>
 	<form action="" method = POST>
 		{% csrf_token %}
 		{% for a in assess %}
 			{% for r in registry %}
 				{% if user == r.admin %}
 					{% if r.course == a.course %}
-						<a href = "/view_responses/{{a}}" style="color: black;"><button type ="submit" class="btn-success" >View responses to Assessment {{a}} Here</a></button>
+						<a href = "/view_responses/{{a}}" style="color: black; font-weight: bold;"><button type ="submit" class="btn-success" >Responses to Assessment {{a}} Here</a></button>
 					{% endif %}
 				{% endif %}
 			{% endfor %}
 		{% endfor %}
 	<br/>
 </form>
-
+</body>
 {% endblock %}
 
