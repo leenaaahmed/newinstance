@@ -132,9 +132,11 @@
     }
 
     .wrappercol{
+        width: 60vw;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 30px;
+        grid-row-gap: 30px;
         margin-top: 1.5em;
         margin-left: 3em;
     }
@@ -156,8 +158,10 @@
     }
 
     .assesscontain{
-        padding-right: 2em;
-        width: 100%;
+      position: absolute;
+      top: 19em;
+      right: 13em;
+
     }
 
     .assesscontain hr{
@@ -210,25 +214,29 @@
                                 <li style="display: inline-block;">Members:</li>
                                 {% for us in t.memebers.all%}
                                     <li style="display: inline-block; font-weight: 300;">{{us}},</li>
-                                {% endfor %}   
+                                {% endfor %}  
+                                
+                                <br>
+                                <br>
+                                {% for assess in cassess %}
+                                    {% if t.course == assess.course %}
+                                    {% if assess.publish_date < x and x < assess.due_date %}
+                                    <a href = "/view_assessment/{{assess}}/" style="color:black;">Take Assessment {{assess}} Here - Due Date: {{assess.due_date}}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
                             </div>
                             
                         </div>
-                        
-                        {% for assess in cassess %}
-                            {% if t.course == assess.course %}
-                            {% if assess.publish_date < x and x < assess.due_date %}
-                                    <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success">Take Assessment {{assess}} Here - Due Date: {{assess.due_date}}</a></button>
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
                     
                     {% endif %}
 
 
                 {%endfor%}
         {% endfor %}
-        <div class = "assesscontain">
+        
+    </div>
+    <div class = "assesscontain">
             <h1>Evaluation Results</h1>
             <hr>
             {% for w in i %}
@@ -236,13 +244,10 @@
             <br>
             {% endfor %}     
         </div>
-       
-    </div>
-    
     
 </form>
 
-<div class = "footer" style ="position: relative; margin-top: 5em; margin-left: 35%">
+<div class = "footer" style ="position: relative; margin-top: 5em; margin-left: 40%">
     {% csrf_token %}
     <div class="home-btn">
         <a href="/stu_view_team" ><span>VIEW ASSIGNED TEAMS</span></a>
