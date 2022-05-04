@@ -107,7 +107,7 @@
 	<br/> <br/>
 		{% if submitted %}
 			<p>Course has been assigned</p>
-            <a href = "/Dashboards/prodashboard" style="color:#707FE2;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
+            <a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 		{% else %}
 
 			<form action = "" method=POST>
@@ -115,7 +115,7 @@
 
 				{{ form.as_p}}
 
-				<input type = "submit" value = "Submit" class = "btn-success">
+				<input type = "submit" value = "Submit" class = "btn-success" style="color: black;">
 
 			</form>
 		{% endif %}
