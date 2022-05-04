@@ -4,9 +4,8 @@
 {% for t in team %}
     {%for user in t.memebers.all%}
         {% if users == user %}
-            {% if assessment.course == t.course %}
+            {% if assess.course == t.course %}
                 {{t}}
-                {{cassess}}
             {% endif %}
         {% endif %}
     {% endfor %}
@@ -14,25 +13,23 @@
 
 {% for s in submission %}
     {% if s.reviewee == users%}
+        {% if assess.course == s.course %}
         <br> </br>
-        {% for r in response %}
+        
             {% for answer in s.answer.all %}
-                {% if r.response == answer.response %}
-                    <li> {{r.question}} </li>
-                    <li> {{answer.response}} </li>
-                {% endif %}
+                    <li> {{answer.question}} </li>
+                    <li> {{answer.response}} </li>            
             {% endfor %}
-        {% endfor %}
-        {% for a in mc %}
+            
             {% for answerMC in s.answerMC.all %}
-                {% if a.mc == answerMC.mc %}
-                    {%if s.reviewee == users%}
-                        <li> {{a.question}} </li>
+                    {% if assess.course == s.course %}
+                        <li> {{answerMC.question}} </li>
                         <li> {{answerMC.mc}} </li>
-                    {% endif %}
-                {% endif %}
+                 {% endif %}
             {% endfor %}
-        {% endfor %}
+        
+            
+        {% endif %}
     {% endif %}
 {% endfor %}
 

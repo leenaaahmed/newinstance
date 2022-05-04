@@ -366,11 +366,11 @@ def view_your_assessment(request, assessment):
     team = Team.objects.all()
     person = request.user
     users = SiteUsers.objects.get(user=person)
-    cassess = assessment
+    assess = Cassess.objects.get(assess_number = assessment)
     response = Response.objects.all()
     mc = MCResponse.objects.all()
     submission = Submission.objects.all()
-    assess = Cassess.objects.all()
+    cassess = Cassess.objects.all()
     count = 0
     total = 0
     avg = 0
@@ -383,7 +383,7 @@ def view_your_assessment(request, assessment):
                             count = count +1
                             total = total + int(answerMC.mc)
                             avg = total / count
-    return render(request, 'view_your_assessment.html', { 'assess': assess, 'assessment': assessment, 'team': team, 'avg':avg, 'response': response, 'mc': mc, 'cassess': cassess, 'courses:':courses, 'users': users, 'submission': submission})
+    return render(request, 'view_your_assessment.html', { 'assess': assess, 'assessment': assessment, 'cassess': cassess, 'team': team, 'avg':avg, 'response': response, 'mc': mc, 'cassess': cassess, 'courses:':courses, 'users': users, 'submission': submission})
 
 def pickAssessment(request):
     assess = Cassess.objects.all()
