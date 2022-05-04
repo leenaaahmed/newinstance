@@ -374,15 +374,15 @@ def view_your_assessment(request, assessment):
     count = 0
     total = 0
     avg = 0
+
     for s in submission:
         if s.reviewee == users:
-            for a in mc:
+            if assess.course == s.course:
                 for answerMC in s.answerMC.all():
-                    if a.mc == answerMC.mc:
-                        if s.reviewee == users:
-                            count = count +1
-                            total = total + int(answerMC.mc)
-                            avg = total / count
+                    if s.assessment == assess:
+                        count = count +1
+                        total = total + int(answerMC.mc)
+                        avg = total / count
     return render(request, 'view_your_assessment.html', { 'assess': assess, 'assessment': assessment, 'cassess': cassess, 'team': team, 'avg':avg, 'response': response, 'mc': mc, 'cassess': cassess, 'courses:':courses, 'users': users, 'submission': submission})
 
 def pickAssessment(request):
