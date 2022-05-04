@@ -16,6 +16,66 @@
         justify-content: space-between;
         
     }
+
+    .home-btn{
+        position: relative;
+        width: 300px;
+        height: 200px;
+    }
+
+    .home-btn a{
+        text-decoration: none;
+        border: 2px solid #010100;
+        padding: 15px;
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .home-btn a:hover{
+        color: black;
+    }
+
+    .home-btn a::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: -2px;
+        width: calc(100% + 6px);
+        height: calc(100% - 10px);
+        background-color: #ffffff;
+        transition: all 0.5s ease-in-out;
+        transform: scaleY(1);
+    }
+
+    span {
+        position: relative;
+        z-index: 3;
+    }   
+
+    .home-btn a:hover::before{
+        transform: scaleY(0);
+    }
+
+    .home-btn a::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: -5px;
+        width: calc(100% - 10px);
+        /*100% plus double the times left values*/
+        height: calc(100% + 10px);
+        background-color: white;
+        transition: all 0.5s ease-in-out;
+        transform: scaleX(1);
+    }
+
+
+    .home-btn a:hover::after{
+        transform: scaleX(0);
+    }
     
     body{
         background-image: url("https://lh3.googleusercontent.com/9dboiQxDkYDUhX-SmMAiNGfKeugKqSzkOCuMtA6B0lqf9mBevtl5pgEjWmjCEcT6sBwc_cyw-5bGT7dGG7Qyt2LzwAOSs-sJgw9RBDgQm0ZYAQ_8mNfLELy-wUmFodS1c1sdYIc7Ow=w2400");
@@ -28,7 +88,7 @@
    
     p{
         color: black;
-        font-weight: bold;
+        
     }
     .btn-success{
             display: block;
@@ -54,7 +114,6 @@
 
     li{
         list-style-type: none;
-        display:inline-block;
     }
 
     .course-container{
@@ -62,8 +121,14 @@
         border: 1px solid black;
         border-radius: 10px;
         padding-top: 10em;
-        background-color: blueviolet;
+        background-color:#707fe2ad;
         height: min-content;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .course-container:hover{
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
     .wrappercol{
@@ -90,14 +155,49 @@
 
     }
 
+    .assesscontain{
+        padding-right: 2em;
+        width: 100%;
+    }
+
+    .assesscontain hr{
+       width: 60%;
+    }
+
+    .assesscontain h1{
+        font-weight: 300;
+        font-size: 1.4em;
+    }
+
+    .dash-header{
+        font-weight: 300;
+        justify-content: center;
+        padding: 2em;
+        padding-left: 3em;
+    }
+
+    .dash-header h1{
+        font-weight: 300;
+    }
+    
+
+    .dash-header h2{
+        font-weight: 500;
+    }
+    
+
     </style>
 </head>
 <body>
 <form action="" method = POST>
     {%csrf_token%}
-    <h1> Hello {{request.user.username}},</h1>
-    <br>
-    <h2>Current Courses</h2>
+
+    <div class="dash-header">
+        <h1> Hello {{request.user.username}},</h1>
+        <h2>Dashboard</h2>
+        <hr style="width: 90%;">
+    </div>
+    
     <div class="wrappercol">
         {% for t in team %}
                 {%for user in t.memebers.all%}
@@ -107,9 +207,9 @@
                             <div class="bottom">
                                 <hr>
                                 <p>{{t}}</p>
-                                <li>Members:</li>
+                                <li style="display: inline-block;">Members:</li>
                                 {% for us in t.memebers.all%}
-                                    <li>{{us}},</li>
+                                    <li style="display: inline-block; font-weight: 300;">{{us}},</li>
                                 {% endfor %}   
                             </div>
                             
@@ -129,8 +229,11 @@
                 {%endfor%}
         {% endfor %}
         <div class = "assesscontain">
+            <h1>Evaluation Results</h1>
+            <hr>
             {% for w in i %}
-            <a href = "/view_your_assessment/{{w}}/" style="color:black;"><button type="submit" class="btn-success"> View your team members evaluations for Assessment {{w}} Here</a></button>
+            <a style = "margin-bottom: 1em;" href = "/view_your_assessment/{{w}}/" style="color:black;">View Evaluations for Assessment {{w}}</a>
+            <br>
             {% endfor %}     
         </div>
        
@@ -138,9 +241,12 @@
     
     
 </form>
-<div class = "form-container" style ="margin-left: 5em;">
+
+<div class = "footer" style ="position: relative; margin-top: 5em; margin-left: 35%">
     {% csrf_token %}
-    <a href = "/stu_view_team" style="color: black"><button type="submit" class="btn-success" >View Assigned Teams</a></button>
+    <div class="home-btn">
+        <a href="/stu_view_team" ><span>VIEW ASSIGNED TEAMS</span></a>
+    </div>
 </div>
 </body>
 {% endblock %}
