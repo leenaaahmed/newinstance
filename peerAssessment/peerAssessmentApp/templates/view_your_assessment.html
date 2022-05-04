@@ -17,12 +17,14 @@
         <br> </br>
         
             {% for answer in s.answer.all %}
+                {% if s.assessment == assess %}
                     <li> {{answer.question}} </li>
-                    <li> {{answer.response}} </li>            
+                    <li> {{answer.response}} </li> 
+                {% endif %}           
             {% endfor %}
             
             {% for answerMC in s.answerMC.all %}
-                    {% if assess.course == s.course %}
+                    {% if s.assessment == assess %}
                         <li> {{answerMC.question}} </li>
                         <li> {{answerMC.mc}} </li>
                  {% endif %}
