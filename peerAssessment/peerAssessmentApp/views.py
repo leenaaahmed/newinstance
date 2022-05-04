@@ -327,14 +327,15 @@ def view_responses(request, assessment):
     assess = Cassess.objects.get(assess_number = assessment)
     questions = Question.objects.all()
     mc = MCResponse.objects.all()
+    submission = Submission.objects.all()
     response = Response.objects.all()
     for course in courses:
         submissions = Submission.objects.filter(course__course__icontains=course)
-        for submission in submissions:
-            course_submissions.append(submission)
+        for sub in submissions:
+            course_submissions.append(sub)
 
 
-    return render(request, 'view_responses.html', {'submissions': course_submissions, 'assess': assess, 'questions':questions, 'response': response, 'mc': mc})
+    return render(request, 'view_responses.html', {'submissions': course_submissions, 'submission':submission, 'assess': assess, 'questions':questions, 'response': response, 'mc': mc})
 
 '''def submission_deadline():
     students = SiteUsers.objects.all()
@@ -369,6 +370,7 @@ def view_your_assessment(request, assessment):
     response = Response.objects.all()
     mc = MCResponse.objects.all()
     submission = Submission.objects.all()
+    assess = Cassess.objects.all()
     count = 0
     total = 0
     avg = 0
@@ -381,7 +383,7 @@ def view_your_assessment(request, assessment):
                             count = count +1
                             total = total + int(answerMC.mc)
                             avg = total / count
-    return render(request, 'view_your_assessment.html', { 'assessment': assessment, 'team': team, 'avg':avg, 'response': response, 'mc': mc, 'cassess': cassess, 'courses:':courses, 'users': users, 'submission': submission})
+    return render(request, 'view_your_assessment.html', { 'assess': assess, 'assessment': assessment, 'team': team, 'avg':avg, 'response': response, 'mc': mc, 'cassess': cassess, 'courses:':courses, 'users': users, 'submission': submission})
 
 def pickAssessment(request):
     assess = Cassess.objects.all()

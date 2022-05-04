@@ -51,59 +51,40 @@
 <h1> Responses {{assess}}</h1>
 <form action="" method = POST>
 	{% csrf_token %}
- 	{% for submission in submissions %}
-<<<<<<< Updated upstream
-        <p>Course: {{ submission.course }}</p>
-        <p> User: {{ submission.user }}</p>
-        <p> Reviewing: {{ submission.reviewee }}</p>
-        {% for r in response %}
-			{% for answer in submission.answer.all %}
-				{% if r.response == answer.response %}
-					<li> Question: {{r.question}} </li>
-  					<li> Response: {{answer.response}} </li>
-  				{% endif %}
-=======
-		{% if submission.assessment == assess%}
+ 	{% for sub in submission %}
+ 		
+		{% if sub.assessment == assess %}
 	 		<div>
-        	<p>Course: {{ submission.course }}</p>
-        	<p> User: {{ submission.user }}</p>
-       		<p> Who response is about: {{ submission.reviewee }}</p>
-       		{% for r in response %}
-				{% for answer in submission.answer.all %}					{% if r.response == answer.response %}
-						<li> Question: {{r.question}} </li>
-  						<li> Response: {{answer.response}} </li>
-  					{% endif %}
-  				{% endfor %}
->>>>>>> Stashed changes
+        	<p>Course: {{ sub.course }}</p>
+        	<p> User: {{ sub.user }}</p>
+       		<p> Reviewee: {{ sub.reviewee }}</p>
+			{% for answer in sub.answer.all %}				
+				{%if sub.user == answer.responder%}
+					<li> Question: {{answer.question}} </li>
+  					<li> Response: {{answer.response}} </li>
+
+  				{% endif %}
   			{% endfor %}
-  			{% for a in mc %}
-            	{% for answerMC in submission.answerMC.all %}
-            		{% if a.mc == answerMC.mc %}
-            			{%if submission.user == a.responder%}
-            				<li> Question: {{a.question}} </li>
-  							<li> Response: {{answerMC.mc}} </li>
-  						{% endif %}
-  					{% endif %}
-  				{% endfor %}
+            {% for answerMC in sub.answerMC.all %}
+            	{%if sub.user == answerMC.responder%}
+            		<li> Question: {{answerMC.question}} </li>
+  					<li> Response: {{answerMC.mc}} </li>
+  				{% endif %}
+  				
+  			{% endfor %}
 				<br/>
 				</div>
-  			{% endfor %}
-<<<<<<< Updated upstream
-  		{% endfor %}
+  			
+
+  		{% endif %}
 		  <br/><br/>
+  	
 	{% endfor %}
 	<a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
 </form>
 <br/>
-=======
-  		{% endif%}
-  	{% endfor %}
 	
->>>>>>> Stashed changes
 
-</form>
-<a href = "/Dashboards/prodashboard" style="color: black;"><button type ="submit" class="btn-success" >Return To Dashboard</a></button>
-<br/>
 
 
  {%endblock%}

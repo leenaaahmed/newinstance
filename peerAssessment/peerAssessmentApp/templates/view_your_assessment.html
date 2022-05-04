@@ -4,8 +4,10 @@
 {% for t in team %}
     {%for user in t.memebers.all%}
         {% if users == user %}
-            <p>{{t}}</p>
-            {{cassess}}
+            {% if assessment.course == t.course %}
+                {{t}}
+                {{cassess}}
+            {% endif %}
         {% endif %}
     {% endfor %}
 {% endfor %}
