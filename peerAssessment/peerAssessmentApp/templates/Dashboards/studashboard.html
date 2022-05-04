@@ -14,7 +14,7 @@
         color:black;
         display: block;
         justify-content: space-between;
-        margin-left: 5em;
+        
     }
     
     body{
@@ -24,11 +24,9 @@
      h1{
         color: black;
         font-size:1cm;
-        margin-left: 1.4em;
     }
    
     p{
-        margin-left: 3em;
         color: black;
         font-weight: bold;
     }
@@ -50,50 +48,95 @@
     
     .btn-success:hover{
         color: #707FE2;
-        font-weight: 800;
         background-color: transparent;
         border: solid 3px #707FE2;
     }
+
     li{
         list-style-type: none;
-        margin-left: 3em;
         display:inline-block;
     }
+
+    .course-container{
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding-top: 10em;
+        background-color: blueviolet;
+        height: min-content;
+    }
+
+    .wrappercol{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 30px;
+        margin-top: 1.5em;
+        margin-left: 3em;
+    }
+
+    .wrappercol > div {
+        max-width: 100%;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .bottom{
+        background-color: white;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-bottom: 1em;
+
+    }
+
     </style>
 </head>
 <body>
 <form action="" method = POST>
     {%csrf_token%}
-    <h1> Hello {{request.user.username}}: </h1>
-
+    <h1> Hello {{request.user.username}},</h1>
     <br>
-    {% for t in team %}
-            {%for user in t.memebers.all%}
-                {% if users == user %}
-                    <br/>
-                    <p>Course: {{t}}</p>
-                    <li>Members:</li>
-                    {% for us in t.memebers.all%}
-                        <li>{{us}}</li>
-                    {% endfor %} 
-                    <br/>
-                    <br> </br>
-                    {% for assess in cassess %}
-                        {% if t.course == assess.course %}
-                           {% if assess.publish_date < x and x < assess.due_date %}
-                                <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success">Take Assessment {{assess}} Here - Due Date: {{assess.due_date}}</a></button>
+    <h2>Current Courses</h2>
+    <div class="wrappercol">
+        {% for t in team %}
+                {%for user in t.memebers.all%}
+                    {% if users == user %}
+                        <div class="course-container">
+                           
+                            <div class="bottom">
+                                <hr>
+                                <p>{{t}}</p>
+                                <li>Members:</li>
+                                {% for us in t.memebers.all%}
+                                    <li>{{us}},</li>
+                                {% endfor %}   
+                            </div>
+                            
+                        </div>
+                        
+                        {% for assess in cassess %}
+                            {% if t.course == assess.course %}
+                            {% if assess.publish_date < x and x < assess.due_date %}
+                                    <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success">Take Assessment {{assess}} Here - Due Date: {{assess.due_date}}</a></button>
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                
-                {% endif %}
+                        {% endfor %}
+                    
+                    {% endif %}
 
 
-            {%endfor%}
-    {% endfor %}
-    {% for w in i %}
-        <a href = "/view_your_assessment/{{w}}/" style="color:black;"><button type="submit" class="btn-success"> View your team members evaluations for Assessment {{w}} Here</a></button>
-    {% endfor %} 
+                {%endfor%}
+        {% endfor %}
+        <div class = "assesscontain">
+            {% for w in i %}
+            <a href = "/view_your_assessment/{{w}}/" style="color:black;"><button type="submit" class="btn-success"> View your team members evaluations for Assessment {{w}} Here</a></button>
+            {% endfor %}     
+        </div>
+       
+    </div>
+    
+    
 </form>
 <div class = "form-container" style ="margin-left: 5em;">
     {% csrf_token %}
