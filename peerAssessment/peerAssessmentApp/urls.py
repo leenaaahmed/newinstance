@@ -25,10 +25,11 @@ urlpatterns = [
     path('oe_response/', views.oe_response, name= 'oe_response'),
     path('view_assessment/<assessment>/', views.view_assessment, name= 'view_assessment'),
     path('view_responses/<assessment>/', views.view_responses, name= 'view_responses'),
-    path('reviews/', views.reviews, name='reviews'), 
+    path('reviews/', views.reviews, name='reviews'),
     path('stu_view_team/', views.stu_view_team, name = 'stu_view_team'),
     path('view_your_assessment/<assessment>/', views.view_your_assessment, name= 'view_responses'),
     # path('view_responses/<response>/', views.view_response, name= 'view_response'),
     path('pickAssessment/', views.pickAssessment, name= 'pickAssessment'),
+    path('enroll/', views.enroll, name="enroll")
 
 ]

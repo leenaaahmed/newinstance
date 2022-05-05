@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% csrf_token %}
+
+{% block content %}
+
+<head>
+    <style>
+         * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+        @font-face {
+            font-family: carmen-sans;
+            src: url(./regularfont.otf)
+        }
+        #navbar{
+        width: 100%;
+        height: 10vh;
+        background-color: black;
+        padding-top: 0.7em;
+        padding-left: 2em;
+    }
+
+    .navlist{
+        width: 100;
+        overflow: hidden;
+    }
+    .navlist a{
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+    .navlist a:hover {
+        color: #707FE2;
+    }
+    .navlist a.active {
+        color: #707FE2;
+    }
+    .navlist .icon {
+         display: none;
+    }
+    .logo{
+        position: relative;
+    }
+    h1{
+        color:#707FE2;
+        text-shadow: 2ex;
+        text-align: center;
+    }
+    p{
+        color: gray;
+        font-size: medium;
+        margin-left: 3em;
+        text-align: left;
+        line-height: 5ex;
+        margin-left: 7ex;
+        margin-right: 7ex;
+    }
+    input[type=assess_number]{
+        position: relative;
+        display: block;
+        width: 50%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+    }
+    input[type=text]{
+        position: relative;
+        display: block;
+        width: 50%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+    }
+    select{
+        position: relative;
+        display: block;
+        width: 50%;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #707FE2;
+        border-radius: 4px;
+    }
+    .btn-success{
+            display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 37em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: #707FE2;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+    }
+    .btn-success:hover{
+        color: #707FE2;
+        font-weight: 800;
+        background-color: transparent;
+        border: solid 2px #707FE2;
+    }
+    .btn-secondary{
+            display: block;
+            margin-top: 1em;
+            position: relative;
+            margin-right: 1em;
+            margin-left: 34em;
+            border-radius: 17px;
+            background-color: transparent;
+            border: solid 2px #707FE2;
+            color: #707FE2;
+            text-align: center;
+            padding: 23px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline;
+    }
+    .btn-secondary:hover{
+        color: #707FE2;
+        font-weight: 800;
+        background-color: transparent;
+        border: solid 2px #707FE2;
+    }
+    .TextWrap {
+        float: right;
+        position: absolute;
+        top: 175px;
+        right: 120px;
+        margin: 10px;
+        clear: right;
+    }
+    </style>
+</head>
+
+	<h1> Create Peer Assessment </h1>
+	<br/> <br/>
+		{% if submitted %}
+			{{ message }}
+		{% else %}
+
+			<form action = "" method=POST>
+				{% csrf_token %}
+
+				{{ form.as_p}}
+                <!-- add in fields  -->
+				<input type = "submit" value = "Submit" class = "btn-success" style="color: black;">
+                <a href = "/Dashboards/studashboard" style="color: black;"><button type ="submit" class="btn-secondary" >Return To Dashboard</a></button>
+			</form>
+		{% endif %}
+		</center>
+	<br/> <br/>
+
+
+{% endblock %}

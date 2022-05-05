@@ -180,6 +180,11 @@ class SubmissionForm(ModelForm):
             'reviewee': forms.Select(attrs={'class': 'forms-control','placeholder': 'reviewee'}),
         }
 
+class EnrollForm(forms.Form):
+    access_code = forms.CharField(max_length = 5, help_text = 'Access Code')
+    class Meta:
+        fields = ('access_code',)
+
 class ContactForm(forms.Form):
 	first_name = forms.CharField(max_length = 50)
 	last_name = forms.CharField(max_length = 50)
