@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm, ContactForm,SubmissionForm
+from .forms import SignUpForm, CourseForm, RegistryForm, CassessForm, TeamForm, QuestionForm, ResponseForm, MCResponseForm, ContactForm,SubmissionForm, EnrollForm
 from .models import SiteUsers, Registry, Course, Cassess, Team, Question, Response, MCResponse, Submission
 from django.contrib import messages
 from django.contrib.auth import authenticate
@@ -87,7 +87,7 @@ def studashboard(request):
     person = request.user
     users = SiteUsers.objects.get(user=person)
     cassess = Cassess.objects.all()
-    x = datetime.now().date()   
+    x = datetime.now().date()
     i = []
     for c in cassess:
         for t in team:
@@ -154,7 +154,7 @@ def create_assessment(request):
     teams = Team.objects.all()
     assessment = Cassess.objects.all()
     submission = Submission.objects.all()
-    
+
     if request.method == "POST":
         form = CassessForm(request.POST)
         print('form: ', form)
@@ -345,7 +345,7 @@ def view_responses(request, assessment):
     for c in cassess:
         for t in team:
             if t.course == c.course:
-                date = c.due_date 
+                date = c.due_date
                 if date - timedelta(hours = 24) == datetime.now():
                     for p in t.memebers.all()
                         subject = "You have 24 hours left to answer assessment"
@@ -392,3 +392,25 @@ def pickAssessment(request):
     users = SiteUsers.objects.get(user=person)
     registry = Registry.objects.all()
     return render(request, 'pickAssessment.html', {'assess': assess, 'course:':course, 'users': users, 'registry': registry})
+
+def enroll(request):
+    submitted = False
+    message = 'Enrollment successful.'
+    if request.method == 'POST':
+        form = EnrollForm(request.POST)
+        if form.is_valid():
+            access_code = form.cleaned_data.get('access_code')
+            course = Course.objects.get(access_code=access_code)
+            if (course):
+                student = SiteUsers.objects.get(user=request.user)
+                course.students.add(student)
+                message = 'Enrollment successful.'
+
+            else:
+                message = 'Enrollment failed. Please try again.'
+        return HttpResponseRedirect('/enroll?submitted=True')
+    else:
+        form = EnrollForm()
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'enroll.html',  {'form': form, 'message': message, 'submitted': submitted})
