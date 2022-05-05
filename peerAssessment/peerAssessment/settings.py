@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,6 +48,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -118,7 +120,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 
 # Default primary key field type
@@ -135,4 +137,12 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'newinstanceco@gmail.com'
 EMAIL_HOST_PASSWORD = 'wordle19'
 
-ALLOWED_HOSTS ['localhost', '127.0.0.1', '.herokuapp.com',]
+DEBUG = False
+ALLOWED_HOSTS ['localhost', '127.0.0.1', 'newinstance.herokuapp.com',]
+
+#Active Django-Heroku.
+django_heroku.settings(locals())
+
+
+
+
