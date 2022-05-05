@@ -181,7 +181,7 @@ class SubmissionForm(ModelForm):
         }
 
 class EnrollForm(forms.Form):
-    access_code = forms.CharField(max_length = 5, help_text = 'Access Code')
+    access_code = forms.CharField(max_length = 5)
     class Meta:
         fields = ('access_code',)
 

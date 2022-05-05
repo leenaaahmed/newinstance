@@ -14,7 +14,70 @@
         color:black;
         display: block;
         justify-content: space-between;
-        margin-left: 5em;
+
+    }
+
+    .home-btn{
+        position: relative;
+        width: 300px;
+        height: 200px;
+    }
+
+    .home-btn a{
+        text-decoration: none;
+        border: 2px solid #010100;
+        padding: 15px;
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home-btn a:hover{
+        color: black;
+    }
+
+    .home-btn a::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: -2px;
+        width: calc(100% + 6px);
+        height: calc(100% - 10px);
+        background-color: #ffffff;
+        transition: all 0.5s ease-in-out;
+        transform: scaleY(1);
+    }
+
+    span {
+        position: relative;
+        z-index: 3;
+    }
+
+    .home-btn a:hover::before{
+        transform: scaleY(0);
+    }
+
+    .home-btn a::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: -5px;
+        width: calc(100% - 10px);
+        /*100% plus double the times left values*/
+        height: calc(100% + 10px);
+        background-color: white;
+        transition: all 0.5s ease-in-out;
+        transform: scaleX(1);
+    }
+
+
+    .home-btn a:hover::after{
+        transform: scaleX(0);
     }
 
     body{
@@ -24,13 +87,11 @@
      h1{
         color: black;
         font-size:1cm;
-        margin-left: 1.4em;
     }
 
     p{
-        margin-left: 3em;
         color: black;
-        font-weight: bold;
+
     }
     .btn-success{
             display: block;
@@ -50,56 +111,152 @@
 
     .btn-success:hover{
         color: #707FE2;
-        font-weight: 800;
         background-color: transparent;
         border: solid 3px #707FE2;
     }
+
     li{
         list-style-type: none;
-        margin-left: 3em;
-        display:inline-block;
     }
+
+    .course-container{
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding-top: 10em;
+        background-color:#707fe2ad;
+        height: min-content;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .course-container:hover{
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .wrappercol{
+        width: 60vw;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 30px;
+        grid-row-gap: 30px;
+        margin-top: 1.5em;
+        margin-left: 3em;
+    }
+
+    .wrappercol > div {
+        max-width: 100%;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .bottom{
+        background-color: white;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-bottom: 1em;
+
+    }
+
+    .assesscontain{
+      position: absolute;
+      top: 19em;
+      right: 13em;
+
+    }
+
+    .assesscontain hr{
+       width: 60%;
+    }
+
+    .assesscontain h1{
+        font-weight: 300;
+        font-size: 1.4em;
+    }
+
+    .dash-header{
+        font-weight: 300;
+        justify-content: center;
+        padding: 2em;
+        padding-left: 3em;
+    }
+
+    .dash-header h1{
+        font-weight: 300;
+    }
+
+
+    .dash-header h2{
+        font-weight: 500;
+    }
+
+
     </style>
 </head>
 <body>
 <form action="" method = POST>
     {%csrf_token%}
-    <h1> Hello {{request.user.username}}: </h1>
 
-    <br>
-    {% for t in team %}
-            {%for user in t.memebers.all%}
-                {% if users == user %}
-                    <br/>
-                    <p>Course: {{t}}</p>
-                    <li>Members:</li>
-                    {% for us in t.memebers.all%}
-                        <li>{{us}}</li>
-                    {% endfor %}
-                    <br/>
-                    <br> </br>
-                    {% for assess in cassess %}
-                        {% if t.course == assess.course %}
-                           {% if assess.publish_date < x and x < assess.due_date %}
-                                <a href = "/view_assessment/{{assess}}/" style="color:black;"><button type="submit" class="btn-success">Take Assessment {{assess}} Here - Due Date: {{assess.due_date}}</a></button>
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
+    <div class="dash-header">
+        <h1> Hello {{request.user.username}},</h1>
+        <h2>Dashboard</h2>
+        <hr style="width: 90%;">
+    </div>
 
-                {% endif %}
+    <div class="wrappercol">
+        {% for t in team %}
+                {%for user in t.memebers.all%}
+                    {% if users == user %}
+                        <div class="course-container">
+
+                            <div class="bottom">
+                                <hr>
+                                <p>{{t}}</p>
+                                <li style="display: inline-block;">Members:</li>
+                                {% for us in t.memebers.all%}
+                                    <li style="display: inline-block; font-weight: 300;">{{us}},</li>
+                                {% endfor %}
+
+                                <br>
+                                <br>
+                                {% for assess in cassess %}
+                                    {% if t.course == assess.course %}
+                                    {% if assess.publish_date < x and x < assess.due_date %}
+                                    <a href = "/view_assessment/{{assess}}/" style="color:black;">Take Assessment {{assess}} Here - Due Date: {{assess.due_date}}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                            </div>
+
+                        </div>
+
+                    {% endif %}
 
 
-            {%endfor%}
-    {% endfor %}
-    {% for w in i %}
-        <a href = "/view_your_assessment/{{w}}/" style="color:black;"><button type="submit" class="btn-success"> View your team members evaluations for Assessment {{w}} Here</a></button>
-    {% endfor %}
+                {%endfor%}
+        {% endfor %}
+
+    </div>
+    <div class = "assesscontain">
+            <h1>Evaluation Results</h1>
+            <hr>
+            {% for w in i %}
+            <a style = "margin-bottom: 1em;" href = "/view_your_assessment/{{w}}/" style="color:black;">View Evaluations for Assessment {{w}}</a>
+            <br>
+            {% endfor %}
+        </div>
+
 </form>
-<div class = "form-container" style ="margin-left: 5em;">
-    {% csrf_token %}
-    <a href = "/stu_view_team" style="color: black"><button type="submit" class="btn-success" >View Assigned Teams</a></button>
-    <a href = "/enroll" style="color: black"><button type="submit" class="btn-success" >Enroll in Course</a></button>
 
+<div class = "footer" style ="position: relative; margin-top: 5em; margin-left: 40%">
+    {% csrf_token %}
+    <div class="home-btn">
+        <a href="/stu_view_team" ><span>VIEW ASSIGNED TEAMS</span></a>
+        <a href="/enroll" ><span>ENROLL IN COURSE</span></a>
+
+    </div>
 </div>
 </body>
 {% endblock %}
