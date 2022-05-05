@@ -134,3 +134,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'newinstanceco@gmail.com'
 EMAIL_HOST_PASSWORD = 'wordle19'
+
+ALLOWED_HOSTS ['localhost', '127.0.0.1', '.herokuapp.com',]
